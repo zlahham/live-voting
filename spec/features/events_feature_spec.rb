@@ -1,19 +1,19 @@
 require 'rails_helper'
 
-describe 'Events' do
+describe 'Events', js: true do
   it 'can be created by a user with one question' do
     visit root_path
     sign_up_user
     click_on 'Create Event'
     
-    fill_in 'Event name', with: 'event 1'
+    fill_in 'event_title', with: 'event 1'
     click_on 'Add question'
     fill_in 'Question', with: 'Ruby vs Javascript'
     fill_in 'Choice 1', with: 'Ruby'
     fill_in 'Choice 2', with: 'Javascript'
     click_on 'Publish'
     expect(page).to have_content 'Your event has been published'
-    # expect(page).to have_content 'LINK TO EVENT'
+    expect(page).to have_content 'LINK TO EVENT'
   end
 
   def sign_up_user

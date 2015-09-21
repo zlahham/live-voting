@@ -1,0 +1,4 @@
+<%= form_for @question do |f| %>
+  <%= f.text_field :content %>
+  <%= f.submit "Publish", remote: true %>
+<% end %>
