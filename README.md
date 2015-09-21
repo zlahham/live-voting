@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/zlahham/live-voting.png?label=ready&title=Ready)](https://waffle.io/zlahham/live-voting)
 #Live-Voting
 
 ###Final Version Features
