@@ -11,16 +11,6 @@ describe 'Events' do
     expect(page).to have_content 'event 1'
   end
 
-  # it 'can be created by a user with one question' do
-
-  #   fill_in 'Question', with: 'Ruby vs Javascript'
-  #   fill_in 'Choice 1', with: 'Ruby'
-  #   fill_in 'Choice 2', with: 'Javascript'
-  #   click_on 'Publish'
-  #   expect(page).to have_content 'Your event has been published'
-  #   expect(page).to have_content 'LINK TO EVENT'
-  # end
-
   def sign_up_user
     visit root_path
     click_on 'Sign up'
