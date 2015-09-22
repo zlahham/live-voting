@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-describe 'Events', js: true do
+describe 'Events' do
   it 'can be created' do
     visit root_path
     sign_up_user
     click_on 'Create Event'
-    
+
     fill_in 'event_title', with: 'event 1'
     click_on 'Add question'
     expect(page).to have_content 'event 1'

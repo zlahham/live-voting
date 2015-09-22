@@ -5,19 +5,16 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-
-    respond_to do |format|
-      format.js.erb
-    end
   end
 
   def create
     @event = Event.new(event_params)
     @event.save
+    redirect_to event_path(@event)
+  end
 
-    respond_to do |format|
-      format.js.erb
-    end
+  def show
+    @event = Event.find(params[:id])
   end
 
   private
