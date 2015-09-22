@@ -3,7 +3,10 @@ Rails.application.routes.draw do
 
   devise_for :users
   root 'events#index'
-  resources :events
+  resources :events do
+    resources :questions
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
