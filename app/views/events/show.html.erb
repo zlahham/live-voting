@@ -1,1 +1,10 @@
 <h1><%= @event.title %></h1>
+<ul>
+  <% if @event.questions.any? %>
+    <% @event.questions.each do |question| %>
+      <li><%= question.content %></li>
+    <% end %>
+  <% end %>
+</ul>
+
+<%= link_to 'Add Question', new_event_question_path(@event) %>
