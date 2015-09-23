@@ -12,12 +12,11 @@ feature 'Events Features' do
     context 'when creating events' do
       before(:each){ click_on 'Create Event' }
 
-      xit 'events can be created' do
+      it 'events can be created' do
         fill_in 'event_title', with: 'event 1'
         click_on 'Add Event'
         expect(page).to have_content 'event 1'
-        expect(page).to have_xpath "/event/#{Event.last.id}/voting-page"
-
+        expect(page).to have_link("voting page", href: "/events/#{Event.last.id}/vote")
       end
 
       it "events cannot be created with a blank title field" do

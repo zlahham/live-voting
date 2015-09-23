@@ -1,5 +1,4 @@
-<h1><%= @event.title %></h1>
-<h2>voting link<
+<h1><%= @event.title %></h1> <%= link_to "voting page", vote_event_path(@event) %>
 <ul>
   <% if @event.questions.any? %>
     <% @event.questions.each do |question| %>
