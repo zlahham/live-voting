@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'events' do
+feature 'Events Features' do
 
   context 'user logged in' do
 

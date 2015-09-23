@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Questions' do
+describe 'Questions Features' do
   before :each do
     user = create(:user)
     sign_in_as(user)
@@ -15,6 +15,7 @@ describe 'Questions' do
     click_on 'Publish'
     expect(page).to have_content 'Question successfully created'
     expect(page).to have_content 'test question'
+    expect(current_path).to eq question_path(Question.last.id)
   end
 
   it "can't be created with a blank content field" do
