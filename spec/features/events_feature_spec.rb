@@ -2,49 +2,55 @@ require 'rails_helper'
 
 feature 'Events Features' do
 
-  context 'user logged in' do
+  context 'when signed in' do
 
     before :each do
       @user = create(:user)
       sign_in_as(@user)
-      visit root_path
-      click_on 'Create Event'
     end
 
-    it 'lets events be created' do
-      fill_in 'event_title', with: 'event 1'
-      click_on 'Add Event'
-      expect(page).to have_content 'event 1'
-    end
+    context 'when creating events' do
+      before(:each){ click_on 'Create Event' }
 
-    it "can't be created with a blank title field" do
-      click_on 'Add Event'
-      expect(page).to have_content "1 error prohibited this event from being saved:"
-    end
-
-    context "when on events index page" do
-      it "displays all the users events" do
+      it 'events can be created' do
         fill_in 'event_title', with: 'event 1'
         click_on 'Add Event'
-        visit events_path
-        click_on 'Create Event'
-        fill_in 'event_title', with: 'event 2'
+        expect(page).to have_content 'event 1'
+      end
+
+      it "events cannot be created with a blank title field" do
         click_on 'Add Event'
-        visit events_path
-        expect(page).to have_content "event 1"
-        expect(page).to have_content "event 2"
+        expect(page).to have_content "1 error prohibited this event from being saved:"
       end
     end
 
+    context "after creating an event" do
+      before(:each){ create_event("event 1") }
+
+      context "when on events index page" do
+        before(:each){ visit events_path }
+
+        it "user's events are displayed" do
+          expect(page).to have_content "event 1"
+        end
+      end
+    end
   end
 
-  context 'user not logged in' do
-
-    it 'does not allow events to be created' do
+  context 'when not signed in' do
+    it 'events cannot be created' do
       visit root_path
       click_on 'Create Event'
       expect(page).to have_content 'You need to sign in or sign up before continuing'
       expect(current_path).not_to be new_event_path
     end
+  end
+
+  private
+
+  def create_event(title)
+    click_on 'Create Event'
+    fill_in 'event_title', with: title
+    click_on 'Add Event'
   end
 end
