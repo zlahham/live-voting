@@ -14,7 +14,7 @@ class EventsController < ApplicationController
 
   def create
     @event = current_user.events.new(event_params)
-    
+
     if @event.save
       redirect_to event_path(@event)
     else
@@ -23,6 +23,10 @@ class EventsController < ApplicationController
   end
 
   def show
+    @event = Event.find(params[:id])
+  end
+
+  def vote
     @event = Event.find(params[:id])
   end
 

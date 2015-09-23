@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   devise_for :users
   root 'events#index'
   resources :events, shallow: true do
+    member do
+      get 'vote'
+    end
+
     resources :questions do
       resources :choices
     end
