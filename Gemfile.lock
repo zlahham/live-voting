@@ -60,6 +60,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
+    cookiejar (0.3.2)
+    daemons (1.2.3)
     database_cleaner (1.5.0)
     debug_inspector (0.0.2)
     devise (3.5.2)
@@ -70,7 +72,19 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    em-http-request (1.1.2)
+      addressable (>= 2.3.4)
+      cookiejar
+      em-socksify (>= 0.3)
+      eventmachine (>= 1.0.3)
+      http_parser.rb (>= 0.6.0)
+    em-socksify (0.3.1)
+      eventmachine (>= 1.0.0.beta.4)
+    em-websocket (0.5.1)
+      eventmachine (>= 0.12.9)
+      http_parser.rb (~> 0.6.0)
     erubis (2.7.0)
+    eventmachine (1.0.8)
     execjs (2.6.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -97,6 +111,7 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
+    http_parser.rb (0.6.0)
     i18n (0.7.0)
     jbuilder (2.3.1)
       activesupport (>= 3.0.0, < 5)
@@ -133,6 +148,11 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pusher-fake (1.4.0)
+      em-http-request (~> 1.1)
+      em-websocket (~> 0.5)
+      multi_json (~> 1.6)
+      thin (~> 1.5)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -225,6 +245,10 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
+    thin (1.6.4)
+      daemons (~> 1.0, >= 1.0.9)
+      eventmachine (~> 1.0, >= 1.0.4)
+      rack (~> 1.0)
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.1)
@@ -261,6 +285,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   pg
+  pusher-fake
   rails (= 4.2.4)
   rails_12factor
   rails_serve_static_assets
