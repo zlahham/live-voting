@@ -6,4 +6,5 @@ class Event < ActiveRecord::Base
 
   validates :user, :title, presence: true
 
+
 end
