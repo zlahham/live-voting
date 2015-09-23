@@ -3,8 +3,7 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, :except => [:index, :show]
 
   def index
-    @user = current_user if current_user
-    if @user
+    if @user ||= current_user
       @events = @user.events
     end
   end
