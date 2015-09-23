@@ -5,8 +5,8 @@ feature 'Events Features' do
   context 'when signed in' do
 
     before :each do
-      @user = create(:user)
-      sign_in_as(@user)
+      user = create(:user)
+      sign_in_as(user)
     end
 
     context 'when creating events' do
@@ -16,6 +16,8 @@ feature 'Events Features' do
         fill_in 'event_title', with: 'event 1'
         click_on 'Add Event'
         expect(page).to have_content 'event 1'
+        expect(page).to have_xpath "/event/#{Event.last.id}/voting-page"
+
       end
 
       it "events cannot be created with a blank title field" do
@@ -45,6 +47,8 @@ feature 'Events Features' do
       expect(current_path).not_to be new_event_path
     end
   end
+
+
 
   private
 
