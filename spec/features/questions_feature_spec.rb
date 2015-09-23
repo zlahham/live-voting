@@ -17,5 +17,9 @@ describe 'Questions' do
     expect(page).to have_content 'test question'
   end
 
-  xit "can't be created with a blank content field"
+  it "can't be created with a blank content field" do
+    click_on 'Add Question'
+    click_on 'Publish'
+    expect(page).to have_content "1 error prohibited this question from being saved:"
+  end
 end

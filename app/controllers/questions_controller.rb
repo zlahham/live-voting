@@ -11,6 +11,8 @@ class QuestionsController < ApplicationController
     if @question.save
       flash[:notice] = "Question successfully created"
       redirect_to event_path(@event)
+    else
+      render 'questions/new'
     end
   end
 

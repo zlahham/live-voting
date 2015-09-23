@@ -23,6 +23,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'launchy'
   gem 'shoulda'
+  gem 'guard-rspec'
 end
 
 group :development do
