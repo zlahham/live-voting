@@ -9,12 +9,6 @@ feature 'Events Features' do
       sign_in_as(user)
     end
 
-    # before :each do
-    #   user = create(:user)
-    #   event = create(:event, user: user)
-    #   sign_in_as(user)
-    # end
-
     it 'has navbar contents' do
       expect(page).to have_content "Sign out"
     end
@@ -35,16 +29,14 @@ feature 'Events Features' do
     end
 
     context "after creating an event" do
-      # before(:each){ create_event("event 1") }
-
       context "when on events index page" do
-        
+
 
       before :each do
         visit events_path
         click_on "Sign out"
         user = create(:user_two)
-        event = create(:event, user: user)
+        @event = create(:event, user: user)
         sign_in_as(user)
       end
 
@@ -53,11 +45,9 @@ feature 'Events Features' do
         end
 
         it "event name links to event page" do
-          # user = create(:user_two)
           user = create(:user_three)
-          event = create(:event, user: user)
           click_on "My Event"
-          expect(current_path).to eq event_path(event)
+          expect(current_path).to eq event_path(@event)
         end
       end
     end
