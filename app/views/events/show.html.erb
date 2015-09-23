@@ -4,7 +4,7 @@
     <% @event.questions.each do |question| %>
       <li>
         <%= link_to question.content, question_path(question.id) %>
-        <%= button_to "Publish" %>
+        <%= link_to "Publish" %>
       </li>
     <% end %>
   <% end %>

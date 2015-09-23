@@ -41,14 +41,24 @@ feature 'Events Features' do
         end
       end
       context 'when on event show page' do
-        it 'has a publish question button' do
+        before(:each) do
           click_on 'Add Question'
           fill_in 'question_content', with: 'test question'
           click_on 'Add'
           visit events_path("#{Event.last.id}")
           click_on 'event 1'
+        end
+
+        it 'has a publish question button' do
           expect(page).to have_selector(:link_or_button, 'Publish')
         end
+
+        it 'publishes question' do
+          click_on 'Publish'
+          expect(page).to have_content 'test question is currently live'
+        end
+
+
       end
     end
   end
