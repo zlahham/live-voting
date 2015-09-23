@@ -34,6 +34,21 @@ feature 'Events Features' do
         it "user's events are displayed" do
           expect(page).to have_content "event 1"
         end
+
+        it 'each event is clickable to the event show page' do
+          click_on 'event 1'
+          expect(current_path).to eq "/events/#{Event.last.id}"
+        end
+      end
+      context 'when on event show page' do
+        it 'has a publish question button' do
+          click_on 'Add Question'
+          fill_in 'question_content', with: 'test question'
+          click_on 'Add'
+          visit events_path("#{Event.last.id}")
+          click_on 'event 1'
+          expect(page).to have_selector(:link_or_button, 'Publish')
+        end
       end
     end
   end
@@ -53,8 +68,6 @@ feature 'Events Features' do
       expect(page).to have_content "My Event"
     end
   end
-
-
 
   private
 
