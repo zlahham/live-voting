@@ -9,6 +9,10 @@ feature 'Events Features' do
       sign_in_as(@user)
     end
 
+    it 'has navbar contents' do
+      expect(page).to have_content "Sign out"
+    end
+
     context 'when creating events' do
       before(:each){ click_on 'Create Event' }
 
@@ -38,11 +42,15 @@ feature 'Events Features' do
   end
 
   context 'when not signed in' do
+
+    it 'has navbar contents' do
+      visit root_path
+      expect(page).to have_content "Sign in"
+    end
+
     it 'events cannot be created' do
       visit root_path
-      click_on 'Create Event'
-      expect(page).to have_content 'You need to sign in or sign up before continuing'
-      expect(current_path).not_to be new_event_path
+      expect(page).not_to have_content 'Create Event'
     end
 
     it "can navigate to an event's voting page" do
