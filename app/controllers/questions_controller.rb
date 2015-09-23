@@ -4,13 +4,19 @@ class QuestionsController < ApplicationController
     @question = Question.new
   end
 
+  def show
+    @question = Question.find(params[:id])
+  end
+
   def create
     @event = Event.find(params[:event_id])
     @question = @event.questions.new(question_params)
 
     if @question.save
       flash[:notice] = "Question successfully created"
-      redirect_to event_path(@event)
+      redirect_to question_path(@question.id)
+    else
+      render 'questions/new'
     end
   end
 

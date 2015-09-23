@@ -2,7 +2,9 @@
 <ul>
   <% if @event.questions.any? %>
     <% @event.questions.each do |question| %>
-      <li><%= question.content %></li>
+      <li>
+        <%= link_to question.content, question_path(question.id) %>
+      </li>
     <% end %>
   <% end %>
 </ul>

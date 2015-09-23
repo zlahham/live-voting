@@ -1,20 +1,25 @@
 require 'rails_helper'
 
-feature 'events' do
+feature 'Events Features' do
 
   context 'user logged in' do
 
     before :each do
       user = create(:user)
       sign_in_as(user)
+      visit root_path
+      click_on 'Create Event'
     end
 
     it 'lets events be created' do
-      visit root_path
-      click_on 'Create Event'
       fill_in 'event_title', with: 'event 1'
       click_on 'Add Event'
       expect(page).to have_content 'event 1'
+    end
+
+    it "can't be created with a blank title field" do
+      click_on 'Add Event'
+      expect(page).to have_content "1 error prohibited this event from being saved:"
     end
   end
 

@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :question do
-    content "MyText"
+    content "My Question"
   end
 
 end
