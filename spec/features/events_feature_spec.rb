@@ -5,8 +5,18 @@ feature 'Events Features' do
   context 'when signed in' do
 
     before :each do
-      @user = create(:user)
-      sign_in_as(@user)
+      user = create(:user)
+      sign_in_as(user)
+    end
+
+    # before :each do
+    #   user = create(:user)
+    #   event = create(:event, user: user)
+    #   sign_in_as(user)
+    # end
+
+    it 'has navbar contents' do
+      expect(page).to have_content "Sign out"
     end
 
     context 'when creating events' do
@@ -25,24 +35,44 @@ feature 'Events Features' do
     end
 
     context "after creating an event" do
-      before(:each){ create_event("event 1") }
+      # before(:each){ create_event("event 1") }
 
       context "when on events index page" do
-        before(:each){ visit events_path }
+        
+
+      before :each do
+        visit events_path
+        click_on "Sign out"
+        user = create(:user_two)
+        event = create(:event, user: user)
+        sign_in_as(user)
+      end
 
         it "user's events are displayed" do
-          expect(page).to have_content "event 1"
+          expect(page).to have_content "My Event"
+        end
+
+        it "event name links to event page" do
+          # user = create(:user_two)
+          user = create(:user_three)
+          event = create(:event, user: user)
+          click_on "My Event"
+          expect(current_path).to eq event_path(event)
         end
       end
     end
   end
 
   context 'when not signed in' do
+
+    it 'has navbar contents' do
+      visit root_path
+      expect(page).to have_content "Sign in"
+    end
+
     it 'events cannot be created' do
       visit root_path
-      click_on 'Create Event'
-      expect(page).to have_content 'You need to sign in or sign up before continuing'
-      expect(current_path).not_to be new_event_path
+      expect(page).not_to have_content 'Create Event'
     end
 
     it "can navigate to an event's voting page" do
