@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
 
-  before_action :authenticate_user!, :except => [:index, :show, :voting_page]
+  before_action :authenticate_user!, :except => [:index, :show, :vote]
 
   def index
     if @user ||= current_user
@@ -14,7 +14,7 @@ class EventsController < ApplicationController
 
   def create
     @event = current_user.events.new(event_params)
-    
+
     if @event.save
       redirect_to event_path(@event)
     else
@@ -26,7 +26,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-  def voting_page
+  def vote
     @event = Event.find(params[:id])
   end
 

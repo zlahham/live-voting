@@ -48,8 +48,8 @@ feature 'Events Features' do
     it "can navigate to an event's voting page" do
       user = create :user
       event = create :event, title: "My Event", user: user
-      visit "/events/#{event.id}/voting-page"
-      expect(page).to have_content "My Event holding page"
+      visit vote_event_path(event)
+      expect(page).to have_content "My Event"
     end
   end
 
