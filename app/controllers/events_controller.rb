@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
 
-  before_action :authenticate_user!, :except => [:index, :show]
+  before_action :authenticate_user!, :except => [:index, :show, :voting_page]
 
   def index
     if @user ||= current_user
@@ -27,6 +27,7 @@ class EventsController < ApplicationController
   end
 
   def voting_page
+    @event = Event.find(params[:id])
   end
 
   private

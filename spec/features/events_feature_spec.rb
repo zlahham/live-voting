@@ -49,6 +49,7 @@ feature 'Events Features' do
       user = create :user
       event = create :event, title: "My Event", user: user
       visit "/events/#{event.id}/voting-page"
+      expect(page).to have_content "My Event holding page"
     end
   end
 
