@@ -12,7 +12,7 @@ feature 'Events Features' do
     context 'when creating events' do
       before(:each){ click_on 'Create Event' }
 
-      it 'events can be created' do
+      xit 'events can be created' do
         fill_in 'event_title', with: 'event 1'
         click_on 'Add Event'
         expect(page).to have_content 'event 1'
