@@ -26,6 +26,9 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
+  def voting_page
+  end
+
   private
 
   def event_params

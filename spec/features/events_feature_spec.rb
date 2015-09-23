@@ -44,6 +44,12 @@ feature 'Events Features' do
       expect(page).to have_content 'You need to sign in or sign up before continuing'
       expect(current_path).not_to be new_event_path
     end
+
+    it "can navigate to an event's voting page" do
+      user = create :user
+      event = create :event, title: "My Event", user: user
+      visit "/events/#{event.id}/voting-page"
+    end
   end
 
   private
