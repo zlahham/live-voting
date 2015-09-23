@@ -12,7 +12,10 @@ Rails.application.routes.draw do
       resources :choices
     end
   end
-  
+
+
+  get 'questions/:id/publish_question' => 'questions#publish_question', as: :questions_publish
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

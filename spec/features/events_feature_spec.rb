@@ -10,6 +10,7 @@ feature 'Events Features' do
     end
 
     context 'when creating events' do
+
       before(:each){ click_on 'Create Event' }
 
       it 'events can be created' do
@@ -40,7 +41,9 @@ feature 'Events Features' do
           expect(current_path).to eq "/events/#{Event.last.id}"
         end
       end
+
       context 'when on event show page' do
+
         before(:each) do
           click_on 'Add Question'
           fill_in 'question_content', with: 'test question'
@@ -57,13 +60,12 @@ feature 'Events Features' do
           click_on 'Publish'
           expect(page).to have_content 'test question is currently live'
         end
-
-
       end
     end
   end
 
   context 'when not signed in' do
+
     it 'events cannot be created' do
       visit root_path
       click_on 'Create Event'

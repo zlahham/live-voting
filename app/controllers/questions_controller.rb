@@ -20,6 +20,10 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def publish_question
+    redirect_to event_path
+  end
+
   private
 
   def question_params
