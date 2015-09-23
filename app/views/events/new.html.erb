@@ -1,3 +1,14 @@
+<% if @event.errors.any? %>
+  <section id="errors">
+    <h2><%= pluralize(@event.errors.count, "error")%> prohibited this event from being saved: </h2>
+    <ul>
+      <% @event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </section>
+<% end %>
+
 <%= form_for @event do |f| %>
   <%= f.text_field :title %>
   <%= f.submit "Add Event" %>
