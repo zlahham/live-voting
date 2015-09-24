@@ -1,11 +1,12 @@
 FactoryGirl.define do
 
   factory :event do
-    title "My Event"
-  end
+    title "Event 1"
+  
 
-  factory :event_two do
-    title "My Great Event"
+    factory :event_two do
+      title "My Great Event"
+    end
   end
 
 end
