@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
   factory :event do
-    title "My Event"
+    title "Event 1"
   end
 
 end

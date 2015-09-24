@@ -27,9 +27,12 @@ feature 'Events Features' do
     end
 
     context "after creating an event" do
+
       before(:each){ create_event("event 1") }
 
+
       context "when on events index page" do
+
         before(:each){ visit events_path }
 
         it "user's events are displayed" do
