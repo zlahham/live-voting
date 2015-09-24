@@ -26,9 +26,10 @@ class QuestionsController < ApplicationController
 
     json_object = build_json(event, question)
 
-    push_json_to_pusher(json_object)
+    push_json_to_pusher(json_object, event.id)
     
-    redirect_to "/"
+    redirect_to event_path
+
     flash[:notice] = "Question has been pushed to the audience"
   end
 
@@ -44,9 +45,9 @@ class QuestionsController < ApplicationController
     json_object = { event: event, question: question, choices: choices_array }.to_json
   end
 
-  def push_json_to_pusher(json_object)
+  def push_json_to_pusher(json_object, event_id)
     pusher = Pusher::Client.new app_id: Pusher.app_id, key: Pusher.key, secret: Pusher.secret
-    pusher.trigger('test_channel', 'my_event', json_object)
+    pusher.trigger('test_channel', 'event_' + event_id.to_s, json_object)
   end
 
   private
