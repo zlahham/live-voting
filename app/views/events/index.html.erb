@@ -1,11 +1,7 @@
-<%= link_to "Sign up", new_user_registration_path %>
-<%= link_to "Sign in", new_user_session_path %>
-<%= link_to "Create Event", new_event_path %>
-<br>
 <% if @events %>
 	<% @events.each do |event| %>
 		<%= link_to event_path(event) do %>
 			<%= event.title  %>
 		<% end  %>
-	<% end %>
+  <% end %>
 <% end %>
