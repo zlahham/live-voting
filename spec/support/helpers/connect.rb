@@ -1,7 +1,6 @@
 module ConnectHelpers
   def connect
     # page.driver.block_unknown_urls
-
     visit "/"
 
     Timeout.timeout(5) do
