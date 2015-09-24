@@ -12,6 +12,16 @@ RSpec.describe QuestionsController do
 
       get(:publish_question, {"question" => question.id, "controller"=>"questions", "action"=>"publish_question", "id"=>event.id})
     end
+
+    it 'sends correct event_id to #push_json_to_pusher' do
+      user = create :user
+      event = create :event, user: user
+      question = create :question, event: event
+
+      expect_any_instance_of(Pusher::Client).to receive(:trigger).with(anything, ("event_" + "#{event.id}"), anything)
+    
+      get(:publish_question, {"question" => question.id, "controller"=>"questions", "action"=>"publish_question", "id"=>event.id})
+    end
   end
 
   describe '#build_json' do
