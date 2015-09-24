@@ -7,6 +7,7 @@ FactoryGirl.define do
     factory :user_two do
       email 'test_user_two@test.com'
     end
+    
     factory :user_three do
       email 'test_user_three@test.com'
     end

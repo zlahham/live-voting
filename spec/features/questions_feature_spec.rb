@@ -12,7 +12,7 @@ describe 'Questions Features' do
   it 'can be created on an event' do
     click_on 'Add Question'
     fill_in 'question_content', with: 'test question'
-    click_on 'Publish'
+    click_on 'Add'
     expect(page).to have_content 'Question successfully created'
     expect(page).to have_content 'test question'
     expect(current_path).to eq question_path(Question.last.id)
@@ -20,7 +20,7 @@ describe 'Questions Features' do
 
   it "can't be created with a blank content field" do
     click_on 'Add Question'
-    click_on 'Publish'
+    click_on 'Add'
     expect(page).to have_content "1 error prohibited this question from being saved:"
   end
 end

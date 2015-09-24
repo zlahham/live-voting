@@ -1,5 +1,7 @@
 <% if @events %>
 	<% @events.each do |event| %>
-		<%= link_to event.title, event_path(event) %>
-	<% end %>
+		<%= link_to event_path(event) do %>
+			<%= event.title  %>
+		<% end  %>
+  <% end %>
 <% end %>
