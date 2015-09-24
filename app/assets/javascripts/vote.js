@@ -13,8 +13,9 @@ $(document).ready(function() {
   return channel.bind('my_event', function(data) {
     console.log('message received');
     $('#testing').text(data.test);
-    $('#question-title').text(data.questionTitle);
-    $('#choice-1-text').text(data.choiceOne);
-    $('#choice-2-text').text(data.choiceTwo);
+    $('#question-number').text(data.question.id);
+    $('#question-title').text(data.question.content);
+    $('#choice-1-text').text(data.choices[0].content);
+    $('#choice-2-text').text(data.choices[1].content);
   });
 });

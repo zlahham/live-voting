@@ -75,7 +75,7 @@ feature 'Events Features' do
         expect(page).to have_content 'Question has been pushed to the audience'
       end
     end
-  
+
   end
 
   context 'when not signed in' do
@@ -96,4 +96,8 @@ feature 'Events Features' do
       expect(page).to have_content "My Event"
     end
   end
+
+end
+
+
 end
