@@ -1,1 +1,0 @@
-liveVote = angular.module('voting', []);

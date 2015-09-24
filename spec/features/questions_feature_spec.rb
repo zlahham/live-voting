@@ -23,4 +23,11 @@ describe 'Questions Features' do
     click_on 'Add'
     expect(page).to have_content "1 error prohibited this question from being saved:"
   end
+
+  it 'has a web-link which takes you back to the original event' do
+    click_on 'Add Question'
+    fill_in 'question_content', with: 'test question'
+    click_on 'Add'
+    expect(page).to have_content 'Back to event 1'
+  end
 end
