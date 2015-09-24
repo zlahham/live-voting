@@ -21,8 +21,32 @@ class QuestionsController < ApplicationController
   end
 
   def publish_question
+    event =     Event.find(params["id"])
+    question =  Question.find(params["question"])
+
+
+    json_object = build_json(event, question)
+
+    push_json_to_pusher(json_object)
+
     redirect_to event_path
     flash[:notice] = "Question has been pushed to the audience"
+  end
+
+  def build_json(event, question)
+    choices_array = []
+    question.choices.each do |choice|
+      choice_hash = { content: choice.content, id: choice.id }
+      choices_array << choice_hash
+    end
+    event = event.attributes.reject!{|key,value| %w"updated_at created_at user_id".include? key}
+    question = question.attributes.reject!{|key,value| %w"updated_at created_at event_id".include? key}
+
+    json_object = { event: event, question: question, choices: choices_array }.to_json
+  end
+
+  def push_json_to_pusher(json_object)
+
   end
 
   private
