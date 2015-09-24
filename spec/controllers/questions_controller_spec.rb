@@ -5,17 +5,19 @@ RSpec.describe QuestionsController do
 
   describe '#publish_question' do
     it 'fires pusher' do
-      # user = create(:user)
-      # event = user.events.create(title: 'test')
-      # question = event.questions.create(content: 'test question')
-      # choice = question.choices.create(content: 'test choice')
-      # choice2 = question.choices.create(content: 'best choice')
-      # sign_in_as(user)
+      user2 = create(:user)
+      event2 = user2.events.create(title: 'My Event')
+      question1 = event2.questions.create(content: 'Do you like fish?')
+      choice_one = question1.choices.create(content: 'Yes')
+      choice_two = question1.choices.create(content: 'No')
+      sign_in_as(user2)
 
-      # visit event_path(event)
-      # click_on 'Publish'
+      visit event_path(event2)
+      click_on 'Publish'
 
+      p = QuestionsController.new
 
+      # allow(p).to receive(:build_json).with(any_args).and_return()
 
       # question.choices.create(content: "no")
 
