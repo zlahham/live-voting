@@ -3,24 +3,20 @@ require 'rails_helper'
 RSpec.describe QuestionsController do
 
   describe '#publish_question' do
+    before :each do
+      @user = create :user
+      @event = create :event, user: @user
+      @question = create :question, event: @event
+    end
+
     it 'calls push_json_to_pusher method' do
-      user = create :user
-      event = create :event, user: user
-      question = create :question, event: event
-
       expect_any_instance_of(Pusher::Client).to receive :trigger
-
-      get(:publish_question, {"question" => question.id, "controller"=>"questions", "action"=>"publish_question", "id"=>event.id})
+      get(:publish_question, {"question" => @question.id, "controller"=>"questions", "action"=>"publish_question", "id"=>@event.id})
     end
 
     it 'sends correct event_id to #push_json_to_pusher' do
-      user = create :user
-      event = create :event, user: user
-      question = create :question, event: event
-
-      expect_any_instance_of(Pusher::Client).to receive(:trigger).with(anything, ("event_" + "#{event.id}"), anything)
-    
-      get(:publish_question, {"question" => question.id, "controller"=>"questions", "action"=>"publish_question", "id"=>event.id})
+      expect_any_instance_of(Pusher::Client).to receive(:trigger).with(anything, ("event_" + "#{@event.id}"), anything)
+      get(:publish_question, {"question" => @question.id, "controller"=>"questions", "action"=>"publish_question", "id"=>@event.id})
     end
   end
 
