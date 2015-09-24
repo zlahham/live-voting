@@ -94,10 +94,9 @@ feature 'Events Features' do
       event = create :event, title: "My Event", user: user
       visit vote_event_path(event)
       expect(page).to have_content "My Event"
+      expect(page).to have_content "Question ? of 0"
     end
   end
-
-end
 
 
 end
