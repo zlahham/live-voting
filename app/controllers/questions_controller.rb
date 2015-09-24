@@ -24,6 +24,7 @@ class QuestionsController < ApplicationController
     event =     Event.find(params["id"])
     question =  Question.find(params["question"])
 
+
     json_object = build_json(event, question)
 
     push_json_to_pusher(json_object)
@@ -33,16 +34,16 @@ class QuestionsController < ApplicationController
   end
 
   def build_json(event, question)
-    choices = {}
-    p question.choices.inspect
+    choices_array = []
     question.choices.each do |choice|
-      p "CHOICE = "
-      p choice
-      choices.store(choice.id, choice.content)
+      choice_hash = { content: choice.content, id: choice.id }
+      choices_array << choice_hash
     end
+    event = event.attributes.reject!{|key,value| %w"updated_at created_at user_id".include? key}
+    question_q = question.attributes.reject!{|key,value| %w"updated_at created_at event_id".include? key}
 
-    json_object = {event_title: event.title, question: question, choices: choices}.to_json
-    # p json_object
+    json_object = { event: event, question: question_q, choices: choices_array }.to_json
+    p json_object
   end
 
   def push_json_to_pusher(json_object)
