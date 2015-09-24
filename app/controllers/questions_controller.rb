@@ -22,6 +22,7 @@ class QuestionsController < ApplicationController
 
   def publish_question
     redirect_to event_path
+    flash[:notice] = "Question has been pushed to the audience"
   end
 
   private

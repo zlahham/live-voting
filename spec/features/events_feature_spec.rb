@@ -61,7 +61,7 @@ feature 'Events Features' do
 
         it 'publishes question' do
           click_on 'Publish'
-          expect(page).to have_content 'test question is currently live'
+          expect(page).to have_content 'Question has been pushed to the audience'
         end
       end
     end
