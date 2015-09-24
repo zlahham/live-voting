@@ -21,8 +21,21 @@ class QuestionsController < ApplicationController
   end
 
   def publish_question
+    p "PARAMS FROM PUBLISH_QUESTION: "
+    p params
+    build_json(params["question"], params["id"])
     redirect_to event_path
     flash[:notice] = "Question has been pushed to the audience"
+  end
+
+  def build_json(question_id, event_id)
+    event = Event.find(event_id)
+    p "EVENT IN BUILD_JSON METHOD: "
+    p event.inspect
+
+    question = Question.find(question_id)
+    p "QUESTION IN BUILD_JSON METHOD: "
+    p question.inspect
   end
 
   private
