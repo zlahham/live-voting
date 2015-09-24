@@ -27,8 +27,9 @@ class QuestionsController < ApplicationController
     json_object = build_json(event, question)
 
     push_json_to_pusher(json_object, event.id)
-
+    
     redirect_to event_path
+
     flash[:notice] = "Question has been pushed to the audience"
   end
 
