@@ -8,6 +8,7 @@ require 'rspec/rails'
 require 'factory_girl_rails'
 require 'support/helpers.rb'
 require 'capybara/rails'
+require "pusher-fake/support/rspec"
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 

@@ -1,1 +1,26 @@
+
+
+
 <h1><%= @event.title %></h1>
+
+<ul></ul>
+
+<%= javascript_include_tag "pusher-2.2.3" %>
+<script>
+  window.addEventListener("DOMContentLoaded", function() {
+    <% if defined?(PusherFake) %>
+      Pusher.instance = <%== PusherFake.javascript %>;
+    <% else %>
+      // Other environments, such as production.
+    <% end %>
+    var
+    Chat = Pusher.instance.subscribe("chat");
+    Chat.bind("message", function(message) {
+      var list = document.getElementsByTagName("ul")[0],
+          item = document.createElement("li"),
+          text = document.createTextNode(message.body);
+      item.appendChild(text);
+      list.appendChild(item);
+    });
+  }, false);
+</script>

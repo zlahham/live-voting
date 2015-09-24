@@ -13,17 +13,20 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bower-rails'
 gem "foreman"
 gem "devise"
+gem "pusher"
 
 group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'capybara'
+  # gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'selenium-webdriver'
   gem 'launchy'
   gem 'shoulda'
   gem 'guard-rspec'
+  gem 'pusher-fake'
 end
 
 group :development do
