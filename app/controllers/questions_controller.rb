@@ -46,7 +46,8 @@ class QuestionsController < ApplicationController
   end
 
   def push_json_to_pusher(json_object)
-
+    pusher = Pusher::Client.new app_id: Pusher.app_id, key: Pusher.key, secret: Pusher.secret
+    pusher.trigger('test_channel', 'my_event', json_object)
   end
 
   private
