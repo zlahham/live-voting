@@ -1,20 +1,22 @@
-
 <h1><%= @event.title %></h1>
-
-<!-- <ul></ul> -->
-
-<h1 id="testing">FAILING</h1>
-
 
 <section class="space-50"> </section>
 
 <div class="container question">
   <div class="col-sm-6">
-        <h2 id="question-title">Question 1 of 3:</h2>
-    <h1>Do you like bananas?</h1>
+    <h2>Question 1 of 3:</h2>
+    <h1 id="question-title">Do you like bananas?</h1>
     <form action="" class="question-form">
-      <input type="radio" name="answer" value="1"> Yes, they are great!<br>
-      <input type="radio" name="answer" value="2"> No, not sure about them <br>
+      <ul>
+        <li>
+          <input id="choice-1" type="radio" name="answer" value="1">
+          <label id="choice-1-text" for="choice-1">Yes, they are great!</label>
+        </li>
+        <li>
+          <input id="choice-2" type="radio" name="answer" value="1">
+          <label id="choice-2-text" for="choice-2">No, not goooood!</label>
+        </li>
+      </ul>
     </form>
     <button type="submit" class="btn btn-fill btn-primary hundred-width">Submit Answer</button>
   </div>
