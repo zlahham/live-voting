@@ -21,21 +21,32 @@ class QuestionsController < ApplicationController
   end
 
   def publish_question
-    p "PARAMS FROM PUBLISH_QUESTION: "
-    p params
-    build_json(params["question"], params["id"])
+    event =     Event.find(params["id"])
+    question =  Question.find(params["question"])
+
+    json_object = build_json(event, question)
+
+    push_json_to_pusher(json_object)
+
     redirect_to event_path
     flash[:notice] = "Question has been pushed to the audience"
   end
 
-  def build_json(question_id, event_id)
-    event = Event.find(event_id)
-    p "EVENT IN BUILD_JSON METHOD: "
-    p event.inspect
+  def build_json(event, question)
+    choices = {}
+    p question.choices.inspect
+    question.choices.each do |choice|
+      p "CHOICE = "
+      p choice
+      choices.store(choice.id, choice.content)
+    end
 
-    question = Question.find(question_id)
-    p "QUESTION IN BUILD_JSON METHOD: "
-    p question.inspect
+    json_object = {event_title: event.title, question: question, choices: choices}.to_json
+    # p json_object
+  end
+
+  def push_json_to_pusher(json_object)
+
   end
 
   private
