@@ -1,17 +1,19 @@
-<h1><%= @event.title %></h1>
-<div id="event-id" style="display:none;"><%= @event.id %></div>
+<div class="container">
+  <div class="col-sm-6">
+    <h1><%= @event.title %></h1>
+    <div id="event-id" style="display:none;"><%= @event.id %></div>
 
-<section class="space-50"> </section>
+    <section class="space-50"> </section>
 
-<div class="holding-message">
-  <h2>Awaiting Question</h2>
-</div>
+    <div class="holding-message">
+      <h2>Awaiting Question</h2>
+    </div>
 
 <div class="container question">
   <div class="col-sm-6">
     <h2>Question <span id="question-number">?</span> of <%= @event.questions.count %>:</h2>
     <h1 id="question-title"></h1>
-    <form method="post" action="/votes" class="question-form">
+    <form class="question-form">
       <ul>
         <li>
           <input id="choice-1" type="radio" name="choice" value="1">
@@ -22,28 +24,18 @@
           <label id="choice-2-text" for="choice-2"></label>
         </li>
       </ul>
-    <button type="submit" class="btn btn-fill btn-primary hundred-width">Submit Answer</button>
+    <button id="choice-submit" type="submit" class="btn btn-fill btn-primary hundred-width">Submit Answer</button>
     </form>
   </div>
 </div>
 
-<!--
-<%= javascript_include_tag "pusher-2.2.3" %>
 <script>
-  window.addEventListener("DOMContentLoaded", function() {
-    <% if defined?(PusherFake) %>
-      Pusher.instance = <%== PusherFake.javascript %>;
-    <% else %>
-      // Other environments, such as production.
-    <% end %>
-    var
-    Chat = Pusher.instance.subscribe("chat");
-    Chat.bind("message", function(message) {
-      var list = document.getElementsByTagName("ul")[0],
-          item = document.createElement("li"),
-          text = document.createTextNode(message.body);
-      item.appendChild(text);
-      list.appendChild(item);
-    });
-  }, false);
-</script> -->
+  $('#choice-submit').click(function() {
+    event.preventDefault();
+    console.log('clicked submit');
+    var choiceValue = $( "input:radio[name=choice]:checked" ).val();
+    $.post('/votes',{ choice: choiceValue });
+    $('.question').hide();
+    $('.holding-message').show();
+  });
+</script>
