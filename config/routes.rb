@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :votes
 
   get 'questions/:id/publish_question' => 'questions#publish_question', as: :questions_publish
 
