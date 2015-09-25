@@ -20,6 +20,6 @@ $(document).ready(function() {
     var choice = "#choice_" + choice.toString();
     console.log(choice)
 
-    $(choice + ' .vote-count').text("Vote count: " + data.vote_count);
+    $(choice + ' .vote-count').text("Votes: " + data.vote_count);
   });
 });
