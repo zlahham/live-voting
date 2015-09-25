@@ -13,12 +13,13 @@ $(document).ready(function() {
   channel = pusher.subscribe('test_channel');
   return channel.bind(myEvent(), function(data) {
     console.log('message received');
+    $('.question').show();
+    $('.holding-message').hide();
     $('#testing').text(data.test);
     $('#question-number').text(data.question.id);
     $('#question-title').text(data.question.content);
     $('#choice-1-text').text(data.choices[0].content);
     $('#choice-2-text').text(data.choices[1].content);
-
 
   });
 
@@ -27,10 +28,6 @@ $(document).ready(function() {
     return "event_" + event_number
 
   };
-
-
-
-
 
 
 });
