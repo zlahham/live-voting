@@ -10,20 +10,20 @@
 <div class="container question">
   <div class="col-sm-6">
     <h2>Question <span id="question-number">?</span> of <%= @event.questions.count %>:</h2>
-    <h1 id="question-title">Do you like bananas?</h1>
-    <form action="" class="question-form">
+    <h1 id="question-title"></h1>
+    <form method="post" action="/votes" class="question-form">
       <ul>
         <li>
-          <input id="choice-1" type="radio" name="answer" value="1">
-          <label id="choice-1-text" for="choice-1">Yes, they are great!</label>
+          <input id="choice-1" type="radio" name="choice" value="1">
+          <label id="choice-1-text" for="choice-1"></label>
         </li>
         <li>
-          <input id="choice-2" type="radio" name="answer" value="1">
-          <label id="choice-2-text" for="choice-2">No, not goooood!</label>
+          <input id="choice-2" type="radio" name="choice" value="1">
+          <label id="choice-2-text" for="choice-2"></label>
         </li>
       </ul>
-    </form>
     <button type="submit" class="btn btn-fill btn-primary hundred-width">Submit Answer</button>
+    </form>
   </div>
 </div>
 
