@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 describe 'Questions Features' do
+  let(:user){ create :user }
+
   before :each do
-    user = create(:user)
     sign_in_as(user)
     click_on 'Create Event'
     fill_in 'event_title', with: 'event 1'
@@ -15,7 +16,23 @@ describe 'Questions Features' do
     click_on 'Add'
     expect(page).to have_content 'Question successfully created'
     expect(page).to have_content 'test question'
-    expect(current_path).to eq question_path(Question.last.id)
+  end
+
+  context "when a question has been created and on the event show page" do
+    before :each do
+      event = create :event, user: user
+      question = create :question, event: event   
+      visit event_path(event)  
+    end
+
+    it "has a button to 'Publish' the question on the event show page" do
+      expect(page).to have_selector(:link_or_button, 'Publish')
+    end
+
+    it "user can publish a question" do
+      click_on 'Publish'
+      expect(page).to have_content 'Question has been pushed to the audience'
+    end
   end
 
   it "can't be created with a blank content field" do
