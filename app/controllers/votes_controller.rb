@@ -19,7 +19,6 @@ class VotesController < ApplicationController
 
   def push_json(choice, json_object)
     pusher = Pusher::Client.new app_id: Pusher.app_id, key: Pusher.key, secret: Pusher.secret
-    pusher.trigger('test_channel', 'event_question_' +
-     choice.question_id.to_s + '_' + 'choice_' + choice.id.to_s, json_object )
+    pusher.trigger('vote_count_channel', 'new_message', json_object )
   end
 end
