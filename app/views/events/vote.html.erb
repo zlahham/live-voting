@@ -11,7 +11,7 @@
   <div class="col-sm-6">
     <h2>Question <span id="question-number">?</span> of <%= @event.questions.count %>:</h2>
     <h1 id="question-title">Do you like bananas?</h1>
-    <form action="" class="question-form">
+    <form method="post" action="/votes" class="question-form">
       <ul>
         <li>
           <input id="choice-1" type="radio" name="answer" value="1">

@@ -20,6 +20,8 @@ $(document).ready(function() {
     $('#question-title').text(data.question.content);
     $('#choice-1-text').text(data.choices[0].content);
     $('#choice-2-text').text(data.choices[1].content);
+    $('#choice-1').val(data.choices[0].id);
+    $('#choice-2').val(data.choices[1].id);
 
   });
 
