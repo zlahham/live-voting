@@ -1,7 +1,29 @@
-<% if @events %>
-	<% @events.each do |event| %>
-		<%= link_to event_path(event) do %>
-			<%= event.title  %>
-		<% end  %>
-  <% end %>
-<% end %>
+<div class="container">
+	<% if @events %>
+		<% @events.each do |event| %>
+			<%= link_to event_path(event) do %>
+				<%= event.title  %>
+			<% end  %>
+	  <% end %>
+	<% end %>
+</div>
+
+<div class="container">
+  <div class="jumbotron">
+    <h1>We have great live polling tools :)</h1>
+    <p>More subtitle info goes here</p>
+<!--     <p><a class="btn btn-primary btn-lg" href="#" role="button">Create an event today</a></p> -->
+		<% if current_user %>
+    	<%= link_to "Create your event today :)", new_event_path, class: "btn btn-primary btn-lg" %>
+    <% else %>
+    	<%= link_to "Create your account today :)", new_user_registration_path, class: "btn btn-primary btn-lg" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="jumbotron">
+    <div class="container">
+      <p>Flow diagram of our customer process.</p>
+  </div>
+</div>

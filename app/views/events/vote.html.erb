@@ -1,29 +1,33 @@
-<h1><%= @event.title %></h1>
-<div id="event-id" style="display:none;"><%= @event.id %></div>
-
-<section class="space-50"> </section>
-
-<div class="holding-message">
-  <h2>Awaiting Question</h2>
-</div>
-
-<div class="container question">
+<div class="container">
   <div class="col-sm-6">
-    <h2>Question <span id="question-number">?</span> of <%= @event.questions.count %>:</h2>
-    <h1 id="question-title"></h1>
-    <form method="post" action="/votes" class="question-form">
-      <ul>
-        <li>
-          <input id="choice-1" type="radio" name="choice" value="1">
-          <label id="choice-1-text" for="choice-1"></label>
-        </li>
-        <li>
-          <input id="choice-2" type="radio" name="choice" value="1">
-          <label id="choice-2-text" for="choice-2"></label>
-        </li>
-      </ul>
-    <button type="submit" class="btn btn-fill btn-primary hundred-width">Submit Answer</button>
-    </form>
+    <h1><%= @event.title %></h1>
+    <div id="event-id" style="display:none;"><%= @event.id %></div>
+
+    <section class="space-50"> </section>
+
+    <div class="holding-message">
+      <h2>Awaiting Question</h2>
+    </div>
+
+    <div class="container question">
+      <div class="col-sm-6">
+        <h2>Question <span id="question-number">?</span> of <%= @event.questions.count %>:</h2>
+        <h1 id="question-title"></h1>
+        <form method="post" action="/votes" class="question-form">
+          <ul>
+            <li>
+              <input id="choice-1" type="radio" name="choice" value="1">
+              <label id="choice-1-text" for="choice-1"></label>
+            </li>
+            <li>
+              <input id="choice-2" type="radio" name="choice" value="1">
+              <label id="choice-2-text" for="choice-2"></label>
+            </li>
+          </ul>
+        <button type="submit" class="btn btn-fill btn-primary hundred-width">Submit Answer</button>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
 
