@@ -11,7 +11,7 @@
   <div class="col-sm-6">
     <h2>Question <span id="question-number">?</span> of <%= @event.questions.count %>:</h2>
     <h1 id="question-title"></h1>
-    <form method="post" action="/votes" class="question-form">
+    <form class="question-form">
       <ul>
         <li>
           <input id="choice-1" type="radio" name="choice" value="1">
@@ -22,10 +22,21 @@
           <label id="choice-2-text" for="choice-2"></label>
         </li>
       </ul>
-    <button type="submit" class="btn btn-fill btn-primary hundred-width">Submit Answer</button>
+    <button id="choice-submit" type="submit" class="btn btn-fill btn-primary hundred-width">Submit Answer</button>
     </form>
   </div>
 </div>
+
+<script>
+  $('#choice-submit').click(function() {
+    event.preventDefault();
+    console.log('clicked submit');
+    var choiceValue = $( "input:radio[name=choice]:checked" ).val();
+    $.post('/votes',{ choice: choiceValue });
+    $('.question').hide();
+    $('.holding-message').show();
+  });
+</script>
 
 <!--
 <%= javascript_include_tag "pusher-2.2.3" %>
