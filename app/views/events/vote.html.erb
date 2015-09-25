@@ -23,6 +23,15 @@
   </div>
 </div>
 
+
+<%= form_for @event,:url=> { action: "create_friend"} do |f|%>
+
+<%= f.radio :u_from %>
+<%= f.text_field :u_from %>
+<%= f.submit%>
+
+<% end %> 
+
 <!--
 <%= javascript_include_tag "pusher-2.2.3" %>
 <script>
