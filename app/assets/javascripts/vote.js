@@ -1,12 +1,13 @@
 $(document).ready(function() {
+
   var channel, pusher;
-  console.log('hello');
   Pusher.log = function(message) {
     if (window.console && window.console.log) {
       window.console.log(message);
       window.console.log(window.location.href);
     }
   };
+
   pusher = new Pusher('8881c0f8a42807b64625', {
     encrypted: true
   });
@@ -28,8 +29,11 @@ $(document).ready(function() {
   function myEvent(){
     var event_number = $('#event-id').text();
     return "event_" + event_number
-
   };
 
+  $('#choice-submit').click(function() {
+    event.preventDefault();
+    console.log('clicked submit');
+  });
 
 });
