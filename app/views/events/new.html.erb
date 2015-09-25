@@ -9,13 +9,16 @@
   </section>
 <% end %>
 
-<%= form_for @event do |f| %>
-  <%= f.text_field :title %>
-  <%= f.submit "Add Event" %>
-<% end %>
-
 <div class="container">
   <div class="col-sm-6">
+
+  <%= form_for @event do |f| %>
+    <%= f.text_field :title, class: "form-control" %>
+    <%= f.submit "Add Event", class: "btn btn-fill btn-primary hundred-width" %>
+  <% end %>
+
+  <div class="space-50"></div>
+
     <form role="form">
       <div class="form-group">
         <label for="event-name">Event Name:</label>
