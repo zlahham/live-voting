@@ -3,7 +3,14 @@
 		<h4><%= @question.content %></h4>
 		<% if @question.choices.any? %>
 		  <% @question.choices.each do |choice| %>
-		    <br><%= choice.content %>
+		  	<%= div_for choice do %>
+		    	<%= choice.content %>
+		    	<% if choice.votes.any? %>
+			    	<p class='vote-count'>
+			    		Votes: <%= choice.votes.count %>
+			    	</p>
+		    	<% end %>
+		  	<% end %>
 		  <% end %>
 		<% end %>
 
