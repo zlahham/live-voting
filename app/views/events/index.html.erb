@@ -1,8 +1,8 @@
 
 <% if user_signed_in? %>
 	<div class="container">
-		<% if @events %>
-		<h2>Your events:</h2>
+		<% if @events.count > 0 %>
+			<h2>Your events:</h2>
 			<% @events.each do |event| %>
 				<ul>
 					<%= link_to event_path(event) do %>
