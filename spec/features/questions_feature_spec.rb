@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Questions Features' do
-  before do
+  before :each do
     user = create :user
     sign_in_as(user)
     @event = create :event, user: user
@@ -36,10 +36,12 @@ describe 'Questions Features' do
       expect(page).to have_selector(:link_or_button, 'Publish')
     end
 
-    # it "user can publish the question" do
-    #   visit event_path(@event)
-    #   click_on 'Publish'
-    #   expect(page).to have_content 'Question has been pushed to the audience'
-    # end
+    it "user can publish the question" do
+      #this expect statement stubs the trigger method
+      expect_any_instance_of(Pusher::Client).to receive(:trigger)
+      visit event_path(@event)
+      click_on 'Publish'
+      expect(page).to have_content 'Question has been pushed to the audience'
+    end
   end
 end

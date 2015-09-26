@@ -1,13 +1,10 @@
 require 'rails_helper'
 
 feature 'Events Features' do
-  before :all do
-    @user = create :user
-    @event = create :event, user: @user
-  end
+  let(:event){ create :event, user: create(:user) }
 
   context 'when signed in' do
-    before(:each){ sign_in_as @user }
+    before(:each){ sign_in_as event.user }
 
     it "'Sign out' link is visible on home page" do
       visit root_path
@@ -30,12 +27,12 @@ feature 'Events Features' do
 
     context "when on events index page with one created event" do
       it "user's event is displayed" do
-        expect(page).to have_content @event.title
+        expect(page).to have_content event.title
       end
 
       it "event name links to its event page" do
-        click_on "#{@event.title}"
-        expect(current_path).to eq event_path(@event)
+        click_on "#{event.title}"
+        expect(current_path).to eq event_path(event)
       end
     end
   end
