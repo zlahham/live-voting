@@ -63,6 +63,7 @@ feature 'Events Features' do
       end
 
       it 'publishes question' do
+        expect_any_instance_of(Pusher::Client).to receive :trigger
         event = create(:event, title: 'event 1', user: user)
         sign_in_as(user)
         visit events_path
