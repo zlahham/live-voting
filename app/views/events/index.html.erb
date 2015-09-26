@@ -1,30 +1,36 @@
-<div class="container">
-	<% if @events %>
-		<% @events.each do |event| %>
-			<%= link_to event_path(event) do %>
-				<%= event.title  %>
-			<% end  %>
-      <%= link_to 'Delete', event, method: :delete %>
-	  <% end %>
-	<% end %>
-</div>
+<% if user_signed_in? %>
+	<div class="container">
+		<% if @events.count > 0 %>
+			<h2>Your events:</h2>
+			<% @events.each do |event| %>
+				<ul>
+					<%= link_to event_path(event) do %>
+						<li> <%= event.title %> </li>
+					<% end  %>
+					<%= link_to 'Delete', event, method: :delete %>
+				</ul>
+		  <% end %>
+		<% else %>
+			<%= link_to "Click here to create your first event", new_event_path, class: "btn btn-primary btn-lg" %>
+		<% end %>
+	</div>
+<% else %>
+	<div class="container">
+	  <div class="jumbotron">
+	    <h1>We have great live polling tools :)</h1>
+	    <p>More subtitle info goes here</p>
+			<% if current_user %>
+	    	<%= link_to "Create your event today :)", new_event_path, class: "btn btn-primary btn-lg" %>
+	    <% else %>
+	    	<%= link_to "Create your account today :)", new_user_registration_path, class: "btn btn-primary btn-lg" %>
+	    <% end %>
+	  </div>
+	</div>
 
-<div class="container">
-  <div class="jumbotron">
-    <h1>We have great live polling tools :)</h1>
-    <p>More subtitle info goes here</p>
-<!--     <p><a class="btn btn-primary btn-lg" href="#" role="button">Create an event today</a></p> -->
-		<% if current_user %>
-    	<%= link_to "Create your event today :)", new_event_path, class: "btn btn-primary btn-lg" %>
-    <% else %>
-    	<%= link_to "Create your account today :)", new_user_registration_path, class: "btn btn-primary btn-lg" %>
-    <% end %>
-  </div>
-</div>
-
-<div class="container">
-  <div class="jumbotron">
-    <div class="container">
-      <p>Flow diagram of our customer process.</p>
-  </div>
-</div>
+	<div class="container">
+	  <div class="jumbotron">
+	    <div class="container">
+	      <p>Flow diagram of our customer process.</p>
+	  </div>
+	</div>
+<% end %>
