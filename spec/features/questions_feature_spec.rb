@@ -23,6 +23,15 @@ describe 'Questions Features' do
     expect(page).to have_content "1 error prohibited this question from being saved:"
   end
 
+  it 'can be deleted' do
+    question = create :question, event: event
+    visit event_path event
+    expect(page).to have_content "#{question.content}"
+    click_on 'Delete Question'
+    expect(page).not_to have_content "#{question.content}"
+    expect(page).to have_content "Question successfully deleted"
+  end
+
   context 'after a question has been created' do
     before(:each){ @question = create :question, event: event }
 

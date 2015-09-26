@@ -20,6 +20,12 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def destroy
+    question = Question.find(params[:id]).destroy
+    redirect_to event_path(question.event)
+    flash[:notice] = "Question successfully deleted" 
+  end
+
   def publish_question
     event =     Event.find(params["id"])
     question =  Question.find(params["question"])

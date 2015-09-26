@@ -22,8 +22,8 @@ feature 'Events Features' do
     it 'can be deleted' do
       visit events_path
       click_on 'Delete'
-      expect(Event.all.count).to eq 0
       expect(current_path).to eq events_path
+      expect(page).not_to have_content "#{event.title}"
       expect(page).to have_content 'Event successfully deleted'
     end
 
