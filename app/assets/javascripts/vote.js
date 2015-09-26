@@ -8,7 +8,12 @@ $(document).ready(function() {
     }
   };
 
-  pusher = new Pusher('8881c0f8a42807b64625', {
+  function pusherKey(){
+    var event_number = $('#pusher-key').text();
+    return event_number
+  };
+
+  pusher = new Pusher(pusherKey(), {
     encrypted: true
   });
   channel = pusher.subscribe('test_channel');

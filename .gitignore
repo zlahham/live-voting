@@ -12,4 +12,3 @@
 !/log/.keep
 /tmp
 /vendor/bower_components
-/config/initializers/pusher.rb
