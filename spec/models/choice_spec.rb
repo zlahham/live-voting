@@ -6,6 +6,7 @@ RSpec.describe Choice, type: :model do
 
   it { is_expected.to belong_to :question }
   it { is_expected.to have_many :votes }
+  it { is_expected.to validate_presence_of :question }
 
   it 'is destroyed when its parent question is destroyed' do
     question = create :question, event: event
