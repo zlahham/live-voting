@@ -41,6 +41,7 @@ describe 'Questions Features' do
       expect_any_instance_of(Pusher::Client).to receive(:trigger)
       visit event_path(event)
       click_on 'Publish'
+      expect(current_path).to eq  question_path(@question)
       expect(page).to have_content 'Question has been pushed to the audience'
     end
   end
