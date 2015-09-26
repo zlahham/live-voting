@@ -1,4 +1,20 @@
-[![Stories in Ready](https://badge.waffle.io/zlahham/live-voting.png?label=ready&title=Ready)](https://waffle.io/zlahham/live-voting)
+
+![alt tag](https://travis-ci.org/zlahham/live-voting.svg)
+
+![alt tag](https://pbs.twimg.com/profile_images/2352976474/821r2dpq9gt8m1nwgy5r_400x400.png)
+
+
+![Cards in Ideas](https://badge.waffle.io/zlahham/live-voting.png?label=Ideas&title=Ideas)](https://waffle.io/zlahham/live-voting)
+
+![Cards in Backlog](https://badge.waffle.io/zlahham/live-voting.png?label=Backlog&title=Backlog)](https://waffle.io/zlahham/live-voting)
+
+![Cards in Ready](https://badge.waffle.io/zlahham/live-voting.png?label=ready&title=Ready)](https://waffle.io/zlahham/live-voting)
+
+![Cards in In Progress](https://badge.waffle.io/zlahham/live-voting.png?label="In Progress"&title="In Progress")](https://waffle.io/zlahham/live-voting)
+
+![Cards in Done](https://badge.waffle.io/zlahham/live-voting.png?label=Done&title=Done)](https://waffle.io/zlahham/live-voting)
+
+
 #Live-Voting
 
 ###Final Version Features
@@ -54,7 +70,7 @@ Lewis
 Zaid
 
 
-<!-- 
+<!--
 You need to include this hidden file at /config/initializers/pusher.rb
 ```
 Pusher.app_id = ENV['VOTING_PUSHER_APP_ID']
