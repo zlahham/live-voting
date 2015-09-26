@@ -37,7 +37,6 @@ describe 'Questions Features' do
     end
 
     it "user can publish the question" do
-      #this expect statement stubs the trigger method
       expect_any_instance_of(Pusher::Client).to receive(:trigger)
       visit event_path(event)
       click_on 'Publish'
