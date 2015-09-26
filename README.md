@@ -1,3 +1,7 @@
+
+![alt tag](https://travis-ci.org/zlahham/live-voting.svg)
+
+
 [![Stories in Ready](https://badge.waffle.io/zlahham/live-voting.png?label=ready&title=Ready)](https://waffle.io/zlahham/live-voting)
 #Live-Voting
 
@@ -54,7 +58,7 @@ Lewis
 Zaid
 
 
-<!-- 
+<!--
 You need to include this hidden file at /config/initializers/pusher.rb
 ```
 Pusher.app_id = ENV['VOTING_PUSHER_APP_ID']
