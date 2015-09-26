@@ -5,12 +5,12 @@ describe 'Choices Features' do
 
   before :each do
     sign_in_as(event.user)
-    @question = create(:question, content: "Is the Sky Blue?", event: event)
+    @question = create(:question, event: event)
   end
 
   it 'can be created on a question' do
     visit("/events/#{event.id}")
-    click_on "Is the Sky Blue?"
+    click_on "#{@question.content}"
     click_on 'Add Choice'
     fill_in 'choice[content]', with: "Yes"
     click_on 'Add Choice'
