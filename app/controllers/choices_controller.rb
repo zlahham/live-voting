@@ -16,6 +16,12 @@ class ChoicesController < ApplicationController
     end
   end
 
+  def destroy
+    choice = Choice.find(params[:id]).destroy
+    redirect_to question_path(choice.question)
+    flash[:notice] = "Choice successfully deleted"
+  end
+
   private
 
   def choices_params

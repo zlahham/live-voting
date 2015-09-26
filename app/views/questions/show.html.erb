@@ -6,6 +6,7 @@
 		  <% @question.choices.each do |choice| %>
 		  	<%= div_for choice do %>
 		    	<%= choice.content %>
+		    	<%= link_to 'Delete Choice', choice, method: :delete %>
 		    	<% if choice.votes.any? %>
 			    	<p class='vote-count'>
 			    		Votes: <%= choice.votes.count %>
