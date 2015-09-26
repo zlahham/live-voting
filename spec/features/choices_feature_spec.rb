@@ -20,4 +20,14 @@ describe 'Choices Features' do
     expect(page).to have_content "Choice successfully created"
     expect(page).to have_content "#{@question.choices.last.content}"
   end
+
+  it 'can be deleted' do
+    question = create :question, event: event
+    choice = create :choice, question: question
+    visit question_path(question)
+    click_on 'Delete Choice'
+    expect(current_path).to eq question_path(question)
+    expect(page).not_to have_content "#{choice.content}"
+    expect(page).to have_content "Choice successfully deleted"
+  end
 end
