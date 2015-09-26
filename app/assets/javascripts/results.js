@@ -8,10 +8,10 @@ $(document).ready(function() {
     }
   };
 
-  pusher = new Pusher('8881c0f8a42807b64625', {
+  pusher = new Pusher('326d4e202ebb626d7423', {
     encrypted: true
   });
-  
+
   channel = pusher.subscribe('vote_count_channel');
   return channel.bind('new_message', function(data) {
     console.log(data);
