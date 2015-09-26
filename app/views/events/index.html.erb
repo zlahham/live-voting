@@ -4,6 +4,7 @@
 			<%= link_to event_path(event) do %>
 				<%= event.title  %>
 			<% end  %>
+      <%= link_to 'Delete', event, method: :delete %>
 	  <% end %>
 	<% end %>
 </div>

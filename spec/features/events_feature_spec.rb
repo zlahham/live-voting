@@ -19,6 +19,14 @@ feature 'Events Features' do
       expect(page).to have_link("voting page", href: "/events/#{Event.last.id}/vote")
     end
 
+    it 'can be deleted' do
+      visit events_path
+      click_on 'Delete'
+      expect(Event.all.count).to eq 0
+      expect(current_path).to eq events_path
+      expect(page).to have_content 'Event successfully deleted'
+    end
+
     it "events cannot be created with a blank title field" do
       click_on 'Create Event'
       click_on 'Add Event'
