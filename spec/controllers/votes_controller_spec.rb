@@ -6,6 +6,7 @@ RSpec.describe VotesController, type: :controller do
       choice = create(:choice)
       allow(subject).to receive(:params).and_return(choice: choice.id)
       expect_any_instance_of(Pusher::Client).to receive :trigger
+
       expect{ get(:create) }.to change{choice.votes.count}.by(1)
     end
   end

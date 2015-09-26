@@ -9,6 +9,7 @@ RSpec.describe QuestionsController do
 
   describe '#publish_question' do
     it 'calls push_json_to_pusher method' do
+      #this expect statement also stubs the trigger method
       expect_any_instance_of(Pusher::Client).to receive :trigger
       get(:publish_question, {"question" => question.id, "controller"=>"questions", "action"=>"publish_question", "id"=>event.id})
     end
