@@ -12,8 +12,8 @@ describe 'Choices Features' do
     visit("/events/#{event.id}")
     click_on "#{@question.content}"
     click_on 'Add Choice'
-    expect(page).to have_content "Event: Event 1"
-    expect(page).to have_content "Question: My Question"
+    expect(page).to have_content "Event: #{event.title}"
+    expect(page).to have_content "Question: #{@question.content}"
     fill_in "choice[content]", with: "Yes"
     click_on "Add Choice"
     expect(current_path).to eq question_path(@question.id)
