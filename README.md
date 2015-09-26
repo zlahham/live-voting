@@ -1,8 +1,11 @@
 
 ![alt tag](https://travis-ci.org/zlahham/live-voting.svg)
 
+![alt tag](https://pbs.twimg.com/profile_images/2352976474/821r2dpq9gt8m1nwgy5r_400x400.png)
 
-[![Stories in Ready](https://badge.waffle.io/zlahham/live-voting.png?label=ready&title=Ready)](https://waffle.io/zlahham/live-voting)
+[![Cards in Waffle Cards Currently In Progress](https://badge.waffle.io/zlahham/live-voting.png?label=In%20Progress&title=In%20Progress)](https://waffle.io/zlahham/live-voting)
+
+
 #Live-Voting
 
 ###Final Version Features
