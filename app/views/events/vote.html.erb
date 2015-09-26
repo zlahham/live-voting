@@ -39,3 +39,8 @@
     $('.holding-message').show();
   });
 </script>
+
+<script src="pusher-test-sub.js"></script>
+<script>
+  Pusher.instances[0].connection.emit('connected');
+</script>
