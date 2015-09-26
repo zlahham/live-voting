@@ -10,10 +10,8 @@ RSpec.describe Event, type: :model do
 
 
   describe 'create event' do
-
-    let(:user) { create(:user) }
-
     it 'can be created' do
+      user = create :user
       expect{ Event.create(title: 'test', user: user) }.to change{ Event.count }.by(1)
     end
   end
