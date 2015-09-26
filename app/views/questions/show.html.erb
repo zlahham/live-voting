@@ -1,5 +1,6 @@
 <div class="container">
   <div class="col-xs-6">
+    <div id="pusher-key" style="display:none;"><%= Pusher.key %></div>
 		<h4><%= @question.content %></h4>
 		<% if @question.choices.any? %>
 		  <% @question.choices.each do |choice| %>
