@@ -24,9 +24,14 @@ class QuestionsController < ApplicationController
     event =     Event.find(params["id"])
     question =  Question.find(params["question"])
     json_object = build_json(event, question)
-    push_json_to_pusher(json_object, event.id)
-    redirect_to question_path(question)
-    flash[:notice] = "Question has been pushed to the audience"
+    begin
+      push_json_to_pusher(json_object, event.id)
+      redirect_to question_path(question)
+      flash[:notice] = "Question has been pushed to the audience"
+    rescue
+      redirect_to event_path(event)
+      flash[:notice] = "Error: Question could not be published"
+    end
   end
 
   def build_json(event, question)

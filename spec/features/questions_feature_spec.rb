@@ -44,5 +44,14 @@ describe 'Questions Features' do
       expect(current_path).to eq  question_path(@question)
       expect(page).to have_content 'Question has been pushed to the audience'
     end
+
+    it "alerts user to issue publishing question" do
+      expect_any_instance_of(Pusher::Client).to receive(:trigger).and_raise("ERROR")
+      visit event_path(event)
+      click_on 'Publish'
+      expect(current_path).to eq  event_path(event)
+      expect(page).to have_content 'Error: Question could not be published'
+    end
+
   end
 end
