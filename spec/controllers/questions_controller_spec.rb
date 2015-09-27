@@ -29,4 +29,13 @@ RSpec.describe QuestionsController do
               "choices"=>[{"content"=>choice.content, "id"=>choice.id}, {"content"=>choice2.content, "id"=>choice2.id}]} )
     end
   end
+
+  describe '#clear_votes' do
+    it "destroys a question's votes" do
+      choice.votes.create
+      2.times{choice2.votes.create}
+      get(:clear_votes, {"controller"=>"questions", "action"=>"clear_votes", "id"=>"#{question.id}"})
+      question.choices.map{ |choice| expect(choice.votes.count).to eq 0 }
+    end
+  end
 end

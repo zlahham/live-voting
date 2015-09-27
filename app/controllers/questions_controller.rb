@@ -26,6 +26,16 @@ class QuestionsController < ApplicationController
     flash[:notice] = "Question successfully deleted" 
   end
 
+  def clear_votes
+    question = Question.find(params[:id])
+    if question.choices.map{ |choice| choice.votes.destroy_all }
+      redirect_to question_path(question)
+      flash[:notice] = "Votes successfully cleared"
+    else
+      flash[:alert] = "Error clearing votes"
+    end
+  end
+
   def publish_question
     event =     Event.find(params["id"])
     question =  Question.find(params["question"])

@@ -3,8 +3,11 @@
     <div id="pusher-key" style="display:none;"><%= Pusher.key %></div>
 		<h4><%= @question.content %></h4>
 		<% if @question.choices.any? %>
+		  
 		  <% @question.choices.each do |choice| %>
+		  	
 		  	<%= div_for choice do %>
+
 		    	<%= choice.content %>
 		    	<%= link_to 'Delete Choice', choice, method: :delete %>
 		    	<% if choice.votes.any? %>
@@ -12,7 +15,13 @@
 			    		Votes: <%= choice.votes.count %>
 			    	</p>
 		    	<% end %>
+
 		  	<% end %>
+
+		  <% end %>
+
+		  <% if any_votes? @question %>
+		  	<%= link_to 'Clear Votes', clear_votes_path %>
 		  <% end %>
 		<% end %>
 
