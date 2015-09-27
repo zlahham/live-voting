@@ -65,11 +65,15 @@ describe 'Questions Features' do
       before :each do
         @choice1 = create :choice, question: @question
         @choice2 = create :choice, question: @question
+        visit question_path @question
       end
 
       it "'Clear Votes' link is not displayed on the question show page" do
-        visit question_path @question
         expect(page).not_to have_content "Clear Votes"
+      end
+
+      it "'Votes: 0' is displayed on the question's show page" do
+        expect(page).to have_content "Votes: 0"
       end
     end
 
