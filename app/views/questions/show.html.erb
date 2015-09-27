@@ -8,7 +8,9 @@
 		    	<%= choice.content %>
 		    	<%= link_to 'Delete Choice', choice, method: :delete %>
 		    	<p class='vote-count'>
-		    		Votes: <%= choice.votes.count %>
+		    		<% if choice.votes.any? %>
+			    		Votes: <%= choice.votes.count %>
+			    	<% end %>
 		    	</p>
 		  	<% end %>
 		  <% end %>
