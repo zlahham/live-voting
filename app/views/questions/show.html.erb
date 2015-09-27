@@ -12,6 +12,10 @@
 		    	</p>
 		  	<% end %>
 		  <% end %>
+
+		  <% if any_votes? @question %>
+		  	<%= link_to 'Clear Votes', clear_votes_path %>
+		  <% end %>
 		<% end %>
 
 		<%= link_to 'Add Choice', new_question_choice_path(@question), class: 'form-control btn btn-info btn-fill' %>

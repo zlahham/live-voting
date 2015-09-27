@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
+  root 'events#index'
 
   devise_for :users
-  root 'events#index'
+
   resources :events, shallow: true do
     member do
       get 'vote'
@@ -16,6 +17,9 @@ Rails.application.routes.draw do
   resources :votes
 
   get 'questions/:id/publish_question' => 'questions#publish_question', as: :questions_publish
+
+  get 'questions/:id/clear_votes' => 'questions#clear_votes', as: :clear_votes
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
