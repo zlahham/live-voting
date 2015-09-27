@@ -20,24 +20,16 @@ feature 'Voting Features' do
       },
       choices: [
         {
-          content: "hello",
+          content: "yes",
           id: 15
         },
         {
-          content: "hello",
+          content: "no",
           id: 16
         },
         {
-          content: "dds",
+          content: "maybe",
           id: 17
-        },
-        {
-          content: "",
-          id: 18
-        },
-        {
-          content: "",
-          id: 19
         }
       ]
     }
@@ -47,6 +39,9 @@ feature 'Voting Features' do
       expect(page).to have_content 'Awaiting Question'
       page.execute_script("$(document).ready(function() { buildQuestion(#{data.to_json}) });")
       expect(page).to have_content 'Test Question'
+      expect(page).to have_content 'yes'
+      expect(page).to have_content 'no'
+      expect(page).to have_content 'maybe'
     end
   end
 end
