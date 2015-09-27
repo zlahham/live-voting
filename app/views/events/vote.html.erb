@@ -16,14 +16,7 @@
     <h1 id="question-title"></h1>
     <form class="question-form">
       <ul>
-        <li>
-          <input id="choice-1" type="radio" name="choice" value="1">
-          <label id="choice-1-text" for="choice-1"></label>
-        </li>
-        <li>
-          <input id="choice-2" type="radio" name="choice" value="1">
-          <label id="choice-2-text" for="choice-2"></label>
-        </li>
+      <div id="dvOptions"></div>
       </ul>
     <button id="choice-submit" type="submit" class="btn btn-fill btn-primary hundred-width">Submit Answer</button>
     </form>
@@ -46,9 +39,12 @@
     $('#testing').text(data.test);
     $('#question-number').text(data.question.id);
     $('#question-title').text(data.question.content);
-    $('#choice-1-text').text(data.choices[0].content);
-    $('#choice-2-text').text(data.choices[1].content);
-    $('#choice-1').val(data.choices[0].id);
-    $('#choice-2').val(data.choices[1].id);
+    var $choiceOptions = $('#dvOptions');
+    $choiceOptions.empty();
+    for ( var i = 0; i < data.choices.length; i++) {
+       $choiceOptions.append($('<li><input type="radio" name="choice" value="'
+       + data.choices[i].id + '"><label for="choice">'
+       + data.choices[i].content + '</label></li>'));
+      };
   };
 </script>
