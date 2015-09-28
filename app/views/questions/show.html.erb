@@ -3,9 +3,11 @@
     <div id="pusher-key" style="display:none;"><%= Pusher.key %></div>
 		<h4><%= @question.content %></h4>
 		<% if @question.choices.any? %>
+      <% @labels = [] %>
 		  <% @question.choices.each do |choice| %>
 		  	<%= div_for choice do %>
-		    	<%= choice.content %>
+          <% @labels << choice.content %>
+		    	<span id="label1"><%= choice.content %></span>
 		    	<%= link_to 'Delete Choice', choice, method: :delete %>
 		    	<p class='vote-count'>
 		    		<% if choice.votes.any? %>
@@ -14,6 +16,13 @@
 		    	</p>
 		  	<% end %>
 		  <% end %>
+
+      <span id="labels"><%= @labels %></span>
+<!-- CHARTS -->
+
+      <div style="width: 50%">
+        <canvas id="canvas" height="450" width="600"></canvas>
+      </div>
 
 		  <% if any_votes? @question %>
 		  	<%= link_to 'Clear Votes', clear_votes_path %>
@@ -24,3 +33,30 @@
 		<%= link_to "Back to #{@question.event.title}", event_path(@question.event.id), class: 'form-control btn btn-info btn-fill' %>
   </div>
 </div>
+
+
+<script>
+
+  var choiceLabels = "<%=@question.choice.content%>"
+
+var barChartData = {
+  labels : choiceLabels.toString,
+  datasets : [
+    {
+      fillColor : "rgba(220,220,220,0.5)",
+      strokeColor : "rgba(220,220,220,0.8)",
+      highlightFill: "rgba(220,220,220,0.75)",
+      highlightStroke: "rgba(220,220,220,1)",
+      data : [5,2]
+    }
+  ]
+
+}
+window.onload = function(){
+  var ctx = document.getElementById("canvas").getContext("2d");
+  window.myBar = new Chart(ctx).Bar(barChartData, {
+    responsive : true
+  });
+}
+
+</script>
