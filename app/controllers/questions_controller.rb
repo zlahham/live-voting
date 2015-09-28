@@ -67,7 +67,7 @@ class QuestionsController < ApplicationController
   private
 
   def question_number(event, question)
-    questions_array = event.questions
+    questions_array = event.questions.all.order(:id)
     question_number = questions_array.index(question).to_i + 1
   end
 
