@@ -18,6 +18,22 @@ describe 'Questions Features' do
     expect(page).to have_content 'test question'
   end
 
+  it 'allows extra choices to be added', js: :true do
+    visit event_path(event)
+    click_on 'Add Question'
+    fill_in 'question_content', with: 'test question'
+    fill_in "question[choices_attributes][0][content]", with: "choice 1"
+    fill_in "question[choices_attributes][1][content]", with: "choice 2"
+    click_on "Add Choice"
+    fill_in "question[choices_attributes][2][content]", with: "choice 3"
+    click_on "Add"
+    expect(page).to have_content 'Question successfully created'
+    expect(page).to have_content 'test question'
+    expect(page).to have_content 'choice 1'
+    expect(page).to have_content 'choice 2'
+    expect(page).to have_content 'choice 3'
+  end
+
   it "can't be created with a blank content field" do
     visit event_path(event)
     click_on 'Add Question'
