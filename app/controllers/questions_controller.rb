@@ -53,12 +53,10 @@ class QuestionsController < ApplicationController
       choice_hash = { content: choice.content, id: choice.id }
       choices_array << choice_hash
     end
-    questions_array = event.questions
-    event = event.attributes.reject!{|key,value| %w"updated_at created_at user_id".include? key}
-    question = question.attributes.reject!{|key,value| %w"updated_at created_at event_id".include? key}
-    question_number = questions_array.index(question).to_i + 1
-    question.merge!(question_number: question_number)
-    json_object = { event: event, question: question, choices: choices_array }.to_json
+    event_object = event.attributes.reject!{|key,value| %w"updated_at created_at user_id".include? key}
+    question_object = question.attributes.reject!{|key,value| %w"updated_at created_at event_id".include? key}
+    question_object.merge!(question_number: question_number(event, question))
+    json_object = { event: event_object, question: question_object, choices: choices_array }.to_json
   end
 
   def push_json_to_pusher(json_object, event_id)
@@ -67,6 +65,11 @@ class QuestionsController < ApplicationController
   end
 
   private
+
+  def question_number(event, question)
+    questions_array = event.questions
+    question_number = questions_array.index(question).to_i + 1
+  end
 
   def question_params
     params.require(:question).permit(:content)
