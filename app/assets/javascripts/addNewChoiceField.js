@@ -1,0 +1,15 @@
+$(document).ready(function(){
+  $("#addNewChoice").click(function() {
+    $("#choices-div").append(createNewInputElement($("#choices-div")));
+  });
+});
+
+function createNewInputElement(form) {
+  var newIndex = $("#choices-div").children('input#choice-entry').length;
+  var newInput = $("#choice-entry").clone().attr('name', generateNewInputName(newIndex));
+  return newInput;
+};
+
+function generateNewInputName(idx) {
+  return "question[choices_attributes][" + idx + "][content]"
+};

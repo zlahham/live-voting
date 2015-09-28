@@ -10,8 +10,18 @@
         </ul>
       </section>
     <% end %>
+
+        <button class="btn btn-info" id="addNewChoice">Add Choice</button>
+
     <%= form_for [@event, @question] do |f| %>
       <%= f.text_field :content, placeholder: "Add your question", class: 'form-control' %>
+      <div id="choices-div">
+
+          <%= f.fields_for :choices do |choice| %>
+            <%= choice.text_field :content, id:"choice-entry", class: 'form-control', placeholder: 'Choice' %>
+          <% end %>
+
+      </div>
       <%= f.submit "Add", class: 'form-control btn btn-info btn-fill' %>
     <% end %>
   </div>
