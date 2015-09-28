@@ -20,7 +20,7 @@
 		  <% end %>
 		<% end %>
 
-		<%= link_to 'Add Choice', new_question_choice_path(@question), class: 'form-control btn btn-info btn-fill' %>
-		<%= link_to "Back to #{@question.event.title}", event_path(@question.event.id), class: 'form-control btn btn-info btn-fill' %>
+		<%= link_to 'Add Choice', new_question_choice_path(@question), class: 'form-control btn btn-info' %>
+		<%= link_to "Back to #{@question.event.title}", event_path(@question.event.id), class: 'form-control btn btn-info' %>
   </div>
 </div>

@@ -14,7 +14,7 @@
     <h4>Question: <%=@question.content %></h4>
     <%= form_for [@question, @choice] do |f| %>
       <%= f.text_field :content, class: 'hundred-width'%>
-      <%= f.submit "Add Choice", class: 'form-control btn btn-info btn-fill' %>
+      <%= f.submit "Add Choice", class: 'form-control btn btn-info' %>
     <% end %>
   </div>
 </div>

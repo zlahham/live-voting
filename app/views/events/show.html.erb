@@ -7,8 +7,8 @@
 		</div>
 
 		<div class="col-xs-6 pull-right text-right top-20">
-			<%= link_to 'Add Question', new_event_question_path(@event), class: 'btn btn-info btn-fill' %>
-			<%= link_to "Take me to the voting page", vote_event_path(@event), class: 'btn btn-info btn-fill' %>
+			<%= link_to 'Add Question', new_event_question_path(@event), class: 'btn btn-info' %>
+			<%= link_to "Take me to the voting page", vote_event_path(@event), class: 'btn btn-info' %>
 		</div>
 	</div>
 
@@ -16,7 +16,7 @@
 		  <% if @event.questions.any? %>
 		    <% @event.questions.each do |question| %>
 		      <li>
-		        	<%= link_to "Publish", { controller: :questions, action: :publish_question, question: question}, class: 'btn btn-info btn-fill' %>
+		        	<%= link_to "Publish", { controller: :questions, action: :publish_question, question: question}, class: 'btn btn-info' %>
 		        	<%= link_to question.content, question_path(question) %>
 		        	<%= link_to "Delete Question", question, method: :delete, data: {confirm: "Are you sure?"} %>
 		      </li>
