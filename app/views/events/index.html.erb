@@ -29,10 +29,10 @@
 		    <div class="modal-content">
 		    	<div class='container-fluid'>
 			      
-			      <%= form_tag('#', method: 'get', class: 'form-inline') do %>
+			      <%= form_tag({controller: 'events', action: 'parse_event_id'}, method: 'get', class: 'form-inline') do %>
 			      	<div class='form-group'>
-				      	<%= label_tag(:q, "Enter Event Id:") %>
-				      	<%= text_field_tag(:q, nil, class: 'form-control') %>
+				      	<%= label_tag(:unparsed_event_id, "Enter Event Id:") %>
+				      	<%= text_field_tag(:unparsed_event_id, nil, class: 'form-control') %>
 				      	<%= submit_tag 'Go', class: 'btn btn-primary' %>
 			      	</div>
 			      <% end %>
