@@ -1,7 +1,3 @@
-body {
-	
-}
-
 .navbar-right {
 	text-align: right;
 }
@@ -35,4 +31,12 @@ body {
 
 .no-padding-ul {
 	padding-left: 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.question {
+  display: none
 }
