@@ -12,9 +12,10 @@
  *
  */
 
+@import "bootstrap-variables";
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-// if you make a new stylesheet, must import it here.
+// if you make a new stylesheet, must import it HERE:
 @import "custom.scss";
 @import "vote.scss";
