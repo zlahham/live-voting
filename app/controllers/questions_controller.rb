@@ -23,7 +23,7 @@ class QuestionsController < ApplicationController
   def destroy
     question = Question.find(params[:id]).destroy
     redirect_to event_path(question.event)
-    flash[:notice] = "Question successfully deleted" 
+    flash[:notice] = "Question successfully deleted"
   end
 
   def clear_votes
@@ -53,9 +53,11 @@ class QuestionsController < ApplicationController
       choice_hash = { content: choice.content, id: choice.id }
       choices_array << choice_hash
     end
+    questions_array = event.questions
     event = event.attributes.reject!{|key,value| %w"updated_at created_at user_id".include? key}
     question = question.attributes.reject!{|key,value| %w"updated_at created_at event_id".include? key}
-
+    question_number = questions_array.index(question).to_i + 1
+    question.merge!(question_number: question_number)
     json_object = { event: event, question: question, choices: choices_array }.to_json
   end
 

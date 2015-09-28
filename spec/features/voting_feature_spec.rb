@@ -18,7 +18,8 @@ feature 'Voting Features' do
         },
         question: {
           id: @question.id,
-          content: @question.content
+          content: @question.content,
+          question_number: "1"
         },
         choices: [
           {
@@ -48,7 +49,7 @@ feature 'Voting Features' do
       visit vote_event_path(@event)
       expect(page).to have_content 'Awaiting Question'
       page.execute_script("$(document).ready(function() { buildQuestion(#{@data.to_json}) });")
-      expect(page).to have_content 'Question 1 of 1' 
+      expect(page).to have_content 'Question 1 of 1'
       expect(page).to have_content 'My Question'
       expect(page).to have_content 'Yes'
       expect(page).to have_content 'No'

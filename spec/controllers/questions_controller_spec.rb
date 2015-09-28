@@ -25,7 +25,8 @@ RSpec.describe QuestionsController do
       expect(JSON.parse(subject.build_json event, question)).to eq( {"event"=>{"id"=>event.id,
               "title"=>event.title},
               "question"=>{"id"=>question.id,
-              "content"=>question.content},
+              "content"=>question.content,
+              "question_number"=>1},
               "choices"=>[{"content"=>choice.content, "id"=>choice.id}, {"content"=>choice2.content, "id"=>choice2.id}]} )
     end
   end
