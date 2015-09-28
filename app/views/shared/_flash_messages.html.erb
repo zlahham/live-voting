@@ -1,10 +1,8 @@
-<div class="container">
-  <% flash.each do |name, msg| %>
-    <% if msg.is_a?(String) %>
-      <div class="alert alert-<%= name.to_s == 'notice' ? 'success' : 'danger' %> data-dismissable", role="alert" >
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <%= content_tag :div, msg, :id => "flash_#{name}" %>
-      </div>
-    <% end %>
+<% flash.each do |name, msg| %>
+  <% if msg.is_a?(String) %>
+    <div class="alert alert-<%= name.to_s == 'notice' ? 'success' : 'danger' %> data-dismissable", role="alert" >
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+    </div>
   <% end %>
-</div>
+<% end %>
