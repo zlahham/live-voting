@@ -34,6 +34,16 @@ describe 'Questions Features' do
     expect(page).to have_content 'choice 3'
   end
 
+  it 'adds choices which do not have duplicate text', js: :true do
+    visit event_path(event)
+    click_on 'Add Question'
+    fill_in 'question_content', with: 'test question'
+    fill_in "question[choices_attributes][0][content]", with: "Some unique text"
+    click_on "Add Choice"
+    fill_in "question[choices_attributes][0][content]", with: "Sometext"
+    expect(page).not_to have_content("Some unique text")
+  end
+
   it "can't be created with a blank content field" do
     visit event_path(event)
     click_on 'Add Question'

@@ -7,6 +7,7 @@ $(document).ready(function(){
 function createNewInputElement(form) {
   var newIndex = $("#choices-div").children('input#choice-entry').length;
   var newInput = $("#choice-entry").clone().attr('name', generateNewInputName(newIndex));
+  newInput.val('');
   return newInput;
 };
 
