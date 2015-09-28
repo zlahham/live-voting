@@ -9,11 +9,7 @@
   </section>
 <% end %>
 
-<form class='form-inline'>
-  <div class='form-group'>
-    <%= form_for [@event, @question] do |f| %>
-      <%= f.text_field :content, placeholder: "Add your question", class: 'form-control' %>
-      <%= f.submit "Add", class: 'btn btn-primary' %>
-    <% end %>
-  </div>
-</form>
+<%= form_for [@event, @question] do |f| %>
+  <%= f.text_field :content, placeholder: "Add your question" %>
+  <%= f.submit "Add", class: 'btn btn-primary' %>
+<% end %>

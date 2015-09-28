@@ -9,11 +9,9 @@
   </section>
 <% end %>
 
-<form class='form-inline'>
+<%= form_for @event, html: { class: 'form-inline new_event' } do |f| %>
   <div class='form-group'>
-    <%= form_for @event do |f| %>
-      <%= f.text_field :title, class: "form-control" %>
-      <%= f.submit "Add Event", class: "btn btn-primary" %>
-    <% end %>
+    <%= f.text_field :title, class: "form-control" %>
+    <%= f.submit "Add Event", class: "btn btn-fill btn-primary hundred-width" %>
   </div>
-</form>
+<% end %>
