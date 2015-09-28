@@ -1,28 +1,18 @@
-<div class="container">
-  <div class="col-sm-12">
+<h1><%= @event.title %></h1> 
+	
+<%= link_to 'Add Question', new_event_question_path(@event), class: 'btn btn-primary' %>
+<%= link_to "Take me to the voting page", vote_event_path(@event), class: 'btn btn-primary' %>
 
-  <div class="row">
-  	<div class="col-xs-6">
-			<h1><%= @event.title %></h1> 
-		</div>
-
-		<div class="col-xs-6 pull-right text-right top-20">
-			<%= link_to 'Add Question', new_event_question_path(@event), class: 'btn btn-info' %>
-			<%= link_to "Take me to the voting page", vote_event_path(@event), class: 'btn btn-info' %>
-		</div>
-	</div>
-
-		<ul class="no-padding-ul">
-		  <% if @event.questions.any? %>
-		    <% @event.questions.each do |question| %>
-		      <li>
-		        	<%= link_to "Publish", { controller: :questions, action: :publish_question, question: question}, class: 'btn btn-info' %>
-		        	<%= link_to question.content, question_path(question) %>
-		        	<%= link_to "Delete Question", question, method: :delete, data: {confirm: "Are you sure?"} %>
-		      </li>
-		    <% end %>
-		  <% end %>
-		</ul>
-
-  </div>
-</div>
+<section>
+	<ul>
+	  <% if @event.questions.any? %>
+	    <% @event.questions.each do |question| %>
+	      <li>
+	        	<%= link_to "Publish", { controller: :questions, action: :publish_question, question: question}, class: 'btn btn-primary' %>
+	        	<%= link_to question.content, question_path(question) %>
+	        	<%= link_to "Delete Question", question, method: :delete, data: {confirm: "Are you sure?"} %>
+	      </li>
+	    <% end %>
+	  <% end %>
+	</ul>
+</section>

@@ -1,18 +1,19 @@
-<div class="container">
-  <div class="col-sm-6">
-    <% if @question.errors.any? %>
-      <section id="errors">
-        <h2><%= pluralize(@question.errors.count, "error")%> prohibited this question from being saved: </h2>
-        <ul>
-          <% @question.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </section>
-    <% end %>
+<% if @question.errors.any? %>
+  <section id="errors">
+    <h2><%= pluralize(@question.errors.count, "error")%> prohibited this question from being saved: </h2>
+    <ul>
+      <% @question.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </section>
+<% end %>
+
+<form class='form-inline'>
+  <div class='form-group'>
     <%= form_for [@event, @question] do |f| %>
       <%= f.text_field :content, placeholder: "Add your question", class: 'form-control' %>
-      <%= f.submit "Add", class: 'form-control btn btn-info' %>
+      <%= f.submit "Add", class: 'btn btn-primary' %>
     <% end %>
   </div>
-</div>
+</form>

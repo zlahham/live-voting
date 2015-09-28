@@ -9,77 +9,11 @@
   </section>
 <% end %>
 
-<div class="container">
-  <div class="col-sm-6">
-
-  <%= form_for @event do |f| %>
-    <%= f.text_field :title, class: "form-control" %>
-    <%= f.submit "Add Event", class: "btn btn-primary hundred-width" %>
-  <% end %>
-
-  <div class="space-50"></div>
-
-    <form role="form">
-      <div class="form-group">
-        <label for="event-name">Event Name:</label>
-        <input type="text" class="form-control" id="email">
-      </div>
-      <!-- <button type="submit" class="btn btn-default">Submit</button> -->
-    </form>
-
-
-    <form role="form" class="question-form">
-      <div class="form-group">
-        <label for="event-name">Question 1:</label>
-        <input type="text" class="form-control" id="email">
-      </div>
-        
-      <div class="form-group">
-        <label for="event-name">Answer Option 1:</label>
-        <input type="text" class="form-control" id="email">
-      </div>
-
-      <div class="form-group">
-        <label for="event-name">Answer Option 2:</label>
-        <input type="text" class="form-control" id="email">
-      </div>
-
-      <button type="submit" class="btn btn-default">Add New Question</button>
-    </form>
-
-    <form role="form" class="question-form">
-      <div class="form-group">
-        <label for="event-name">Question 2:</label>
-        <input type="text" class="form-control" id="email">
-      </div>
-        
-      <div class="form-group">
-        <label for="event-name">Answer Option 1:</label>
-        <input type="text" class="form-control" id="email">
-      </div>
-
-      <div class="form-group">
-        <label for="event-name">Answer Option 2:</label>
-        <input type="text" class="form-control" id="email">
-      </div>
-
-      <button type="submit" class="btn btn-default">Add New Question</button>
-    </form>
-    <button type="submit" class="btn btn-primary hundred-width">Publish</button>
-  </div> 
-
-  <div class="col-sm-5 col-sm-push-1">
-    <div class="right-of-form">
-      <p>Lorem ipsum dolor sit amet, ei quem delectus aliquando pro, usu ea equidem disputando, vim latine albucius nominati an. Cibo electram voluptatum cu pro, ne ius justo lucilius. Est saepe voluptaria eu, quo ea summo deserunt. Et quem detraxit eleifend has, at maiestatis consequuntur vis.</p>
-      
-      <p>Sea quando populo electram in, et vim aeque soluta detraxit. Ipsum animal perfecto ei per. Pri hinc choro electram ei, prima tincidunt at per. His dicta altera noster id.</p>
-      
-      <p>Est id odio dolores, nam rebum ignota populo an, est noster honestatis ne. Eum an nonumy vocibus qualisque, cum ea appareat suscipiantur. Ut eum noster integre similique. Invidunt imperdiet id eos, at vel alia dicant.</p>
-      
-      <p>Et nam velit volumus explicari. Quis brute vis ad, no alii atomorum mnesarchum pro. Te has insolens persecuti adversarium. Nam eu prompta graecis iudicabit, dolore impetus evertitur id sed. Accusam petentium interesset nam ut, pro at solet accusam omnesque.</p>
-      
-      <p>Qui ei scripta elaboraret, eum ne aeque solet appareat, an intellegam deterruisset vel. Stet similique duo at, mei cu ornatus convenire. Elaboraret disputationi ius ne, sea cu quem impedit, voluptua vivendum reprimique an sea. His ut laudem tractatos maluisset, mel et modo prompta, reque posse vivendo pri ei.</p>
-    </div>
-  </div> 
-
-</div>
+<form class='form-inline'>
+  <div class='form-group'>
+    <%= form_for @event do |f| %>
+      <%= f.text_field :title, class: "form-control" %>
+      <%= f.submit "Add Event", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</form>

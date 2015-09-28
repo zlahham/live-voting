@@ -1,20 +1,22 @@
-<div class="container">
-  <div class="col-sm-6">
-    <% if @choice.errors.any? %>
-      <section id="errors">
-        <h2><%= pluralize(@choice.errors.count, "error")%> prohibited this choice from being saved: </h2>
-        <ul>
-          <% @choice.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </section>
-    <% end %>
-    <h4>Event: <%=@question.event.title %></h4>
-    <h4>Question: <%=@question.content %></h4>
+<% if @choice.errors.any? %>
+  <section id="errors">
+    <h2><%= pluralize(@choice.errors.count, "error")%> prohibited this choice from being saved: </h2>
+    <ul>
+      <% @choice.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </section>
+<% end %>
+
+<h4>Event: <%=@question.event.title %></h4>
+<h4>Question: <%=@question.content %></h4>
+
+<form class='form-inline'>
+  <div class='form-group'>
     <%= form_for [@question, @choice] do |f| %>
       <%= f.text_field :content, class: 'hundred-width'%>
       <%= f.submit "Add Choice", class: 'form-control btn btn-info' %>
     <% end %>
   </div>
-</div>
+</form>

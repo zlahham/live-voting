@@ -8,12 +8,12 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-
     <%= render partial: "partials/navbar" %>
+    <div class='container'>
 
-    <%= render partial: "shared/flash_messages", flash: flash %>
+      <%= render partial: "shared/flash_messages", flash: flash %>
 
-    <%= yield %>
-
+      <%= yield %>
+    </div>
   </body>
 </html>
