@@ -12,7 +12,13 @@
     <% end %>
     <%= form_for [@event, @question] do |f| %>
       <%= f.text_field :content, placeholder: "Add your question", class: 'form-control' %>
+        <%= f.fields_for :choices do |choice| %>
+         <%= choice.label :content %><br>
+          <%= choice.text_field :content, id:"choice-entry" %>
+        <% end %>
       <%= f.submit "Add", class: 'form-control btn btn-info btn-fill' %>
     <% end %>
   </div>
 </div>
+
+<button id="addNewChoice">Button</button>

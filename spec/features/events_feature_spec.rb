@@ -14,7 +14,7 @@ feature 'Events Features' do
     it 'events can be created' do
       click_on 'Create Event'
       fill_in 'event_title', with: 'event 1'
-      click_on 'Add Event'
+      click_on 'Add event'
       expect(page).to have_content 'event 1'
       expect(page).to have_link("voting page", href: "/events/#{Event.last.id}/vote")
     end

@@ -2,6 +2,7 @@ class QuestionsController < ApplicationController
   def new
     @event = Event.find(params[:event_id])
     @question = Question.new
+    2.times { @question.choices.build }
   end
 
   def show
@@ -64,9 +65,17 @@ class QuestionsController < ApplicationController
     pusher.trigger('test_channel', 'event_' + event_id.to_s, json_object)
   end
 
+  def add_choice
+  @question = Question.find(params[:id])
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def question_params
-    params.require(:question).permit(:content)
+    params.require(:question).permit(:content, choices_attributes:[:content])
   end
 end

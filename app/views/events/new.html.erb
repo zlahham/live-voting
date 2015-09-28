@@ -12,9 +12,9 @@
 <div class="container">
   <div class="col-sm-6">
 
-  <%= form_for @event do |f| %>
-    <%= f.text_field :title, class: "form-control" %>
-    <%= f.submit "Add Event", class: "btn btn-fill btn-primary hundred-width" %>
+  <%= form_for @event do |event| %>
+    <%= event.text_field :title, class: "form-control" %>
+    <%= event.submit "Add Event", class: "btn btn-fill btn-primary hundred-width" %>
   <% end %>
 
   <div class="space-50"></div>
