@@ -11,7 +11,9 @@ describe 'Questions Features' do
     visit event_path(event)
     click_on 'Add Question'
     fill_in 'question_content', with: 'test question'
-    click_on 'Add'
+    fill_in "question[choices_attributes][0][content]", with: "choice 1"
+    fill_in "question[choices_attributes][1][content]", with: "choice 2"
+    click_on "Add"
     expect(page).to have_content 'Question successfully created'
     expect(page).to have_content 'test question'
   end
@@ -19,6 +21,8 @@ describe 'Questions Features' do
   it "can't be created with a blank content field" do
     visit event_path(event)
     click_on 'Add Question'
+    fill_in "question[choices_attributes][0][content]", with: "choice 1"
+    fill_in "question[choices_attributes][1][content]", with: "choice 2"
     click_on 'Add'
     expect(page).to have_content "1 error prohibited this question from being saved:"
   end

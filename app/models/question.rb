@@ -4,5 +4,5 @@ class Question < ActiveRecord::Base
 
   accepts_nested_attributes_for :choices
 
-  validates :content, presence: true
+  validates :event, :content, presence: true
 end
