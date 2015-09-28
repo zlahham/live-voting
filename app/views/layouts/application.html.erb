@@ -37,10 +37,7 @@
   </div><!-- /.container-fluid -->
 </nav>
 
- <div class="container">
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-</div>
+<%= render partial: "shared/flash_messages", flash: flash %>
 
 <%= yield %>
 
