@@ -68,5 +68,14 @@ feature 'Events Features' do
       expect(current_path).to eq vote_event_path(event)
       expect(page).to have_content "Awaiting Question"
     end
+
+    it 'user is shown message when event id is incorrectly entered' do
+      incorrect_event_id = event.id + 1
+      click_on 'Click Here'
+      fill_in :unparsed_event_id, with: incorrect_event_id
+      click_on 'Go'
+      expect(current_path).to eq root_path
+      expect(page).to have_content "Sorry, that id does not match any events. Please try again."
+    end
   end
 end

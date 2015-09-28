@@ -36,8 +36,13 @@ class EventsController < ApplicationController
   end
 
   def parse_event_id
-    event = Event.find(params[:unparsed_event_id])
-    redirect_to vote_event_path(event)
+    if Event.exists?(params[:unparsed_event_id])
+      event = Event.find(params[:unparsed_event_id])
+      redirect_to vote_event_path(event)
+    else
+      redirect_to root_path
+      flash[:alert] = "Sorry, that id does not match any events. Please try again."
+    end
   end
 
   private
