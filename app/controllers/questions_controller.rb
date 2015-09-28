@@ -14,6 +14,14 @@ class QuestionsController < ApplicationController
     choices.each do |content|
       @labelscommas += content + ","
     end
+    vote_numbers = []
+    @datacommas = ""
+    @question.choices.each do |choice|
+      vote_numbers << choice.votes.count.to_s
+    end
+    vote_numbers.each do |content|
+      @datacommas += content + ","
+    end
   end
 
   def create

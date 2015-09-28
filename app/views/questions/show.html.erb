@@ -16,6 +16,8 @@
 		  <% end %>
 
       <span id="labels"><%= @labelscommas.to_s %></span>
+      <span id="data"><%= @datacommas.to_s %></span>
+
 <!-- CHARTS -->
 
       <div style="width: 50%">
@@ -36,6 +38,9 @@
 <script>
 
 var choiceLabels = $('#labels').text().split(',').slice(0, -1)
+var voteCounts = $('#data').text().split(',').slice(0, -1)
+
+
 
 var barChartData = {
   labels : choiceLabels,
@@ -45,7 +50,7 @@ var barChartData = {
       strokeColor : "rgba(220,220,220,0.8)",
       highlightFill: "rgba(220,220,220,0.75)",
       highlightStroke: "rgba(220,220,220,1)",
-      data : [5,2]
+      data : voteCounts
     }
   ]
 
