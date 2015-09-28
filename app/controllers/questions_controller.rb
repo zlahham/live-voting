@@ -6,6 +6,14 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
+    choices = []
+    @labelscommas = ""
+    @question.choices.each do |choice|
+      choices << choice.content
+    end
+    choices.each do |content|
+      @labelscommas += content + ","
+    end
   end
 
   def create

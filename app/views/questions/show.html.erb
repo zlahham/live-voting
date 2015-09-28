@@ -3,10 +3,8 @@
     <div id="pusher-key" style="display:none;"><%= Pusher.key %></div>
 		<h4><%= @question.content %></h4>
 		<% if @question.choices.any? %>
-      <% @labels = [] %>
 		  <% @question.choices.each do |choice| %>
 		  	<%= div_for choice do %>
-          <% @labels << choice.content %>
 		    	<span id="label1"><%= choice.content %></span>
 		    	<%= link_to 'Delete Choice', choice, method: :delete %>
 		    	<p class='vote-count'>
@@ -17,7 +15,7 @@
 		  	<% end %>
 		  <% end %>
 
-      <span id="labels"><%= @labels %></span>
+      <span id="labels"><%= @labelscommas.to_s %></span>
 <!-- CHARTS -->
 
       <div style="width: 50%">
@@ -37,10 +35,10 @@
 
 <script>
 
-  var choiceLabels = "<%=@question.choice.content%>"
+var choiceLabels = $('#labels').text().split(',').slice(0, -1)
 
 var barChartData = {
-  labels : choiceLabels.toString,
+  labels : choiceLabels,
   datasets : [
     {
       fillColor : "rgba(220,220,220,0.5)",
