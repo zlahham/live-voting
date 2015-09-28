@@ -10,18 +10,12 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
  */
 
-@import "bootstrap-sass-official/assets/stylesheets/bootstrap-sprockets";
-@import "bootstrap-sass-official/assets/stylesheets/bootstrap";
+@import "bootstrap-variables";
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
-
-ul {
-  list-style-type: none;
-}
-
-.question {
-  display: none
-}
+// if you make a new stylesheet, must import it HERE:
+@import "custom.scss";
+@import "vote.scss";
