@@ -7,7 +7,7 @@
 					<%= link_to event_path(event) do %>
 						<li> <%= event.title %> </li>
 					<% end  %>
-					<%= link_to 'Delete', event, method: :delete %>
+					<%= link_to 'Delete', event, method: :delete, data: {confirm: "Are you sure?"} %>
 				</ul>
 		  <% end %>
 		<% else %>
