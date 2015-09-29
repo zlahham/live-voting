@@ -7,11 +7,14 @@
 		  	<%= div_for choice do %>
 		    	<span id="label1"><%= choice.content %></span>
 		    	<%= link_to 'Delete Choice', choice, method: :delete %>
-		    	<p class='vote-count'>
+		    	<span class='vote-count'>
 		    		<% if choice.votes.any? %>
 			    		Votes: <%= choice.votes.count %>
+              <% choice.votes.each do |x| %>
+                <button></button>
+              <% end %>
 			    	<% end %>
-		    	</p>
+		    	</span>
 		  	<% end %>
 		  <% end %>
 
