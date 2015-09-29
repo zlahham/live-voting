@@ -20,6 +20,8 @@ $(document).ready(function() {
   channel = pusher.subscribe('vote_count_channel');
   return channel.bind('new_message', function(data) {
     choiceVotebuilder(data);
+    var note = (data.vote_count * 2) -12
+    playSine(note);
   });
 });
 
