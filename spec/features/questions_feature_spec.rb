@@ -115,10 +115,6 @@ describe 'Questions Features' do
         visit question_path @question
       end
 
-      it "'Clear Votes' link is not displayed on the question show page" do
-        expect(page).not_to have_content "Clear Votes"
-      end
-
       it "questions starts with zero votes" do
         expect(page).to have_content "Votes: 0"
       end
