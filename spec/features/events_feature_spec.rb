@@ -27,6 +27,15 @@ feature 'Events Features' do
       expect(page).to have_content 'Event successfully deleted'
     end
 
+    it 'can be edited' do
+      click_on 'Create Event'
+      fill_in 'event_title', with: 'event 1'
+      visit events_path
+      click_on 'Edit'
+      expect(current_path).to eq edit_event_path(event)
+      expect(page).to have_content 'Update Event'
+    end
+
     it "events cannot be created with a blank title field" do
       click_on 'Create Event'
       click_on 'Add Event'
@@ -77,7 +86,6 @@ feature 'Events Features' do
       click_on 'Click Here'
       event_code = event.code
       new_code = "ABCD" + "#{event.id}"
-      p new_code
       event.update_attributes(code: new_code)
       fill_in :unparsed_event_id, with: event.code
       click_on 'Go'

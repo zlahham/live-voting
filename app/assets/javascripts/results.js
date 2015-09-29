@@ -10,8 +10,8 @@ $(document).ready(function() {
 
   function pusherKey(){
     var event_number = $('#pusher-key').text();
-    return event_number
-  };
+    return event_number;
+  }
 
   pusher = new Pusher(pusherKey(), {
     encrypted: true
@@ -23,8 +23,9 @@ $(document).ready(function() {
     console.log('message received');
     var choice = data.choice_id;
     var choice = "#choice_" + choice.toString();
-    console.log(choice)
+    console.log(choice);
 
     $(choice + ' .vote-count').text("Votes: " + data.vote_count);
+    $(choice + ' .progress-bar').attr('style', "width: " + data.vote_count + "%");
   });
 });
