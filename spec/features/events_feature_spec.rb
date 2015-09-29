@@ -11,12 +11,13 @@ feature 'Events Features' do
       expect(page).to have_content "Sign out"
     end
 
-    it 'events can be created via ajax form on events page', js: true do
+    it 'events can be created' do
       visit events_path
       fill_in 'event_title', with: 'My Event'
       click_on 'Add Event'
-      expect(current_path).to eq events_path
-      expect(page).to have_content 'Event 1'
+      expect(current_path).to eq event_path(Event.last)
+      expect(page).to have_content 'My Event'
+      expect(page).to have_content 'Event created. Add some questions!'
     end
 
     it 'can be deleted' do

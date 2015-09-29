@@ -3,7 +3,7 @@
 		<h2 id='no-events-notice'>You don't have any events yet - why not add one below?</h2>
 	<% end %>
 
-	<%= form_for @event, html: { class: 'form-inline new_event' }, remote: true do |f| %>
+	<%= form_for @event, html: { class: 'form-inline new_event' } do |f| %>
   	<div class='form-group'>
     	<%= f.text_field :title, class: "form-control" %>
     	<%= f.submit "Add Event", class: "btn btn-primary" %>

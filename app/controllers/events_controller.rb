@@ -17,10 +17,8 @@ class EventsController < ApplicationController
     @event = current_user.events.new(event_params)
     if @event.save
       @event.update_attributes(code: generate_code(@event.id))
-      respond_to do |format|
-        format.js
-      end
-      # redirect_to event_path(@event)
+      redirect_to event_path(@event)
+      flash[:notice] = "Event created. Add some questions!"
     else
       render 'events/new'
     end

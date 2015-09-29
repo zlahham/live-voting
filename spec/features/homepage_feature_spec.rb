@@ -20,14 +20,6 @@ feature 'Home page' do
         expect(page).to have_content "You don't have any events yet - why not add one below?"
         expect(page).not_to have_content "We have great live polling tools"
       end
-      
-      it "the 'no events' notification disappears when you make an event", js: true do
-        visit events_path
-        fill_in 'event_title', with: "My Event"
-        click_on 'Add Event'
-        expect(current_path).to eq events_path
-        expect(page).not_to have_content "You don't have any events yet - why not add one below?"
-      end
     end
 
     context 'you have one or more events', js: true do
