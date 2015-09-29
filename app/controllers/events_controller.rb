@@ -15,6 +15,7 @@ class EventsController < ApplicationController
   def create
     @event = current_user.events.new(event_params)
     if @event.save
+      @event.update_attributes(code: generate_code(@event.id))
       redirect_to event_path(@event)
     else
       render 'events/new'
@@ -45,10 +46,20 @@ class EventsController < ApplicationController
     end
   end
 
+  def generate_code(event_id)
+    characters = %w(A B C D E F G H J K L M O P Q R T W X Y Z 1 2 3 4 5 6 7 8 9)
+    code = ''
+    4.times do
+      code << characters.sample
+    end
+    code << event_id.to_s
+    code
+  end
+
+
   private
 
   def event_params
     params.require(:event).permit(:title)
   end
-
 end

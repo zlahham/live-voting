@@ -18,6 +18,12 @@ RSpec.describe Event, type: :model do
     expect( user.events.include? event ).to eq false
   end
 
+  it 'has a code when created' do
+    # event = create :event, user: user
+    event = Event.create(title: "My Event", user: user)
+    expect(event.code).to be_truthy
+  end
+
   describe 'create event' do
     it 'can be created' do
       user = create :user

@@ -46,9 +46,20 @@ feature 'Events Features' do
 
     context 'when on event show page and the event has at least one question' do
       it 'user is shown an id for their event to give to their audience' do
-        create :question, event: event
-        visit event_path(event)
-        expect(page).to have_content "Event ID: #{event.id}"
+        click_on 'Create Event'
+        fill_in 'event_title', with: 'My Test Event'
+        click_on 'Add Event'
+        event2 = Event.last
+        visit event_path(event2)
+        click_on 'Add Question'
+        fill_in 'question_content', with: 'test question'      
+        fill_in "question[choices_attributes][0][content]", with: "Yes"
+        fill_in "question[choices_attributes][1][content]", with: "No"
+        click_on "Add"
+        visit event_path(event2)
+        save_and_open_page
+        expect(event2.code).to be_a String
+        expect(page).to have_content "Event ID: #{event2.code}"
       end
     end
   end
