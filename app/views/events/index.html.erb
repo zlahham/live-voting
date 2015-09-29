@@ -1,21 +1,20 @@
 <% if user_signed_in? %>
-	<% if @events.count > 0 %>
-
-		<h2>Your events:</h2>
+	<%= form_for @event, html: { class: 'form-inline new_event' }, remote: true do |f| %>
+  	<div class='form-group'>
+    	<%= f.text_field :title, class: "form-control" %>
+    	<%= f.submit "Add Event", class: "btn btn-primary" %>
+  	</div>
+	<% end %>
 		
+	<ul id='events_list'>
 		<% @events.each do |event| %>
-			<ul>
 				<%= link_to event_path(event) do %>
 					<li> <%= event.title %> </li>
 				<% end  %>
 				<%= link_to 'Delete', event, method: :delete, data: {confirm: "Are you sure?"} %>
 				<%= link_to 'Edit Event', edit_event_path(event) %>
-			</ul>
 	  <% end %>
-
-	<% else %>
-		<%= link_to "Click here to create your first event", new_event_path, class: "btn btn-primary btn-lg" %>
-	<% end %>
+	</ul>
 
 <% else %>
 

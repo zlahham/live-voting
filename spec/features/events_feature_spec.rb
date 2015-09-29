@@ -19,6 +19,14 @@ feature 'Events Features' do
       expect(page).to have_css(".twitter-share-button")
     end
 
+    it 'events can be created via ajax form on events page', js: true do
+      visit events_path
+      fill_in 'event_title', with: 'My Event'
+      click_on 'Add Event'
+      expect(current_path).to eq events_path
+      expect(page).to have_content 'Event 1'
+    end
+
     it 'can be deleted' do
       visit events_path
       click_on 'Delete'

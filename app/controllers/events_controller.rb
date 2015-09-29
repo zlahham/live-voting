@@ -3,6 +3,7 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, :except => [:index, :show, :vote, :parse_event_id]
 
   def index
+    @event = Event.new
     if @user ||= current_user
       @events = @user.events
     end
@@ -16,7 +17,10 @@ class EventsController < ApplicationController
     @event = current_user.events.new(event_params)
     if @event.save
       @event.update_attributes(code: generate_code(@event.id))
-      redirect_to event_path(@event)
+      respond_to do |format|
+        format.js
+      end
+      # redirect_to event_path(@event)
     else
       render 'events/new'
     end
