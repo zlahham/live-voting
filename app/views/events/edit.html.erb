@@ -1,0 +1,18 @@
+<% if @event.errors.any? %>
+  <section id="errors">
+    <h2><%= pluralize(@event.errors.count, "error")%> prohibited this event from being saved: </h2>
+    <ul>
+      <% @event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </section>
+<% end %>
+
+<h1> Update Event </h1>
+<%= form_for @event, html: { class: 'form-inline new_event' } do |f| %>
+  <div class='form-group'>
+    <%= f.text_field :title, class: "form-control" %>
+    <%= f.submit "Update Event", class: "btn btn-fill btn-primary hundred-width" %>
+  </div>
+<% end %>
