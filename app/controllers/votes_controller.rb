@@ -4,7 +4,6 @@ class VotesController < ApplicationController
   def create
     choice = Choice.find(params[:choice])
     vote = choice.votes.new
-    
     if vote.save
       json_object = build_json(vote)
       push_json(choice, json_object)
@@ -22,3 +21,6 @@ class VotesController < ApplicationController
     pusher.trigger('vote_count_channel', 'new_message', json_object )
   end
 end
+
+
+# Vote.where(choice_id: choice).count
