@@ -27,11 +27,23 @@ $(document).ready(function() {
     var choice = data.choice_id;
     var choice = "#choice_" + choice.toString();
     console.log(choice);
+    var choices = $('[id^="choice_"]');
+    var currentTotalVotes = 0
+    for (var i = 0; i < choices.length; i++) {
+      currentTotalVotes += parseInt(choices[i].getAttribute("data-votecount"));
+    };
+    currentTotalVotes++
+    console.log(currentTotalVotes);
     $(choice + ' .vote-count').text("Votes: " + data.vote_count);
-    $(choice + ' .progress-bar').attr('style', "width: " + (data.vote_count * 3) + "%");
+    $(choice + ' .progress-bar').attr('style', "width: " + (data.vote_count / currentTotalVotes * 100) + "%");
   };
 
 
-// $('[id^="choice_"]').attr("data-votecount");
+//choices[1].getAttribute("id")
+//choices[1].getAttribute("data-votecount")
+
+// $('[id^="choice_"]');
 
 // choices = $('[id^="choice_"]');
+
+//choices[0].getAttribute("data-votecount")
