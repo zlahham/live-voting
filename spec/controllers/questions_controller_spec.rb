@@ -24,7 +24,8 @@ RSpec.describe QuestionsController do
       question.update_attributes(choices: [choice, choice2])
       expect(JSON.parse(subject.build_json event, question)).to eq( {"event"=>{"id"=>event.id,
               "title"=>event.title,
-              "code"=>"ABCD1"},
+              "code"=>"ABCD1",
+              "description"=>"The first event of hopefully many, in which we show off our technology"},
               "question"=>{"id"=>question.id,
               "content"=>question.content,
               "question_number"=>1},

@@ -14,8 +14,11 @@ feature 'Events Features' do
     it 'events can be created' do
       click_on 'Create Event'
       fill_in 'event_title', with: 'event 1'
+      fill_in 'event_description', with: 'The first event of hopefully many, in which we show off our technology'
       click_on 'Add Event'
       expect(page).to have_content 'event 1'
+      expect(page).to have_content 'The first event of hopefully many, in which we show off our technology'
+      expect(page).to have_content("Share voting page on Twitter")
       expect(page).to have_css(".twitter-share-button")
     end
 
