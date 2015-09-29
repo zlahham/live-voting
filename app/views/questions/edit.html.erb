@@ -1,3 +1,24 @@
+<script>
+
+$(document).ready(function(){
+  $("#addNewChoice").click(function() {
+    $("#choices-div").append(createNewInputElement($("#choices-div")));
+  });
+});
+
+function createNewInputElement(form) {
+  var newIndex = $("#choices-div").children('input#choice-entry').length;
+  var newInput = $("#choice-entry").clone().attr('name', generateNewInputName(newIndex));
+  newInput.val('');
+  return newInput;
+};
+
+function generateNewInputName(idx) {
+  return "question[choices_attributes][" + idx + "][content]"
+};
+
+</script>
+
 <% if @question.errors.any? %>
   <section id="errors">
     <h2><%= pluralize(@question.errors.count, "error")%> prohibited this question from being saved: </h2>
@@ -9,16 +30,29 @@
   </section>
 <% end %>
 
-<h1>Update Question</h1>
-<button class="btn btn-info" id="addNewChoice">Add Choice</button>
-<button class="btn btn-info" id="deleteNewChoice">Delete Choice</button>
 
-<%= form_for [@event, @question] do |f| %>
-  <%= f.text_field :content, placeholder: "Add your question", class: 'form-control' %>
-  <div id="choices-div">
-      <%= f.fields_for :choices do |choice| %>
-        <%= choice.text_field :content, id:"choice-entry", class: 'form-control', placeholder: 'Choice' %>
-      <% end %>
-  </div>
-  <%= f.submit "Update", class: 'form-control btn btn-info btn-fill' %>
+  <h1>Update Question</h1>
+  <button class="btn btn-info" id="addNewChoice">Add Choice</button>
+  <button class="btn btn-info" id="deleteNewChoice">Delete Choice</button>
+
+  <%= form_for [@event, @question] do |f| %>
+    <%= f.text_field :content, placeholder: "Add your question", class: 'form-control' %>
+    
+      <div class="col-md-4" id="choices-div">
+        <%= f.fields_for :choices do |choice| %>
+          <div>
+            <%= choice.text_field :content, id:"choice-entry", class: 'form-control', placeholder: 'Choice' %>
+            <%= choice.hidden_field :id, class:"choice-id", class: 'form-control', placeholder: 'Choice', hidden: true %>
+          </div>
+        <% end %>
+        
+        <div class="col-md-4">
+          <% @question.choices.each do |choice| %>
+            <%= choice.id %>
+            <%= link_to 'Delete Choice', choice, method: :delete, data: {confirm: "Are you sure?"} %>
+          <% end %>
+        </div>
+      </div>
+    <%= f.submit "Update", class: 'form-control btn btn-info btn-fill' %>
 <% end %>
+

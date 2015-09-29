@@ -23,14 +23,16 @@ class QuestionsController < ApplicationController
 
   def edit
     @question = Question.find(params[:id])
-
+    @choices = @question.choices
   end
 
   def update
     @question = Question.find(params[:id])
+
     if @question.update_attributes(question_params)
-      flash[:notice] = "Question successfully updated"
-      render 'show'
+      # flash[:notice] = "Question successfully updated"
+      # render 'show'
+      redirect_to question_path(@question), :notice =>"Question successfully updated"
     else
       render 'edit'
     end
@@ -82,7 +84,6 @@ class QuestionsController < ApplicationController
 
   def add_choice
   @question = Question.find(params[:id])
-
     respond_to do |format|
       format.js
     end
@@ -96,6 +97,6 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:content, choices_attributes:[:id, :content])
+    params.require(:question).permit(:content, choices_attributes:[:id, :content, :_destroy])
   end
 end

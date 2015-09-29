@@ -14,6 +14,8 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require_tree .
+// = stub addDeleteChoicesNew.js
+// = stub addDeleteChoicesEdit.js
 
 window.setTimeout(function() {
     $(".alert").fadeTo(500, 0).slideUp(500, function(){

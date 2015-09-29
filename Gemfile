@@ -14,6 +14,7 @@ gem 'sdoc', '~> 0.4.0', :group => :doc
 gem "foreman"
 gem "devise"
 gem "pusher"
+gem "cocoon"
 
 group :development, :test do
   gem 'byebug'
