@@ -31,6 +31,24 @@ class EventsController < ApplicationController
     flash[:notice] = "Event successfully deleted"
   end
 
+  def edit
+    @event = Event.find(params[:id])
+  end
+
+  def update
+    if @user ||= current_user
+      @events = @user.events
+    end
+
+    @event = Event.find(params[:id])
+    if @event.update_attributes(event_params)
+      flash[:notice] = "Event successfully updated"
+      render 'index'
+    else
+      render 'edit'
+    end
+  end
+
   def vote
     @event = Event.find(params[:id])
   end
