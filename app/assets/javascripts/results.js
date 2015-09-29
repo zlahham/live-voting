@@ -24,19 +24,29 @@ $(document).ready(function() {
 });
 
   function choiceVotebuilder(data){
-    var choice = data.choice_id;
-    var choice = "#choice_" + choice.toString();
+    var choice = "#choice_" + data.choice_id.toString();
     console.log(choice);
     var choices = $('[id^="choice_"]');
-    var currentTotalVotes = 0
+    var currentTotalVotes = 0;
     for (var i = 0; i < choices.length; i++) {
       currentTotalVotes += parseInt(choices[i].getAttribute("data-votecount"));
-    };
-    currentTotalVotes++
+    }
+    currentTotalVotes++;
     console.log(currentTotalVotes);
     $(choice + ' .vote-count').text("Votes: " + data.vote_count);
+
+    for (var i = 0; i < choices.length; i++) {
+      var choiceCount =  parseInt(choices[i].getAttribute("data-votecount"));
+      // "1"
+      var choiceToChange = choices[i].getAttribute("id");
+      // "choice_2"
+      $("#" + choiceToChange + ' .progress-bar').attr('style', "width: " + ( choiceCount / currentTotalVotes * 100) + "%");
+
+    }
+
     $(choice + ' .progress-bar').attr('style', "width: " + (data.vote_count / currentTotalVotes * 100) + "%");
-  };
+
+  }
 
 
 //choices[1].getAttribute("id")
