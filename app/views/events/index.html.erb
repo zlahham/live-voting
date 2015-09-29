@@ -37,10 +37,11 @@
 		<% @events.each do |event| %>
 			<li class='list-group-item'>
 				<%= link_to event_path(event) do %>
-					 <%= event.title %>
+					 <%= event.title %><br>
+					 <%= event.description %>
 				<% end  %>
-				<%= link_to 'Delete', event, method: :delete, data: {confirm: "Are you sure?"} %>
-				<%= link_to 'Edit Event', edit_event_path(event) %>
+				<%= link_to 'Delete', event, method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-default btn-sm' %>
+				<%= link_to 'Edit Event', edit_event_path(event), class: 'btn btn-sm btn-default' %>
 			</li>
 	  <% end %>
 	</ul>

@@ -82,13 +82,12 @@ p, a, li, h3, h4, h5, h6, input, label {
   EVENTS PAGE
 **********************************************************/
 
-// ul, menu, dir {
-//   padding-left: 0;
-// }
+.new_event {
+  margin-bottom: 1em;
+}
 
 .events_list {
   padding-left: 0;
-  margin-top: 1em;
   background-color: white;
 }
 
