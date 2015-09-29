@@ -37,8 +37,10 @@ class EventsController < ApplicationController
   end
 
   def parse_event_id
-    if Event.exists?(params[:unparsed_event_id])
-      event = Event.find(params[:unparsed_event_id])
+    event_code = params[:unparsed_event_id]
+    4.times{event_code.slice!(0)}
+    if Event.exists?(event_code)
+      event = Event.find(event_code)
       redirect_to vote_event_path(event)
     else
       redirect_to root_path

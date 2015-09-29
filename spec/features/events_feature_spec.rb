@@ -45,21 +45,15 @@ feature 'Events Features' do
     end
 
     context 'when on event show page and the event has at least one question' do
+      before :each do
+        question = create :question, event: event
+        2.times{ create :choice, question: question }
+      end
+
       it 'user is shown an id for their event to give to their audience' do
-        click_on 'Create Event'
-        fill_in 'event_title', with: 'My Test Event'
-        click_on 'Add Event'
-        event2 = Event.last
-        visit event_path(event2)
-        click_on 'Add Question'
-        fill_in 'question_content', with: 'test question'      
-        fill_in "question[choices_attributes][0][content]", with: "Yes"
-        fill_in "question[choices_attributes][1][content]", with: "No"
-        click_on "Add"
-        visit event_path(event2)
-        save_and_open_page
-        expect(event2.code).to be_a String
-        expect(page).to have_content "Event ID: #{event2.code}"
+        visit event_path(event)
+        expect(event.code).to be_a String
+        expect(page).to have_content "Event ID: #{event.code}"
       end
     end
   end
@@ -81,7 +75,11 @@ feature 'Events Features' do
       end
 
       click_on 'Click Here'
-      fill_in :unparsed_event_id, with: event.id
+      event_code = event.code
+      new_code = "ABCD" + "#{event.id}"
+      p new_code
+      event.update_attributes(code: new_code)
+      fill_in :unparsed_event_id, with: event.code
       click_on 'Go'
 
       expect(current_path).to eq vote_event_path(event)
