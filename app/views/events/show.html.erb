@@ -1,5 +1,6 @@
 <div class='event-show-page-wrapper'>
 	<h1><%= @event.title %></h1>
+	<h4><%= @event.description %></h4>
 	<p>Share voting page on Twitter: <a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-url="<%=request.original_url + "/vote" %>" data-text="Vote on the @LitmusVoting event '<%= @event.title.titlecase %>':
 " data-count="none">Share voting page on Twitter</a></p>
 	<% if @event.questions.any? %>
