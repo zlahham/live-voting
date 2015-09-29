@@ -16,7 +16,9 @@ feature 'Events Features' do
       fill_in 'event_title', with: 'event 1'
       click_on 'Add Event'
       expect(page).to have_content 'event 1'
-      expect(page).to have_link("voting page", href: "/events/#{Event.last.id}/vote")
+      expect(page).to have_link("Take me to the voting page", href: "/events/#{Event.last.id}/vote")
+      expect(page).to have_link("Share voting page on Twitter")
+
     end
 
     it 'can be deleted' do
