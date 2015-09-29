@@ -11,14 +11,6 @@ feature 'Events Features' do
       expect(page).to have_content "Sign out"
     end
 
-    it 'events can be created' do
-      click_on 'Create Event'
-      fill_in 'event_title', with: 'event 1'
-      click_on 'Add Event'
-      expect(page).to have_content 'event 1'
-      expect(page).to have_css(".twitter-share-button")
-    end
-
     it 'events can be created via ajax form on events page', js: true do
       visit events_path
       fill_in 'event_title', with: 'My Event'
@@ -62,10 +54,15 @@ feature 'Events Features' do
     end
 
     context 'Event Show Page' do
+      before(:each){ visit event_path(event) }
+
       it 'user is shown an id for their event to give to their audience' do
-        visit event_path(event)
         expect(event.code).to be_a String
         expect(page).to have_content "Event ID: #{event.code}"
+      end
+
+      it 'has a twitter share button' do
+        expect(page).to have_css('.twitter-share-button')        
       end
     end
   end
