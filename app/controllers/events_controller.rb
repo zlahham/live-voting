@@ -11,6 +11,7 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    render 'index'
   end
 
   def create
@@ -20,7 +21,7 @@ class EventsController < ApplicationController
       redirect_to event_path(@event)
       flash[:notice] = "Event created. Add some questions!"
     else
-      render 'events/new'
+      redirect_to events_path
     end
   end
 

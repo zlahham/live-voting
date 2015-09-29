@@ -37,12 +37,6 @@ feature 'Events Features' do
       expect(page).to have_content 'Update Event'
     end
 
-    it "events cannot be created with a blank title field" do
-      click_on 'Create Event'
-      click_on 'Add Event'
-      expect(page).to have_content "1 error prohibited this event from being saved:"
-    end
-
     context "when on events index page with one created event" do
       it "user's event is displayed" do
         expect(page).to have_content event.title
