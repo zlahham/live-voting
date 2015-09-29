@@ -33,13 +33,15 @@
 	  </div>
 	<% end %>
 		
-	<ul id='events_list'>
+	<ul class='events_list list-group'>
 		<% @events.each do |event| %>
+			<li class='list-group-item'>
 				<%= link_to event_path(event) do %>
-					<li> <%= event.title %> </li>
+					 <%= event.title %>
 				<% end  %>
 				<%= link_to 'Delete', event, method: :delete, data: {confirm: "Are you sure?"} %>
 				<%= link_to 'Edit Event', edit_event_path(event) %>
+			</li>
 	  <% end %>
 	</ul>
 
