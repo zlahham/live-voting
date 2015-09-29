@@ -15,6 +15,6 @@ module QuestionHelper
     question.choices.each do |choice|
       vote_count += choice.votes.count
     end
-    vote_count || 0
+    vote_count 
   end
 end
