@@ -53,6 +53,23 @@ describe 'Questions Features' do
     expect(page).to have_content "1 error prohibited this question from being saved:"
   end
 
+  it 'allows extra choices to be deleted', js: :true do
+    visit event_path(event)
+    click_on 'Add Question'
+    fill_in 'question_content', with: 'test question'
+    fill_in "question[choices_attributes][0][content]", with: "choice 1"
+    fill_in "question[choices_attributes][1][content]", with: "choice 2"
+    click_on "Add Choice"
+    fill_in "question[choices_attributes][2][content]", with: "choice 3"
+    click_on "Delete Choice"
+    click_on "Add"
+    expect(page).to have_content 'Question successfully created'
+    expect(page).to have_content 'test question'
+    expect(page).to have_content 'choice 1'
+    expect(page).to have_content 'choice 2'
+    expect(page).not_to have_content 'choice 3'
+  end
+
   it 'can be deleted' do
     question = create :question, event: event
     visit event_path event
