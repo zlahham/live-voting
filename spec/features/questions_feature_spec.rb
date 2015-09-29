@@ -119,8 +119,8 @@ describe 'Questions Features' do
         expect(page).not_to have_content "Clear Votes"
       end
 
-      it "No reference to number of votes is displayed on the question's show page" do
-        expect(page).not_to have_content "Votes: 0"
+      it "questions starts with zero votes" do
+        expect(page).to have_content "Votes: 0"
       end
     end
 
