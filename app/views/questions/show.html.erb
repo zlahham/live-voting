@@ -4,11 +4,11 @@
 
 <% if @question.choices.any? %>
   <% @question.choices.each do |choice| %>
-  	<%= div_for choice, 'data-votecount' => choice.votes.count do %>
+  	<%= div_for choice, 'data-votecount' => choice.votes.count || 0 do %>
 
     	<%= choice.content %>
     	<%= link_to 'Delete Choice', choice, method: :delete, data: {confirm: "Are you sure?"} %>
-    	<p class='vote-count' data-votecount= "<%= choice.votes.count || 0 %>">
+    	<p class='vote-count' >
     		Votes: <%= choice.votes.count || 0 %>
     	</p>
       <div class="progress">
@@ -22,3 +22,4 @@
 
 <%= link_to 'Add Choice', new_question_choice_path(@question), class: 'btn btn-primary' %>
 <%= link_to "Back to #{@question.event.title}", event_path(@question.event.id), class: 'btn btn-primary' %>
+<%= link_to "Push Question to Audience", { controller: :questions, action: :publish_question, question: @question}, class: 'btn btn-primary' %>

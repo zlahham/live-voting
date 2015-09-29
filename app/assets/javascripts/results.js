@@ -30,14 +30,16 @@ $(document).ready(function() {
     var choices = $('[id^="choice_"]');
     var currentTotalVotes = 0;
     for (var i = 0; i < choices.length; i++) {
-      currentTotalVotes += parseInt(choices[i].getAttribute("data-votecount"));
+      currentTotalVotes = currentTotalVotes + parseInt(choices[i].getAttribute("data-votecount"));
     }
     currentTotalVotes++;
     $(choice + ' .vote-count').text("Votes: " + data.vote_count);
+    $(choice).attr('data-votecount', data.vote_count);
 
     for (var i = 0; i < choices.length; i++) {
       var choiceCount =  parseInt(choices[i].getAttribute("data-votecount"));
       var choiceToChange = choices[i].getAttribute("id");
+      $("#" + choiceToChange + ' .progress-bar').attr('style', "width: " + ( choiceCount / currentTotalVotes * 100) + "%");
       $("#" + choiceToChange + ' .progress-bar').attr('style', "width: " + ( choiceCount / currentTotalVotes * 100) + "%");
     }
     $(choice + ' .progress-bar').attr('style', "width: " + (data.vote_count / currentTotalVotes * 100) + "%");
