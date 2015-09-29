@@ -10,12 +10,12 @@
     	<p class='vote-count'>
     		Votes: <%= choice.votes.count || 0 %>
     	</p>
+      <div class="progress">
+        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <%= choice.votes.count || 0 %>%">
+          <span class="sr-only">40% Complete (success)</span>
+        </div>
+      </div>
   	<% end %>
-          <div class="progress">
-            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <%= choice.votes.count || 0 %>%">
-              <span class="sr-only">40% Complete (success)</span>
-            </div>
-          </div>
   <% end %>
 
   <% if any_votes? @question %>
