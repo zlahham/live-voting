@@ -20,6 +20,12 @@ Rails.application.routes.draw do
 
   get 'questions/:id/clear_votes' => 'questions#clear_votes', as: :clear_votes
 
+  # get 'events/:id/parse_event_id' => 'events#parse_event_id', as: :parse_event_id
+
+  get 'enter_poll', to: 'events#parse_event_id', as: :parse_id
+
+  # get 'exit', to: 'sessions#destroy', as: :logout
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
