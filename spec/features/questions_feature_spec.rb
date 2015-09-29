@@ -70,6 +70,14 @@ describe 'Questions Features' do
     expect(page).not_to have_content 'choice 3'
   end
 
+  it 'can be edited (the question name only)' do
+    question = create :question, event: event
+    visit event_path event
+    expect(page).to have_content "#{question.content}"
+    click_on 'Edit Question'
+    expect(page).to have_content "Update Question"
+  end
+
   it 'can be deleted' do
     question = create :question, event: event
     visit event_path event
