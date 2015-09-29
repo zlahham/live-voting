@@ -76,7 +76,12 @@ feature 'Events Features' do
       expect(page).to have_content "Sign in"
     end
 
-    it 'event participant can go to event using event id' do
+  end
+
+  context 'when wishing to vote' do
+    before(:each){ visit root_path }
+
+    it 'unsigned in event participant can go to event using event id' do
       within(:css, '#event_id_wrapper') do
         expect(page).to have_content "Click Here"
       end
@@ -87,7 +92,22 @@ feature 'Events Features' do
       event.update_attributes(code: new_code)
       fill_in :unparsed_event_id, with: event.code
       click_on 'Go'
+      expect(current_path).to eq vote_event_path(event)
+      expect(page).to have_content "Awaiting Question"
+    end
 
+    it 'signed in event participant can go to event using event id' do
+      sign_in_as event.user
+      within(:css, '#event_id_wrapper') do
+        expect(page).to have_content "Click Here"
+      end
+
+      click_on 'Click Here'
+      event_code = event.code
+      new_code = "ABCD" + "#{event.id}"
+      event.update_attributes(code: new_code)
+      fill_in :unparsed_event_id, with: event.code
+      click_on 'Go'
       expect(current_path).to eq vote_event_path(event)
       expect(page).to have_content "Awaiting Question"
     end
