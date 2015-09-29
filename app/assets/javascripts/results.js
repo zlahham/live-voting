@@ -30,3 +30,8 @@ $(document).ready(function() {
     $(choice + ' .vote-count').text("Votes: " + data.vote_count);
     $(choice + ' .progress-bar').attr('style', "width: " + (data.vote_count * 3) + "%");
   };
+
+
+// $('[id^="choice_"]').attr("data-votecount");
+
+// choices = $('[id^="choice_"]');
