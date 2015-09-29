@@ -19,13 +19,14 @@ $(document).ready(function() {
 
   channel = pusher.subscribe('vote_count_channel');
   return channel.bind('new_message', function(data) {
-    console.log(data);
-    console.log('message received');
+    choiceVotebuilder(data);
+  });
+});
+
+  function choiceVotebuilder(data){
     var choice = data.choice_id;
     var choice = "#choice_" + choice.toString();
     console.log(choice);
-
     $(choice + ' .vote-count').text("Votes: " + data.vote_count);
-    $(choice + ' .progress-bar').attr('style', "width: " + data.vote_count + "%");
-  });
-});
+    $(choice + ' .progress-bar').attr('style', "width: " + (data.vote_count * 3) + "%");
+  };
