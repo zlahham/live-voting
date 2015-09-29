@@ -133,7 +133,7 @@ describe 'Questions Features' do
         @choice1 = create :choice, question: @question
         @choice2 = create :choice, question: @question
         @choice1.votes.create
-        2.times{ @choice2.votes.create }
+        @choice2.votes.create
       end
 
       it '(with a page refresh) votes and chart are shown on the question show page' do
@@ -143,6 +143,10 @@ describe 'Questions Features' do
         expect(page).to have_content "Votes: #{@choice1.votes.count}"
         expect(page).to have_content "Votes: #{@choice2.votes.count}"
         expect(page).to have_css(".progress", count: 2)
+        expect(page).to have_css("#choice_#{@choice1.id}[data-votecount='1']")
+        expect(page).to have_css("#choice_#{@choice2.id}[data-votecount='1']")
+        expect(page).to have_css("#choice_#{@choice1.id} .progress .progress-bar")
+        expect(page).to have_css("#choice_#{@choice2.id} .progress .progress-bar")
       end
 
       it "a question's votes can be cleared with the press of a button on its show page" do
@@ -151,7 +155,17 @@ describe 'Questions Features' do
         expect(page).not_to have_content "Votes: 1"
         expect(page).to have_content "Votes successfully cleared"
       end
-    end
 
+      it 'builds vote graph from live voters votes', js: :true do
+        visit question_path @question
+        expect(page).to have_content "#{@choice1.content}"
+        expect(page).to have_css("#choice_#{@choice1.id}[data-votecount='1']")
+        @choice1.votes.create
+        page.execute_script("$(document).ready(function() { choiceVotebuilder(#{vote_creator(@choice1.id, "2")}) });")
+        expect(page).to have_css("#choice_#{@choice1.id}[data-votecount='2']")
+        page.execute_script("$(document).ready(function() { choiceVotebuilder(#{vote_creator(@choice1.id, "3")}) });")
+        expect(page).to have_css("#choice_#{@choice1.id}[data-votecount='3']")  
+      end
+    end
   end
 end
