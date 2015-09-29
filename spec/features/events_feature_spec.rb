@@ -12,14 +12,12 @@ feature 'Events Features' do
     end
 
     it 'events can be created' do
-      click_on 'Create Event'
-      fill_in 'event_title', with: 'event 1'
-      fill_in 'event_description', with: 'The first event of hopefully many, in which we show off our technology'
+      visit events_path
+      fill_in 'event_title', with: 'My Event'
       click_on 'Add Event'
-      expect(page).to have_content 'event 1'
-      expect(page).to have_content 'The first event of hopefully many, in which we show off our technology'
-      expect(page).to have_content("Share voting page on Twitter")
-      expect(page).to have_css(".twitter-share-button")
+      expect(current_path).to eq event_path(Event.last)
+      expect(page).to have_content 'My Event'
+      expect(page).to have_content 'Event created. Add some questions!'
     end
 
     it 'can be deleted' do
@@ -39,12 +37,6 @@ feature 'Events Features' do
       expect(page).to have_content 'Update Event'
     end
 
-    it "events cannot be created with a blank title field" do
-      click_on 'Create Event'
-      click_on 'Add Event'
-      expect(page).to have_content "1 error prohibited this event from being saved:"
-    end
-
     context "when on events index page with one created event" do
       it "user's event is displayed" do
         expect(page).to have_content event.title
@@ -57,10 +49,15 @@ feature 'Events Features' do
     end
 
     context 'Event Show Page' do
+      before(:each){ visit event_path(event) }
+
       it 'user is shown an id for their event to give to their audience' do
-        visit event_path(event)
         expect(event.code).to be_a String
         expect(page).to have_content "Event ID: #{event.code}"
+      end
+
+      it 'has a twitter share button' do
+        expect(page).to have_css('.twitter-share-button')        
       end
     end
   end
