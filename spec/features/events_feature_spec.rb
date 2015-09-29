@@ -43,6 +43,14 @@ feature 'Events Features' do
         expect(current_path).to eq event_path(event)
       end
     end
+
+    context 'when on event show page and the event has at least one question' do
+      it 'user is shown an id for their event to give to their audience' do
+        create :question, event: event
+        visit event_path(event)
+        expect(page).to have_content "Event ID: #{event.id}"
+      end
+    end
   end
 
   context 'when not signed in' do
