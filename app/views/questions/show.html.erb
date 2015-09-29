@@ -6,15 +6,17 @@
   <% @question.choices.each do |choice| %>
   	<%= div_for choice, 'data-votecount' => choice.votes.count do %>
 
-      <p> <%=total_votes(choice.question) %> </p>
-      <p> <%=choice.votes.count%> </p>
     	<%= choice.content %>
     	<%= link_to 'Delete Choice', choice, method: :delete, data: {confirm: "Are you sure?"} %>
     	<p class='vote-count' data-votecount= "<%= choice.votes.count || 0 %>">
     		Votes: <%= choice.votes.count || 0 %>
     	</p>
       <div class="progress">
-        <div class="progress-bar progress-bar-success" role="progressbar"  style="width: <%= (((choice.votes.count.to_f)) / ((total_votes(choice.question).to_f) )* 100 ).to_i || 0 %>%">
+        <div class="progress-bar progress-bar-success" role="progressbar"  style="width:
+          <% if choice.votes.any? %>
+           <%= (((choice.votes.count.to_f)) / ((total_votes(choice.question).to_f) )* 100 ).to_i || 0 %>
+          <% end %>
+           %">
         </div>
       </div>
   	<% end %>
