@@ -4,11 +4,11 @@
 
 <% if @question.choices.any? %>
   <% @question.choices.each do |choice| %>
-  	<%= div_for choice, 'data-votecount' => choice.votes.count do %>
+  	<%= div_for choice, 'data-votecount' => choice.votes.count || 0 do %>
 
     	<%= choice.content %>
     	<%= link_to 'Delete Choice', choice, method: :delete, data: {confirm: "Are you sure?"} %>
-    	<p class='vote-count' data-votecount= "<%= choice.votes.count || 0 %>">
+    	<p class='vote-count' >
     		Votes: <%= choice.votes.count || 0 %>
     	</p>
       <div class="progress">
