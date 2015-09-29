@@ -23,7 +23,8 @@ RSpec.describe QuestionsController do
     it 'returns an acceptable json object for pusher' do
       question.update_attributes(choices: [choice, choice2])
       expect(JSON.parse(subject.build_json event, question)).to eq( {"event"=>{"id"=>event.id,
-              "title"=>event.title},
+              "title"=>event.title,
+              "code"=>"ABCD1"},
               "question"=>{"id"=>question.id,
               "content"=>question.content,
               "question_number"=>1},
