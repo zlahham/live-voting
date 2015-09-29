@@ -37,23 +37,8 @@ $(document).ready(function() {
 
     for (var i = 0; i < choices.length; i++) {
       var choiceCount =  parseInt(choices[i].getAttribute("data-votecount"));
-      // "1"
       var choiceToChange = choices[i].getAttribute("id");
-      // "choice_2"
       $("#" + choiceToChange + ' .progress-bar').attr('style', "width: " + ( choiceCount / currentTotalVotes * 100) + "%");
-
     }
-
     $(choice + ' .progress-bar').attr('style', "width: " + (data.vote_count / currentTotalVotes * 100) + "%");
-
   }
-
-
-//choices[1].getAttribute("id")
-//choices[1].getAttribute("data-votecount")
-
-// $('[id^="choice_"]');
-
-// choices = $('[id^="choice_"]');
-
-//choices[0].getAttribute("data-votecount")
