@@ -18,8 +18,7 @@ feature 'Events Features' do
       click_on 'Add Event'
       expect(page).to have_content 'event 1'
       expect(page).to have_content 'The first event of hopefully many, in which we show off our technology'
-      expect(page).to have_link("Take me to the voting page", href: "/events/#{Event.last.id}/vote")
-      expect(page).to have_link("Share voting page on Twitter")
+      expect(page).to have_content("Share voting page on Twitter")
       expect(page).to have_css(".twitter-share-button")
     end
 
