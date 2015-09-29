@@ -27,6 +27,15 @@ module DataHelpers
     }
     data.to_json
   end
+
+  def vote_creator(choice_id, count)
+    data = {
+      choice_id: choice_id,
+      vote_count: count
+    }
+    data.to_json
+  end
+
 end
 
 
