@@ -91,6 +91,7 @@ describe 'Questions Features' do
       visit question_path(@question)
       expect(page).to have_selector(:link_or_button, "Push Question to Audience")
       click_on "Push Question to Audience"
+      expect(current_path).to eq question_path(@question)
       expect(page).to have_content "Question has been pushed to the audience"
     end
 
