@@ -24,7 +24,7 @@ $(document).ready(function() {
     var choice = data.choice_id;
     var choice = "#choice_" + choice.toString();
     console.log(choice)
-
-    $(choice + ' .vote-count').text("Votes: " + data.vote_count);
+    $(choice + ' .vote-count').text(data.vote_count);
+    drawGraph(data[0].vote_count, data[1].vote_count);
   });
 });

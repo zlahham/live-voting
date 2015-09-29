@@ -43,24 +43,21 @@
 var choiceLabels = $('#labels').text().split(',').slice(0, -1)
 var voteCounts = $('#data').text().split(',').slice(0, -1)
 
-
-
-var barChartData = {
-  labels : choiceLabels,
-  datasets : [
-    {
-      fillColor : "rgba(220,220,220,0.5)",
-      strokeColor : "rgba(220,220,220,0.8)",
-      highlightFill: "rgba(220,220,220,0.75)",
-      highlightStroke: "rgba(220,220,220,1)",
-      data : voteCounts
-    }
-  ]
-
-}
-window.onload = function(){
+drawGraph = function(data1){
   var ctx = document.getElementById("canvas").getContext("2d");
-  window.myBar = new Chart(ctx).Bar(barChartData, {
+  window.myBar = new Chart(ctx).Bar({
+    labels : choiceLabels,
+    datasets : [
+      {
+        fillColor : "rgba(220,220,220,0.5)",
+        strokeColor : "rgba(220,220,220,0.8)",
+        highlightFill: "rgba(220,220,220,0.75)",
+        highlightStroke: "rgba(220,220,220,1)",
+        data : [data1, data2]
+      }
+    ]
+
+  }, {
     responsive : true
   });
 }
