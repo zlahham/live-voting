@@ -10,8 +10,8 @@ $(document).ready(function() {
 
   function pusherKey(){
     var event_number = $('#pusher-key').text();
-    return event_number
-  };
+    return event_number;
+  }
 
   pusher = new Pusher(pusherKey(), {
     encrypted: true

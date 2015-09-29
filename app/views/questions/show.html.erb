@@ -39,13 +39,18 @@
 
 
 <script>
+  function buildGraph(data) {
+    var choiceOne = data.choices[0].content
+    return choiceOne;
+  }
 
-var choiceLabels = $('#labels').text().split(',').slice(0, -1)
-var voteCounts = $('#data').text().split(',').slice(0, -1)
+  var choiceLabels = $('#labels').text().split(',').slice(0, -1)
+  var voteCounts = $('#data').text().split(',').slice(0, -1)
 
 drawGraph = function(data1){
   var ctx = document.getElementById("canvas").getContext("2d");
   window.myBar = new Chart(ctx).Bar({
+
     labels : choiceLabels,
     datasets : [
       {
@@ -61,5 +66,6 @@ drawGraph = function(data1){
     responsive : true
   });
 }
+
 
 </script>
