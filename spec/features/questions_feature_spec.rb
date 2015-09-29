@@ -88,10 +88,10 @@ describe 'Questions Features' do
     end
 
     it 'it can be pushed to the audience from the question show view' do
+      expect_any_instance_of(Pusher::Client).to receive(:trigger)
       visit question_path(@question)
       expect(page).to have_selector(:link_or_button, "Push Question to Audience")
       click_on "Push Question to Audience"
-      expect(current_path).to eq question_path(@question)
       expect(page).to have_content "Question has been pushed to the audience"
     end
 
