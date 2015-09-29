@@ -52,17 +52,55 @@ feature 'Events Features' do
         expect(current_path).to eq event_path(event)
       end
     end
+
+    context 'when on event show page and the event has at least one question' do
+      before :each do
+        question = create :question, event: event
+        2.times{ create :choice, question: question }
+      end
+
+      it 'user is shown an id for their event to give to their audience' do
+        visit event_path(event)
+        expect(event.code).to be_a String
+        expect(page).to have_content "Event ID: #{event.code}"
+      end
+    end
   end
 
   context 'when not signed in' do
+    before(:each){ visit root_path }
+
     it "'Create Event' link is not visible on home page" do
-      visit root_path
       expect(page).not_to have_content 'Create Event'
     end
 
     it "'Sign in' link is visible on home page" do
-      visit root_path
       expect(page).to have_content "Sign in"
+    end
+
+    it 'event participant can go to event using event id' do
+      within(:css, '#event_id_wrapper') do
+        expect(page).to have_content "Click Here"
+      end
+
+      click_on 'Click Here'
+      event_code = event.code
+      new_code = "ABCD" + "#{event.id}"
+      event.update_attributes(code: new_code)
+      fill_in :unparsed_event_id, with: event.code
+      click_on 'Go'
+
+      expect(current_path).to eq vote_event_path(event)
+      expect(page).to have_content "Awaiting Question"
+    end
+
+    it 'user is shown message when event id is incorrectly entered' do
+      incorrect_event_id = event.id + 1
+      click_on 'Click Here'
+      fill_in :unparsed_event_id, with: incorrect_event_id
+      click_on 'Go'
+      expect(current_path).to eq root_path
+      expect(page).to have_content "Sorry, that id does not match any events. Please try again."
     end
   end
 end
