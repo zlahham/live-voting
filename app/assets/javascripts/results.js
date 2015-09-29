@@ -25,14 +25,12 @@ $(document).ready(function() {
 
   function choiceVotebuilder(data){
     var choice = "#choice_" + data.choice_id.toString();
-    console.log(choice);
     var choices = $('[id^="choice_"]');
     var currentTotalVotes = 0;
     for (var i = 0; i < choices.length; i++) {
       currentTotalVotes += parseInt(choices[i].getAttribute("data-votecount"));
     }
     currentTotalVotes++;
-    console.log(currentTotalVotes);
     $(choice + ' .vote-count').text("Votes: " + data.vote_count);
 
     for (var i = 0; i < choices.length; i++) {
