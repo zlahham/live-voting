@@ -10,8 +10,8 @@ $(document).ready(function() {
 
   function pusherKey(){
     var event_number = $('#pusher-key').text();
-    return event_number
-  };
+    return event_number;
+  }
 
   pusher = new Pusher(pusherKey(), {
     encrypted: true
@@ -20,12 +20,16 @@ $(document).ready(function() {
   return channel.bind(myEvent(), function(data) {
     console.log('message received');
     buildQuestion(data);
+
+    var choiceFromButton = data.
+
+    buildChart(choiceFromButton);
   });
 
   function myEvent(){
     var event_number = $('#event-id').text();
-    return "event_" + event_number
-  };
+    return "event_" + event_number;
+  }
 
   $('#choice-submit').click(function() {
     event.preventDefault();

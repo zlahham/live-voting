@@ -36,30 +36,34 @@
 
 
 <script>
+  function buildGraph(data) {
+    var choiceOne = data.choices[0].content
+    return choiceOne;
+  }
 
-var choiceLabels = $('#labels').text().split(',').slice(0, -1)
-var voteCounts = $('#data').text().split(',').slice(0, -1)
+  var choiceLabels = $('#labels').text().split(',').slice(0, -1)
+  var voteCounts = $('#data').text().split(',').slice(0, -1)
 
 
 
-var barChartData = {
-  labels : choiceLabels,
-  datasets : [
-    {
-      fillColor : "rgba(220,220,220,0.5)",
-      strokeColor : "rgba(220,220,220,0.8)",
-      highlightFill: "rgba(220,220,220,0.75)",
-      highlightStroke: "rgba(220,220,220,1)",
-      data : voteCounts
-    }
-  ]
+  var barChartData = {
+    labels : choiceLabels,
+    datasets : [
+      {
+        fillColor : "rgba(220,220,220,0.5)",
+        strokeColor : "rgba(220,220,220,0.8)",
+        highlightFill: "rgba(220,220,220,0.75)",
+        highlightStroke: "rgba(220,220,220,1)",
+        data : voteCounts
+      }
+    ]
 
-}
-window.onload = function(){
-  var ctx = document.getElementById("canvas").getContext("2d");
-  window.myBar = new Chart(ctx).Bar(barChartData, {
-    responsive : true
-  });
-}
+  }
+  window.onload = function(){
+    var ctx = document.getElementById("canvas").getContext("2d");
+    window.myBar = new Chart(ctx).Bar(barChartData, {
+      responsive : true
+    });
+  }
 
 </script>
