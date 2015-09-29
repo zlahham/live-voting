@@ -14,8 +14,10 @@ feature 'Voting Features' do
       @choice3 = create :choice_3, question: @question
     end
 
-    it "can navigate to voting page and it says 'Awaiting Question'" do
+    it "can navigate to voting page and it says 'Awaiting Question' and gives the event description" do
       visit vote_event_path(@event)
+      expect(page).to have_content 'Event 1'
+      expect(page).to have_content 'The first event of hopefully many, in which we show off our technology'
       expect(page).to have_content 'Awaiting Question'
     end
 

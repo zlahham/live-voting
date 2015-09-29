@@ -132,12 +132,13 @@ describe 'Questions Features' do
         2.times{ @choice2.votes.create }
       end
 
-      it '(with a page refresh) votes are shown on the question show page' do
+      it '(with a page refresh) votes and chart are shown on the question show page' do
         visit question_path @question
         expect(page).to have_content "#{@choice1.content}"
         expect(page).to have_content "#{@choice2.content}"
         expect(page).to have_content "Votes: #{@choice1.votes.count}"
         expect(page).to have_content "Votes: #{@choice2.votes.count}"
+        expect(page).to have_css(".progress", count: 2)
       end
 
       it "a question's votes can be cleared with the press of a button on its show page" do
