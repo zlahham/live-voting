@@ -20,7 +20,7 @@ feature 'Events Features' do
       expect(page).to have_content 'The first event of hopefully many, in which we show off our technology'
       expect(page).to have_link("Take me to the voting page", href: "/events/#{Event.last.id}/vote")
       expect(page).to have_link("Share voting page on Twitter")
-
+      expect(page).to have_css(".twitter-share-button")
     end
 
     it 'can be deleted' do
@@ -57,12 +57,7 @@ feature 'Events Features' do
       end
     end
 
-    context 'when on event show page and the event has at least one question' do
-      before :each do
-        question = create :question, event: event
-        2.times{ create :choice, question: question }
-      end
-
+    context 'Event Show Page' do
       it 'user is shown an id for their event to give to their audience' do
         visit event_path(event)
         expect(event.code).to be_a String
