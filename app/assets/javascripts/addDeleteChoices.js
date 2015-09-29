@@ -14,3 +14,11 @@ function createNewInputElement(form) {
 function generateNewInputName(idx) {
   return "question[choices_attributes][" + idx + "][content]"
 };
+
+
+$(document).ready(function(){
+  $("#deleteNewChoice").click(function() {
+    $("#choices-div input:last-child").remove();
+  });
+});
+
