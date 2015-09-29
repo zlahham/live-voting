@@ -145,6 +145,8 @@ describe 'Questions Features' do
         expect(page).to have_css(".progress", count: 2)
         expect(page).to have_css("#choice_#{@choice1.id}[data-votecount='1']")
         expect(page).to have_css("#choice_#{@choice2.id}[data-votecount='1']")
+        expect(page).to have_css("#choice_#{@choice1.id} .progress .progress-bar")
+        expect(page).to have_css("#choice_#{@choice2.id} .progress .progress-bar")
       end
 
       it "a question's votes can be cleared with the press of a button on its show page" do
@@ -161,6 +163,8 @@ describe 'Questions Features' do
         @choice1.votes.create
         page.execute_script("$(document).ready(function() { choiceVotebuilder(#{vote_creator(@choice1.id, "2")}) });")
         expect(page).to have_css("#choice_#{@choice1.id}[data-votecount='2']")
+        page.execute_script("$(document).ready(function() { choiceVotebuilder(#{vote_creator(@choice1.id, "3")}) });")
+        expect(page).to have_css("#choice_#{@choice1.id}[data-votecount='3']")  
       end
     end
   end
