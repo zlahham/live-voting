@@ -1,48 +1,49 @@
-<% if user_signed_in? %>
-	<% if @events.count > 0 %>
+<div id='event_id_wrapper'>
+	<h2>
+		Here to vote?
+		<a href='#' type="text/html" data-toggle="modal" data-target=".event_id_modal">Click Here</a>
+	</h2>
+	<div class="modal fade event_id_modal" tabindex="-1" role="dialog" aria-labelledby="eventIdModal">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	    	<div class='container-fluid'>
+		      <%= form_tag({controller: 'events', action: 'parse_event_id'}, method: 'get', class: 'form-inline') do %>
+		      	<div class='form-group'>
+			      	<%= label_tag(:unparsed_event_id, "Enter Event Id:") %>
+			      	<%= text_field_tag(:unparsed_event_id, nil, class: 'form-control') %>
+			      	<%= submit_tag 'Go', class: 'btn btn-primary' %>
+		      	</div>
+		      <% end %>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</div>
 
-		<h2>Your events:</h2>
+<% if user_signed_in? %>
+	<% if current_user.events.count == 0 %>
+		<h2 id='no-events-notice'>You don't have any events yet - why not add one below?</h2>
+	<% end %>
+
+	<%= form_for @event, html: { class: 'form-inline new_event' } do |f| %>
+	  <div class='form-group'>
+	    Event title: <%= f.text_field :title, class: "form-control" %>
+	    Description (optional): <%= f.text_field :description, class: "form-control" %>
+	    <%= f.submit "Add Event", class: "btn btn-primary" %>
+	  </div>
+	<% end %>
 		
+	<ul id='events_list'>
 		<% @events.each do |event| %>
-			<ul>
 				<%= link_to event_path(event) do %>
 					<li> <%= event.title %> </li>
 				<% end  %>
 				<%= link_to 'Delete', event, method: :delete, data: {confirm: "Are you sure?"} %>
 				<%= link_to 'Edit Event', edit_event_path(event) %>
-			</ul>
 	  <% end %>
-
-	<% else %>
-		<%= link_to "Click here to create your first event", new_event_path, class: "btn btn-primary btn-lg" %>
-	<% end %>
+	</ul>
 
 <% else %>
-
-	<div id='event_id_wrapper'>
-		<h2>
-			Event Participant?
-			<a href='#' type="text/html" data-toggle="modal" data-target=".event_id_modal">Click Here</a>
-		</h2>
-
-		<div class="modal fade event_id_modal" tabindex="-1" role="dialog" aria-labelledby="eventIdModal">
-		  <div class="modal-dialog modal-sm">
-		    <div class="modal-content">
-		    	<div class='container-fluid'>
-			      
-			      <%= form_tag({controller: 'events', action: 'parse_event_id'}, method: 'get', class: 'form-inline') do %>
-			      	<div class='form-group'>
-				      	<%= label_tag(:unparsed_event_id, "Enter Event Id:") %>
-				      	<%= text_field_tag(:unparsed_event_id, nil, class: 'form-control') %>
-				      	<%= submit_tag 'Go', class: 'btn btn-primary' %>
-			      	</div>
-			      <% end %>
-
-		      </div>
-		    </div>
-		  </div>
-		</div>
-	</div>
 
   <div class="jumbotron">
   	<div class='container'>
