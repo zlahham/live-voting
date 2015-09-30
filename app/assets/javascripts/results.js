@@ -1,4 +1,4 @@
-$(document).ready(function() {
+var ready = function(){
 
   var channel, pusher;
   Pusher.log = function(message) {
@@ -22,7 +22,11 @@ $(document).ready(function() {
     choiceVotebuilder(data);
     playNote(data);
   });
-});
+};
+
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
 
   function playNote(data){
     var note = (data.vote_count * 2) -12;

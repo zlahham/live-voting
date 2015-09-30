@@ -1,3 +1,5 @@
+var ready = function() {
+
 $(document).ready(function() {
   var cl = new CanvasLoader('canvasloader-container');
   cl.setColor('#7067CF'); // default is '#000000'
@@ -15,3 +17,7 @@ $(document).ready(function() {
     // loaderObj.style["top"] = cl.getDiameter() * -0.5 + "px";
     // loaderObj.style["left"] = cl.getDiameter() * -0.5 + "px";
 });
+
+  $(document).ready(ready);
+  $(document).on('page:load', ready);
+}

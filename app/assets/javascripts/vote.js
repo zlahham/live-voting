@@ -1,4 +1,4 @@
-$(document).ready(function() {
+var ready = function() {
 
   $('#choice-submit').click(function() {
     event.preventDefault();
@@ -34,7 +34,10 @@ $(document).ready(function() {
     return "event_" + event_number
   };
 
-});
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
 
 
 function buildQuestion(data) {
