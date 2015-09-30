@@ -29,7 +29,7 @@ RSpec.describe QuestionsController do
               "question"=>{"id"=>question.id,
               "content"=>question.content,
               "question_number"=>1},
-              "choices"=>[{"content"=>choice2.content, "id"=>choice2.id}, {"content"=>choice.content, "id"=>choice.id}]} )
+              "choices"=>[{"content"=>choice.content, "id"=>choice.id}, {"content"=>choice2.content, "id"=>choice2.id}]} )
     end
   end
 
