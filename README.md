@@ -7,6 +7,7 @@
 #Live-Voting
 
 Visit the live site [here](http://live-voting.herokuapp.com/)
+
 ![Lovely Dog Relaxing After A Hard Day Of Getting Stuff Done](https://pbs.twimg.com/profile_images/2352976474/821r2dpq9gt8m1nwgy5r_400x400.png)
 
 ###Summary
@@ -20,7 +21,7 @@ Visit the live site [here](http://live-voting.herokuapp.com/)
 	- Conference calls
 - For a more in depth overview of our journey as a team through this project, please see the corresponding [wiki](https://github.com/zlahham/live-voting/wiki).
 
-![Alt text](./charts_page.png)
+![charts_page](public/charts_page.png)
 
 ###Final Version Features
 
