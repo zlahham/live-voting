@@ -90,12 +90,16 @@ rspec
 ###Team Members:
 
 [Andrew](https://github.com/Yorkshireman)
+
 [Ben](https://github.com/benhawker)
+
 [Chris](https://github.com/christopheralcock)
+
 [Lewis](https://github.com/ljones140)
+
 [Zaid](https://github.com/zlahham)
 
-
+---
 <!--
 You need to include this hidden file at /config/initializers/pusher.rb
 ```
