@@ -31,9 +31,8 @@ feature 'Voting Features' do
       expect(page).to have_content 'No'
       expect(page).to have_content 'Maybe'
       click_button "Submit Answer"
-      page.execute_script("$(document).ready(function() { buildQuestion(#{data_creator("2")}) });")
-      page.execute_script("$('#choice-submit').click(function()")
-      expect(page).to have_content 'Results'
+      # page.execute_script("$(document).ready(function() { buildQuestion(#{data_creator("2")}) });")
+      expect(page).to have_content 'Results:'
     end
   end
 end

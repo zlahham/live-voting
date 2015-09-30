@@ -40,7 +40,6 @@ $(document).ready(function() {
   return channel.bind(myEvent(), function(data) {
     console.log('message received');
     buildQuestion(data);
-    showProgress();
   });
 
   function myEvent(){
