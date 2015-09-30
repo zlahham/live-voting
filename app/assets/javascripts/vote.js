@@ -1,11 +1,17 @@
 $(document).ready(function() {
+  $('#event-progress').hide();
+
 
   $('#choice-submit').click(function() {
     event.preventDefault();
     var choiceValue = $( "input:radio[name=choice]:checked" ).val();
     $.post('/votes',{ choice: choiceValue });
     $('.question').hide();
-    $('.holding-message').show();
+    for (var i = 0; i < 1000; i++) {
+      if (+($('#question-id-hold').text()) === i) {
+        $(".graphs#" + ($('#question-id-hold').text())).show()
+      };
+    };
   });
 
   var channel, pusher;
@@ -28,12 +34,8 @@ $(document).ready(function() {
   return channel.bind(myEvent(), function(data) {
     console.log('message received');
     buildQuestion(data)
-    for (var i = 0; i < 1000; i++) {
-      if (+($('#question-id-hold').text()) === i) {
-        $(".graphs#" + ($('#question-id-hold').text())).show()
-      };
-    };
-
+    $('#event-progress').show();
+    $('.graphs').hide();
   });
 
   function myEvent(){

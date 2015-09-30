@@ -11,10 +11,13 @@
   <h4><%= @event.description %></h4>
 </div>
 
+<div id="event-progress" style="display:none">
+  <h2>Question <span id="question-number"></span> of <%= @event.questions.count %>:</h2>
+</div>
+<h1 id="question-title"></h1>
+
 <div class="container question">
   <div class="col-sm-6">
-    <h2>Question <span id="question-number">?</span> of <%= @event.questions.count %>:</h2>
-    <h1 id="question-title"></h1>
     <form class="question-form">
       <ul>
       <div id="dvOptions"></div>
@@ -24,7 +27,7 @@
   </div>
 </div>
 
-<div class="audience-results">
+<!-- <div class="audience-results" style="display:none"> -->
   <% @event.questions.each do |question| %>
     <% if question.choices.any? %>
       <div class="graphs" id="<%= question.id%>" style="display:none" >
@@ -43,4 +46,4 @@
       </div>
     <% end %>
   <% end %>
-</div>
+<!-- </div> -->
