@@ -1,5 +1,6 @@
 
 ![Travis Build](https://travis-ci.org/zlahham/live-voting.svg)
+[![Coverage Status](https://coveralls.io/repos/zlahham/live-voting/badge.svg?branch=master&service=github)](https://coveralls.io/github/zlahham/live-voting?branch=master)
 
 [![Cards in Waffle Cards Currently In Progress](https://badge.waffle.io/zlahham/live-voting.png?label=In%20Progress&title=In%20Progress)](https://waffle.io/zlahham/live-voting)
 
