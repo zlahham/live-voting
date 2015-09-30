@@ -1,4 +1,5 @@
 var ready = function() {
+
   $('#event-progress').hide();
 
   $('#choice-submit').click(function() {
@@ -13,6 +14,7 @@ var ready = function() {
       };
     };
   });
+
   var channel, pusher;
   Pusher.log = function(message) {
     if (window.console && window.console.log) {
@@ -39,9 +41,6 @@ var ready = function() {
     return "event_" + event_number
   };
 
-
-
-
   function showCurrentChoice(){
     console.log(currentChoice);
   };
@@ -51,6 +50,8 @@ var ready = function() {
 
 $(document).ready(ready);
 $(document).on('page:load', ready);
+
+
   function showProgress(){
     $('#event-progress').show();
     $('.graphs').hide();

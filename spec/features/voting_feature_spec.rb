@@ -12,7 +12,11 @@ feature 'Voting Features' do
       @choice = create :choice, question: @question
       @choice2 = create :choice_2, question: @question
       @choice3 = create :choice_3, question: @question
+      @choice.votes.create
     end
+
+
+
 
     it "can navigate to voting page and it says 'Awaiting Question' and gives the event description" do
       visit vote_event_path(@event)
@@ -30,6 +34,7 @@ feature 'Voting Features' do
       expect(page).to have_content 'Yes'
       expect(page).to have_content 'No'
       expect(page).to have_content 'Maybe'
+      @choice.votes.create
       click_button "Submit Answer"
       # page.execute_script("$(document).ready(function() { buildQuestion(#{data_creator("2")}) });")
       expect(page).to have_content 'Results:'
