@@ -12,7 +12,6 @@ feature 'Voting Features' do
       @choice = create :choice, question: @question
       @choice2 = create :choice_2, question: @question
       @choice3 = create :choice_3, question: @question
-      # @choice.votes.create
     end
 
     it "can navigate to voting page and it says 'Awaiting Question' and gives the event description" do

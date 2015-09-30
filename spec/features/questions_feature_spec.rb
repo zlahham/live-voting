@@ -164,7 +164,7 @@ describe 'Questions Features' do
         page.execute_script("$(document).ready(function() { choiceVotebuilder(#{vote_creator(@choice1.id, "2")}) });")
         expect(page).to have_css("#choice_#{@choice1.id}[data-votecount='2']")
         page.execute_script("$(document).ready(function() { choiceVotebuilder(#{vote_creator(@choice1.id, "3")}) });")
-        expect(page).to have_css("#choice_#{@choice1.id}[data-votecount='3']")  
+        expect(page).to have_css("#choice_#{@choice1.id}[data-votecount='3']")
       end
     end
   end
