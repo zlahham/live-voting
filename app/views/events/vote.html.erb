@@ -22,29 +22,3 @@
     </form>
   </div>
 </div>
-
-<script>
-  $('#choice-submit').click(function() {
-    event.preventDefault();
-    console.log('clicked submit');
-    var choiceValue = $( "input:radio[name=choice]:checked" ).val();
-    $.post('/votes',{ choice: choiceValue });
-    $('.question').hide();
-    $('.holding-message').show();
-  });
-
-  function buildQuestion(data) {
-    $('.question').show();
-    $('.holding-message').hide();
-    $('#testing').text(data.test);
-    $('#question-number').text(data.question.question_number);
-    $('#question-title').text(data.question.content);
-    var $choiceOptions = $('#dvOptions');
-    $choiceOptions.empty();
-    for ( var i = 0; i < data.choices.length; i++) {
-       $choiceOptions.append($('<li><input type="radio" name="choice" value="'
-       + data.choices[i].id + '"><label for="choice">'
-       + data.choices[i].content + '</label></li>'));
-      };
-  };
-</script>
