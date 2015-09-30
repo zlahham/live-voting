@@ -21,6 +21,3 @@ class VotesController < ApplicationController
     pusher.trigger('vote_count_channel', 'new_message', json_object )
   end
 end
-
-
-# Vote.where(choice_id: choice).count

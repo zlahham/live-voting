@@ -11,13 +11,13 @@
 	<%= link_to 'Add Question', new_event_question_path(@event), class: 'btn btn-primary' %>
 
 	<section>
-		<ul>
+		<ul class='list-group'>
 		  <% if @event.questions.any? %>
 		    <% @event.questions.each do |question| %>
-		      <li>
-		        	<%= link_to "Push Question to Audience", { controller: :questions, action: :publish_question, question: question}, class: 'btn btn-primary' %>
+		      <li class='list-group-item'>
 		        	<%= link_to question.content, question_path(question) %>
-		        	<%= link_to "Delete Question", question, method: :delete, data: {confirm: "Are you sure?"} %>
+		        	<%= link_to "Push Question to Audience", { controller: :questions, action: :publish_question, question: question}, class: 'btn btn-primary btn-sm' %>
+		        	<%= link_to "Delete Question", question, method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-sm btn-default' %>
 		      </li>
 		    <% end %>
 		  <% end %>
