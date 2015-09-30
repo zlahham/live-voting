@@ -11,7 +11,7 @@ describe 'Choices Features' do
   it 'can be created on a question' do
     visit("/events/#{event.id}")
     click_on "#{@question.content}"
-    click_on 'Add Choice'
+    click_on 'Add New Choice'
     expect(page).to have_content "Event: #{event.title}"
     expect(page).to have_content "Question: #{@question.content}"
     fill_in "choice[content]", with: "Yes"
