@@ -6,6 +6,8 @@ p, a, li, h3, h4, h5, h6, input, label {
   font-weight: 200;
 }
 
+$section-bg: white;
+
 
 
 
@@ -88,7 +90,7 @@ p, a, li, h3, h4, h5, h6, input, label {
 
 .events_list {
   padding-left: 0;
-  background-color: white;
+  background-color: $section-bg;
 }
 
 
@@ -121,6 +123,17 @@ p, a, li, h3, h4, h5, h6, input, label {
   VOTING PAGE
 **********************************************************/
 
-.question {
-  display: none
+.voting-page-wrapper {
+  text-align: center;
+  background-color: $section-bg;
+
+  .question {
+    display: none
+  }
+}
+
+.wrapper {
+  position:absolute;
+  top:50%;
+  left:50%;
 }

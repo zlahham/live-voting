@@ -26,7 +26,6 @@ $(document).ready(function() {
   });
   channel = pusher.subscribe('test_channel');
   return channel.bind(myEvent(), function(data) {
-    console.log('message received');
     buildQuestion(data);
   });
 

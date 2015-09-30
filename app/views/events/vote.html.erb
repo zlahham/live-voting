@@ -1,24 +1,45 @@
-<h1><%= @event.title %></h1>
-
-<div id="event-id" style="display:none;"><%= @event.id %></div>
-<div id="pusher-key" style="display:none;"><%= Pusher.key %></div>
-
-<section class="space-50"> </section>
-
-<div class="holding-message">
-  <h2>Awaiting Question</h2>
+<div class='voting-page-wrapper'>
+  <h1><%= @event.title %></h1>
   <h4><%= @event.description %></h4>
-</div>
 
-<div class="container question">
-  <div class="col-sm-6">
-    <h2>Question <span id="question-number">?</span> of <%= @event.questions.count %>:</h2>
-    <h1 id="question-title"></h1>
-    <form class="question-form">
-      <ul>
-      <div id="dvOptions"></div>
-      </ul>
-    <button id="choice-submit" type="submit" class="btn btn-primary">Submit Answer</button>
-    </form>
+  <div id="event-id" style="display:none;"><%= @event.id %></div>
+  <div id="pusher-key" style="display:none;"><%= Pusher.key %></div>
+
+  <section class="space-50"></section>
+
+  <div class="holding-message">
+    <h2>Awaiting Question</h2>
+    <div id="canvasloader-container" class="wrapper"></div>
+
+    <script type="text/javascript">
+    var cl = new CanvasLoader('canvasloader-container');
+    cl.setColor('#08067c'); // default is '#000000'
+    cl.setShape('spiral'); // default is 'oval'
+    cl.setDiameter(200); // default is 40
+    cl.setDensity(108); // default is 40
+    cl.setRange(1); // default is 1.3
+    cl.setSpeed(1); // default is 2
+    cl.setFPS(60); // default is 24
+    cl.show(); // Hidden by default
+    
+    // This bit is only for positioning - not necessary
+      var loaderObj = document.getElementById("canvasLoader");
+      loaderObj.style.position = "absolute";
+      loaderObj.style["top"] = cl.getDiameter() * -0.5 + "px";
+      loaderObj.style["left"] = cl.getDiameter() * -0.5 + "px";
+    </script>
+  </div>
+
+  <div class="container question">
+    <div class="col-sm-6">
+      <h2>Question <span id="question-number">?</span> of <%= @event.questions.count %>:</h2>
+      <h1 id="question-title"></h1>
+      <form class="question-form">
+        <ul>
+        <div id="dvOptions"></div>
+        </ul>
+      <button id="choice-submit" type="submit" class="btn btn-primary">Submit Answer</button>
+      </form>
+    </div>
   </div>
 </div>
