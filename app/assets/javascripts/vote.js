@@ -2,9 +2,15 @@ $(document).ready(function() {
   $('#event-progress').hide();
 
 
+ var currentChoice = 0;
+ console.log(currentChoice);
+
+
+
   $('#choice-submit').click(function() {
     event.preventDefault();
     var choiceValue = $( "input:radio[name=choice]:checked" ).val();
+    currentChoice = choiceValue;
     $.post('/votes',{ choice: choiceValue });
     $('.question').hide();
     for (var i = 0; i < 1000; i++) {
@@ -45,6 +51,10 @@ $(document).ready(function() {
 
 });
 
+function showCurrentChoice(){
+  console.log(currentChoice);
+};
+
 
 function buildQuestion(data) {
   $('.question').show();
@@ -61,4 +71,7 @@ function buildQuestion(data) {
      + data.choices[i].id + '"><label for="choice">'
      + data.choices[i].content + '</label></li>'));
     };
+  $( ".question-form").submit(function(){
+    console.log("hiya")
+  });
 };

@@ -55,6 +55,8 @@ class EventsController < ApplicationController
 
   def vote
     @event = Event.find(params[:id])
+    p params
+    # @choice = Choice.find(params[:choice_id])
   end
 
   def parse_event_id
@@ -83,6 +85,6 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:title, :description)
+    params.require(:event).permit(:title, :description, :choices_attributes[:content, :id])
   end
 end
