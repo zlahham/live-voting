@@ -1,8 +1,14 @@
 $(document).ready(function() {
 
+ var currentChoice = 0;
+ console.log(currentChoice);
+
+
+
   $('#choice-submit').click(function() {
     event.preventDefault();
     var choiceValue = $( "input:radio[name=choice]:checked" ).val();
+    currentChoice = choiceValue;
     $.post('/votes',{ choice: choiceValue });
     $('.question').hide();
     $('.holding-message').show();
@@ -37,6 +43,10 @@ $(document).ready(function() {
 
 });
 
+function showCurrentChoice(){
+  console.log(currentChoice);
+};
+
 
 function buildQuestion(data) {
   $('.question').show();
@@ -44,6 +54,7 @@ function buildQuestion(data) {
   $('#testing').text(data.test);
   $('#question-number').text(data.question.question_number);
   $('#question-title').text(data.question.content);
+  $('#question-id').text(data.question.id);
   var $choiceOptions = $('#dvOptions');
   $choiceOptions.empty();
   for ( var i = 0; i < data.choices.length; i++) {
@@ -51,4 +62,7 @@ function buildQuestion(data) {
      + data.choices[i].id + '"><label for="choice">'
      + data.choices[i].content + '</label></li>'));
     };
+  $( ".question-form").submit(function(){
+    console.log("hiya")
+  });
 };

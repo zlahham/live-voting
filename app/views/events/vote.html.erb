@@ -8,6 +8,7 @@
 <div class="holding-message">
   <h2>Awaiting Question</h2>
   <h4><%= @event.description %></h4>
+
 </div>
 
 <div class="container question">
@@ -15,10 +16,33 @@
     <h2>Question <span id="question-number">?</span> of <%= @event.questions.count %>:</h2>
     <h1 id="question-title"></h1>
     <form class="question-form">
+      <p id="question-id"><p>
       <ul>
       <div id="dvOptions"></div>
       </ul>
-    <button id="choice-submit" type="submit" class="btn btn-primary">Submit Answer</button>
+      <button id="choice-submit" type="submit" class="btn btn-primary">Submit Answer</button>
     </form>
   </div>
 </div>
+
+
+<% @event.questions.each do |question|%>
+  <ul>
+    <li><%= question.content %></li>
+    <% if question.choices.any? %>
+      <% question.choices.each do |choice| %>
+      	<%= div_for choice, 'data-votecount' => choice.votes.count || 0 do %>
+        	<%= choice.content %>
+        	<p class='vote-count' >
+        		Votes: <%= choice.votes.count || 0 %>
+        	</p>
+          <div class="progress">
+            <div class="progress-bar progress-bar-success" role="progressbar"  style="width: <%= (((choice.votes.count.to_f)) / ((total_votes(choice.question).to_f) )* 100 ).to_i || 0 if choice.votes.any? %>%">
+            </div>
+          </div>
+      	<% end %>
+      <% end %>
+      <%= link_to 'Clear Votes', clear_votes_path, data: {confirm: "Are you sure? This will delete all votes for all of this question's choices."} %>
+    <% end %>
+  </ul>
+<% end %>
