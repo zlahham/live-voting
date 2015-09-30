@@ -24,7 +24,7 @@ feature 'Voting Features' do
     it "sends question to voter", js: :true do
       visit vote_event_path(@event)
       expect(page).to have_content 'Awaiting Question'
-      page.execute_script("$(document).ready(function() { buildQuestion(#{data_creator("1")}) });")
+      page.execute_script("$(document).ready(function() { buildQuestion(#{data_creator("1")}); });")
       expect(page).to have_content 'Question 1 of 2'
       expect(page).to have_content 'My Question'
       expect(page).to have_content 'Yes'
