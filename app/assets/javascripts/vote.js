@@ -46,7 +46,7 @@ function buildQuestion(data) {
   var $choiceOptions = $('#dvOptions');
   $choiceOptions.empty();
   for ( var i = 0; i < data.choices.length; i++) {
-     $choiceOptions.append($('<li><input type="radio" name="choice" value="'
+     $choiceOptions.append($('<li class="list-group-item"><input type="radio" name="choice" value="'
      + data.choices[i].id + '"><label for="choice">'
      + data.choices[i].content + '</label></li>'));
     };

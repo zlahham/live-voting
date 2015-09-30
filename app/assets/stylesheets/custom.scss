@@ -144,7 +144,34 @@ $section-bg: white;
   }
 
   .question {
-    display: none
+    display: none;
+    background-color: $section-bg;
+    padding-top: 1em;
+    padding-bottom: 2em;
+
+    #question-title {
+      margin-bottom: 1em;
+    }
+
+    .question-form {
+      button {
+        font-weight: 300;
+      }
+
+      .list-group {
+        text-align: left;
+        margin-bottom: 2em;
+
+        #dvOptions {
+
+          .list-group-item {
+            input {
+              margin-right: 5%;
+            }
+          }
+        }
+      }
+    }
   }
 }
 

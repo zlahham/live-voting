@@ -16,15 +16,13 @@
   </div>
 
   <div class="container question">
-    <div class="col-sm-6">
-      <h2>Question <span id="question-number">?</span> of <%= @event.questions.count %>:</h2>
-      <h1 id="question-title"></h1>
-      <form class="question-form">
-        <ul>
+    <h3>Question <span id="question-number">?</span> of <%= @event.questions.count %>:</h3>
+    <h2 id="question-title"></h2>
+    <form class="question-form">
+      <ul class='list-group'>
         <div id="dvOptions"></div>
-        </ul>
-      <button id="choice-submit" type="submit" class="btn btn-primary">Submit Answer</button>
-      </form>
-    </div>
+      </ul>
+      <button id="choice-submit" type="submit" class="btn btn-primary btn-lg">Submit Answer</button>
+    </form>
   </div>
 </div>
