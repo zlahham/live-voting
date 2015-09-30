@@ -168,6 +168,68 @@ $section-bg: white;
 
 
 /**********************************************************
+  QUESTIONS SHOW PAGE
+**********************************************************/
+
+.question-show-page-wrapper {
+  section:first-child {
+    text-align: center;
+    margin-top: 0.5em;
+    margin-bottom: 2em;
+    background-color: $brand-primary;
+    color: $section-bg;
+    padding-top: 0.3em;
+    padding-bottom: 1.4em;
+  }
+
+  .question-show-page-poll-wrapper {
+    background-color: $section-bg;
+    padding-top: 1em;
+    padding-bottom: 2em;
+    padding-left: 3%;
+    padding-right: 3%;
+
+    h2:first-child {
+      text-align: center;
+      margin-bottom: 1em;
+    }
+
+    .choice {
+      font-size: 1.5em;
+      margin-bottom: 1em;
+    }
+
+
+    h2:nth-child(2) {
+      text-align: center;
+      margin-top: 1.5em;
+      margin-bottom: 1.5em;
+    }
+
+    .progress {
+      height: 3em;
+      margin-bottom: 0.3em;
+    }
+
+    .vote-count {
+      display: inline-block;
+    }
+
+    .choice {
+      margin-bottom: 0.5em;
+    }
+  }
+
+  div:last-child {
+    margin-top: 0.3em;
+  }
+}
+
+
+
+
+
+/**********************************************************
   VOTING PAGE
 **********************************************************/
 
