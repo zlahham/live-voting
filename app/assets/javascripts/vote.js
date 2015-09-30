@@ -44,6 +44,8 @@ function buildQuestion(data) {
   $('#testing').text(data.test);
   $('#question-number').text(data.question.question_number);
   $('#question-title').text(data.question.content);
+  $('#question-title-hold').text(data.question.content);
+
   var $choiceOptions = $('#dvOptions');
   $choiceOptions.empty();
   for ( var i = 0; i < data.choices.length; i++) {
