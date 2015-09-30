@@ -15,6 +15,7 @@
 		      	</div>
 		      <% end %>
 	      </div>
+				<p>Thankfully NOT case-sensitive!</p>
 	    </div>
 	  </div>
 	</div>
@@ -32,7 +33,7 @@
 	    <%= f.submit "Add Event", class: "btn btn-primary" %>
 	  </div>
 	<% end %>
-		
+
 	<ul class='events_list list-group'>
 		<% @events.each do |event| %>
 			<li class='list-group-item'>

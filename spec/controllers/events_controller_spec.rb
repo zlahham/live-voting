@@ -8,5 +8,12 @@ RSpec.describe EventsController do
       get(:parse_event_id, {'controller' => 'events', 'action' => 'parse_event_id', 'unparsed_event_id' => event.code})
       expect(response).to redirect_to vote_event_path(event.id)
     end
+
+    it 'redirects to correct voting page when given a lowecase id' do
+      event = create :event, user: create(:user)
+      event.update_attributes(code: ("ABCD" + "#{event.id}"))
+      get(:parse_event_id, {'controller' => 'events', 'action' => 'parse_event_id', 'unparsed_event_id' => "abcd" + "#{event.id}"})
+      expect(response).to redirect_to vote_event_path(event.id)
+    end
   end
 end
