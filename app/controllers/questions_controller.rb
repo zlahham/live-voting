@@ -35,8 +35,8 @@ class QuestionsController < ApplicationController
   end
 
   def publish_question
-    question =    Question.find(params["question"])
-    event =       question.event
+    question = Question.find(params["question"])
+    event = question.event
     json_object = build_json(event, question)
     begin
       push_json_to_pusher(json_object, event.id)
