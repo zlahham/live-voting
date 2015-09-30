@@ -18,7 +18,9 @@ function generateNewInputName(idx) {
 
 $(document).ready(function(){
   $("#deleteNewChoice").click(function() {
-    $("#choices-div input:last-child").remove();
+    if ($("#choices-div input").length > 1) {
+     $("#choices-div input:last-child").remove();
+  }
   });
 });
 
