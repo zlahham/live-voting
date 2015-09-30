@@ -125,7 +125,23 @@ $section-bg: white;
 
 .voting-page-wrapper {
   text-align: center;
-  background-color: $section-bg;
+
+  section:first-child {
+    margin-top: 0.5em;
+    margin-bottom: 2em;
+    background-color: $brand-primary;
+    color: $section-bg;
+    padding-top: 0.3em;
+    padding-bottom: 1.4em;
+  }
+
+  .holding-message {
+    padding: 1em 0 2em 0;
+    background-color: $section-bg;
+    #canvasloader-container {
+      margin-top: 2em;
+    }
+  }
 
   .question {
     display: none
@@ -133,7 +149,7 @@ $section-bg: white;
 }
 
 .wrapper {
-  position:absolute;
-  top:50%;
-  left:50%;
+  // position:absolute;
+  // top:50%;
+  // left:50%;
 }
