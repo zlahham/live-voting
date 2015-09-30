@@ -1,28 +1,51 @@
 <div class='voting-page-wrapper'>
-
   <section>
     <h1><%= @event.title %></h1>
-    <h4><%= @event.description %></h4>
   </section>
 
+  <h1 id="question-id-hold" style="display:none"></h1>
   <div id="event-id" style="display:none;"><%= @event.id %></div>
   <div id="pusher-key" style="display:none;"><%= Pusher.key %></div>
 
   <section class="space-50"></section>
-
   <div class="holding-message">
-    <h5>Awaiting Question</h5>
+    <h2>Awaiting Question</h2>
+    <h4><%= @event.description %></h4>
     <div id="canvasloader-container"></div>
   </div>
 
-  <div class="question">
-    <h3>Question <span id="question-number">?</span> of <%= @event.questions.count %>:</h3>
-    <h2 id="question-title"></h2>
+  <div id="event-progress" style="display:none">
+    <h2>Question <span id="question-number"></span> of <%= @event.questions.count %>:</h2>
+  </div>
+  <h1 id="question-title"></h1>
+
+  <div class="container question">
     <form class="question-form">
+      <p id="question-id"><p>
       <ul class='list-group'>
         <div id="dvOptions"></div>
       </ul>
       <button id="choice-submit" type="submit" class="btn btn-primary btn-lg">Submit Answer</button>
     </form>
   </div>
+
+  <% @event.questions.each do |question| %>
+    <% if question.choices.any? %>
+      <div class="graphs" id="<%= question.id%>" style="display:none" >
+        <h4>Results:</h4>
+        <% question.choices.each do |choice| %>
+        	<%= div_for choice, 'data-votecount' => choice.votes.count || 0 do %>
+          	<%= choice.content %>
+          	<p class='vote-count' >
+          		Votes: <%= choice.votes.count || 0 %>
+          	</p>
+            <div class="progress">
+              <div class="<%= graph_colour %>" role="progressbar"  style="width: <%= (((choice.votes.count.to_f)) / ((total_votes(choice.question).to_f) )* 100 ).to_i || 0 if choice.votes.any? %>%">
+              </div>
+            </div>
+        	<% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
 </div>

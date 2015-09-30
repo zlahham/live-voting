@@ -1,11 +1,14 @@
 var ready = function() {
 
+  $('#event-progress').hide();
+
   $('#choice-submit').click(function() {
     event.preventDefault();
     var choiceValue = $( "input:radio[name=choice]:checked" ).val();
-    $.post('/votes',{ choice: choiceValue });
-    $('.question').hide();
-    $('.holding-message').show();
+    answerSubmit(choiceValue);
+    // $.post('/votes',{ choice: choiceValue });
+    // $('.question').hide();
+    // $(".graphs#" + ($('#question-id-hold').text())).show();
   });
 
   var channel, pusher;
@@ -18,12 +21,13 @@ var ready = function() {
 
   function pusherKey(){
     var event_number = $('#pusher-key').text();
-    return event_number
+    return event_number;
   };
 
   pusher = new Pusher(pusherKey(), {
     encrypted: true
   });
+
   channel = pusher.subscribe('test_channel');
   return channel.bind(myEvent(), function(data) {
     buildQuestion(data);
@@ -34,11 +38,21 @@ var ready = function() {
     return "event_" + event_number
   };
 
+  function showCurrentChoice(){
+    console.log(currentChoice);
+  };
 };
 
-$(document).ready(ready);
-$(document).on('page:load', ready);
+function answerSubmit(choiceValue){
+  $.post('/votes',{ choice: choiceValue });
+  $('.question').hide();
+  $(".graphs#" + ($('#question-id-hold').text())).show();
+};
 
+function showProgress(){
+  $('#event-progress').show();
+  $('.graphs').hide();
+};
 
 function buildQuestion(data) {
   $('.question').show();
@@ -46,6 +60,8 @@ function buildQuestion(data) {
   $('#testing').text(data.test);
   $('#question-number').text(data.question.question_number);
   $('#question-title').text(data.question.content);
+  $('#question-id-hold').text(data.question.id);
+
   var $choiceOptions = $('#dvOptions');
   $choiceOptions.empty();
   for ( var i = 0; i < data.choices.length; i++) {
@@ -53,4 +69,11 @@ function buildQuestion(data) {
      + data.choices[i].id + '"><label for="choice">'
      + data.choices[i].content + '</label></li>'));
     };
+  $( ".question-form").submit(function(){
+    console.log("hiya")
+  });
+  showProgress();
 };
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
