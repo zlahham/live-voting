@@ -128,6 +128,8 @@ $section-bg: white;
 **********************************************************/
 
 .new-question-wrapper{
+  max-width: 720px;
+  margin: auto;
   text-align: center;
 
   h3 {
@@ -135,17 +137,20 @@ $section-bg: white;
   }
 
   button:nth-child(3) {
+    width: 100%;
     position: relative;
     bottom: 3.9em;
   }
 
   button:nth-child(5) {
+    width: 100%;
     position: relative;
-    bottom: 5.1em;
+    bottom: 3.7em;
   }
 
   .form-group {
     .btn {
+      width: 100%;
       position: relative;
       top: 5em;
     }
