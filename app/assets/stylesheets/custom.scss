@@ -124,6 +124,45 @@ $section-bg: white;
 
 
 /**********************************************************
+  QUESTIONS NEW PAGE
+**********************************************************/
+
+.new-question-wrapper{
+  text-align: center;
+
+  h3 {
+    margin-bottom: 1em;
+  }
+
+  button:nth-child(3) {
+    position: relative;
+    bottom: 3.9em;
+  }
+
+  button:nth-child(5) {
+    position: relative;
+    bottom: 5.1em;
+  }
+
+  .form-group {
+    .btn {
+      position: relative;
+      top: 5em;
+    }
+  }
+
+  #choices-div {
+    input {
+      margin-top: 0.3em;
+    }
+  }
+}
+
+
+
+
+
+/**********************************************************
   VOTING PAGE
 **********************************************************/
 
