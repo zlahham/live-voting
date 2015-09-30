@@ -1,5 +1,5 @@
 <h1><%= @event.title %></h1>
-<h1 id="question-id-hold"></h1>
+<h1 id="question-id-hold" style="display:none"></h1>
 
 <div id="event-id" style="display:none;"><%= @event.id %></div>
 <div id="pusher-key" style="display:none;"><%= Pusher.key %></div>
@@ -24,22 +24,23 @@
   </div>
 </div>
 
-<% @event.questions.each do |question| %>
-  <% if question.choices.any? %>
-    <div class="graphs" id="<%= question.id%>" style="border: 1px solid black">
-      <% question.choices.each do |choice| %>
-      	<%= div_for choice, 'data-votecount' => choice.votes.count || 0 do %>
-
-        	<%= choice.content %>
-        	<p class='vote-count' >
-        		Votes: <%= choice.votes.count || 0 %>
-        	</p>
-          <div class="progress">
-            <div class="<%= graph_colour %>" role="progressbar"  style="width: <%= (((choice.votes.count.to_f)) / ((total_votes(choice.question).to_f) )* 100 ).to_i || 0 if choice.votes.any? %>%">
+<div class="audience-results">
+  <% @event.questions.each do |question| %>
+    <% if question.choices.any? %>
+      <div class="graphs" id="<%= question.id%>" style="display:none" >
+        <% question.choices.each do |choice| %>
+        	<%= div_for choice, 'data-votecount' => choice.votes.count || 0 do %>
+          	<%= choice.content %>
+          	<p class='vote-count' >
+          		Votes: <%= choice.votes.count || 0 %>
+          	</p>
+            <div class="progress">
+              <div class="<%= graph_colour %>" role="progressbar"  style="width: <%= (((choice.votes.count.to_f)) / ((total_votes(choice.question).to_f) )* 100 ).to_i || 0 if choice.votes.any? %>%">
+              </div>
             </div>
-          </div>
-      	<% end %>
-      <% end %>
-    </div>
+        	<% end %>
+        <% end %>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
+</div>

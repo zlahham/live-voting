@@ -27,7 +27,13 @@ $(document).ready(function() {
   channel = pusher.subscribe('test_channel');
   return channel.bind(myEvent(), function(data) {
     console.log('message received');
-    buildQuestion(data);
+    buildQuestion(data)
+    for (var i = 0; i < 1000; i++) {
+      if (+($('#question-id-hold').text()) === i) {
+        $(".graphs#" + ($('#question-id-hold').text())).show()
+      };
+    };
+
   });
 
   function myEvent(){
