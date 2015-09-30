@@ -1,25 +1,37 @@
 <div id="pusher-key" style="display:none;"><%= Pusher.key %></div>
 
-<h4><%= @question.content %></h4>
+<div class='question-show-page-wrapper'>
+  <section>
+    <h1><%= @question.event.title %></h1>
+  </section>
 
-<% if @question.choices.any? %>
-  <% @question.choices.each do |choice| %>
-  	<%= div_for choice, 'data-votecount' => choice.votes.count || 0 do %>
+  <div class='question-show-page-poll-wrapper'>
+    <h2><%= @question.content %></h2>
 
-    	<%= choice.content %>
-    	<%= link_to 'Delete Choice', choice, method: :delete, data: {confirm: "Are you sure?"} %>
-    	<p class='vote-count' >
-    		Votes: <%= choice.votes.count || 0 %>
-    	</p>
-      <div class="progress">
-        <div class="<%= graph_colour %>" role="progressbar"  style="width: <%= (((choice.votes.count.to_f)) / ((total_votes(choice.question).to_f) )* 100 ).to_i || 0 if choice.votes.any? %>%">
-        </div>
-      </div>
-  	<% end %>
-  <% end %>
-  <%= link_to 'Clear Votes', clear_votes_path, data: {confirm: "Are you sure? This will delete all votes for all of this question's choices."} %>
-<% end %>
+    <% if @question.choices.any? %>
+      <% @question.choices.each do |choice| %>
+      	<%= div_for choice, 'data-votecount' => choice.votes.count || 0 do %>
 
-<%= link_to 'Add New Choice', new_question_choice_path(@question), class: 'btn btn-primary' %>
-<%= link_to "Back to #{@question.event.title}", event_path(@question.event.id), class: 'btn btn-primary' %>
-<%= link_to "Push Question to Audience", { controller: :questions, action: :publish_question, question: @question}, class: 'btn btn-primary' %>
+        	<%= choice.content %>
+          <div class="progress">
+            <div class="<%= graph_colour %>" role="progressbar"  style="width: <%= (((choice.votes.count.to_f)) / ((total_votes(choice.question).to_f) )* 100 ).to_i || 0 if choice.votes.any? %>%">
+            </div>
+          </div>
+          <p class='vote-count' >
+            Votes: <%= choice.votes.count || 0 %>
+          </p>
+        	<%= link_to 'Delete Choice', choice, method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-default btn-sm' %>
+      	<% end %>
+      <% end %>
+      <%= link_to 'Clear Votes', clear_votes_path, data: {confirm: "Are you sure? This will delete all votes for all of this question's choices."}, class: 'btn btn-default btn-sm' %>
+    <% end %>
+
+    <%= link_to 'Add New Choice', new_question_choice_path(@question), class: 'btn btn-default btn-sm' %>
+    
+    <div>
+      <%= link_to "Push Question to Audience", { controller: :questions, action: :publish_question, question: @question}, class: 'btn btn-default btn-sm' %>
+      <%= link_to "Back to #{@question.event.title}", event_path(@question.event.id), class: 'btn btn-default btn-sm' %>
+    </div>
+  </div>
+
+</div>
