@@ -34,7 +34,7 @@ p, a, li, h3, h4, h5, h6, input, label {
 
 
 /**********************************************************
-  EVENT ID MODAL
+  NAVBAR BRAND
 **********************************************************/
 
 .navbar-brand {
@@ -63,6 +63,10 @@ p, a, li, h3, h4, h5, h6, input, label {
   .modal-content {
     font-size: 1.5em;
     padding: 1em 1em 1.7em 1em;
+    text-align: center;
+  }
+  p {
+    font-size: 0.5em;
   }
 }
 

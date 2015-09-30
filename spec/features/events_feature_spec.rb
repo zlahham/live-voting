@@ -57,7 +57,7 @@ feature 'Events Features' do
       end
 
       it 'has a twitter share button' do
-        expect(page).to have_css('.twitter-share-button')        
+        expect(page).to have_css('.twitter-share-button')
       end
     end
   end
@@ -104,6 +104,22 @@ feature 'Events Features' do
       new_code = "ABCD" + "#{event.id}"
       event.update_attributes(code: new_code)
       fill_in :unparsed_event_id, with: event.code
+      click_on 'Go'
+      expect(current_path).to eq vote_event_path(event)
+      expect(page).to have_content "Awaiting Question"
+    end
+
+    it 'signed in event participant can go to event using lowecase' do
+      sign_in_as event.user
+      within(:css, '#event_id_wrapper') do
+        expect(page).to have_content "Click Here"
+      end
+
+      click_on 'Click Here'
+      event_code = event.code
+      new_code = "ABCD" + "#{event.id}"
+      event.update_attributes(code: new_code)
+      fill_in :unparsed_event_id, with: "abcd" + "#{event.id}"
       click_on 'Go'
       expect(current_path).to eq vote_event_path(event)
       expect(page).to have_content "Awaiting Question"
