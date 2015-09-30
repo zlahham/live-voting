@@ -6,6 +6,8 @@ p, a, li, h3, h4, h5, h6, input, label {
   font-weight: 200;
 }
 
+$section-bg: white;
+
 
 
 
@@ -92,7 +94,7 @@ p, a, li, h3, h4, h5, h6, input, label {
 
 .events_list {
   padding-left: 0;
-  background-color: white;
+  background-color: $section-bg;
 }
 
 
@@ -125,6 +127,60 @@ p, a, li, h3, h4, h5, h6, input, label {
   VOTING PAGE
 **********************************************************/
 
-.question {
-  display: none
+.voting-page-wrapper {
+  text-align: center;
+
+  section:first-child {
+    margin-top: 0.5em;
+    margin-bottom: 2em;
+    background-color: $brand-primary;
+    color: $section-bg;
+    padding-top: 0.3em;
+    padding-bottom: 1.4em;
+  }
+
+  .holding-message {
+    padding: 1em 0 2em 0;
+    background-color: $section-bg;
+    #canvasloader-container {
+      margin-top: 2em;
+    }
+  }
+
+  .question {
+    display: none;
+    background-color: $section-bg;
+    padding-top: 1em;
+    padding-bottom: 2em;
+    padding-left: 3%;
+    padding-right: 3%;
+
+    #question-title {
+      margin-bottom: 1em;
+    }
+
+    .question-form {
+      button {
+        font-weight: 300;
+      }
+
+      .list-group {
+        text-align: left;
+        margin-bottom: 2em;
+
+        #dvOptions {
+
+          .list-group-item {
+            label {
+              font-weight: 300;
+            }
+
+            input {
+              margin-right: 5%;
+            }
+          }
+        }
+      }
+    }
+  }
 }

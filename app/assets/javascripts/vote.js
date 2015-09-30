@@ -1,4 +1,4 @@
-$(document).ready(function() {
+var ready = function() {
 
   $('#choice-submit').click(function() {
     event.preventDefault();
@@ -26,7 +26,6 @@ $(document).ready(function() {
   });
   channel = pusher.subscribe('test_channel');
   return channel.bind(myEvent(), function(data) {
-    console.log('message received');
     buildQuestion(data);
   });
 
@@ -35,7 +34,10 @@ $(document).ready(function() {
     return "event_" + event_number
   };
 
-});
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
 
 
 function buildQuestion(data) {
@@ -47,7 +49,7 @@ function buildQuestion(data) {
   var $choiceOptions = $('#dvOptions');
   $choiceOptions.empty();
   for ( var i = 0; i < data.choices.length; i++) {
-     $choiceOptions.append($('<li><input type="radio" name="choice" value="'
+     $choiceOptions.append($('<li class="list-group-item"><input type="radio" name="choice" value="'
      + data.choices[i].id + '"><label for="choice">'
      + data.choices[i].content + '</label></li>'));
     };
