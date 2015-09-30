@@ -32,6 +32,7 @@
 <% @event.questions.each do |question| %>
   <% if question.choices.any? %>
     <div class="graphs" id="<%= question.id%>" style="display:none" >
+      <h4>Results:</h4>
       <% question.choices.each do |choice| %>
       	<%= div_for choice, 'data-votecount' => choice.votes.count || 0 do %>
         	<%= choice.content %>

@@ -39,9 +39,8 @@ $(document).ready(function() {
   channel = pusher.subscribe('test_channel');
   return channel.bind(myEvent(), function(data) {
     console.log('message received');
-    buildQuestion(data)
-    $('#event-progress').show();
-    $('.graphs').hide();
+    buildQuestion(data);
+    showProgress();
   });
 
   function myEvent(){
@@ -50,6 +49,11 @@ $(document).ready(function() {
   };
 
 });
+
+function showProgress(){
+  $('#event-progress').show();
+  $('.graphs').hide();
+};
 
 function showCurrentChoice(){
   console.log(currentChoice);
@@ -74,4 +78,5 @@ function buildQuestion(data) {
   $( ".question-form").submit(function(){
     console.log("hiya")
   });
+  showProgress();
 };
