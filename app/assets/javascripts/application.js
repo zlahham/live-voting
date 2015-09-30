@@ -13,10 +13,11 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
+//= require jquery-readyselector
 //= require_tree .
 
 window.setTimeout(function() {
     $(".alert").fadeTo(500, 0).slideUp(500, function(){
-        $(this).remove(); 
+        $(this).remove();
     });
 }, 5000);
