@@ -3,6 +3,7 @@ class VotesController < ApplicationController
 
   def create
     choice = Choice.find(params[:choice])
+    p choice
     vote = choice.votes.new
     if vote.save
       json_object = build_json(vote)

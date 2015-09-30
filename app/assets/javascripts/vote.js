@@ -1,17 +1,14 @@
 $(document).ready(function() {
 
- var currentChoice = 0;
- console.log(currentChoice);
-
-
 
   $('#choice-submit').click(function() {
     event.preventDefault();
     var choiceValue = $( "input:radio[name=choice]:checked" ).val();
-    currentChoice = choiceValue;
+    console.log();
     $.post('/votes',{ choice: choiceValue });
     $('.question').hide();
     $('.holding-message').show();
+    console.log( choiceValue );
   });
 
   var channel, pusher;
@@ -34,6 +31,7 @@ $(document).ready(function() {
   return channel.bind(myEvent(), function(data) {
     console.log('message received');
     buildQuestion(data);
+    currentChoice(choiceValue);
   });
 
   function myEvent(){
@@ -43,10 +41,10 @@ $(document).ready(function() {
 
 });
 
-function showCurrentChoice(){
-  console.log(currentChoice);
-};
 
+function currentChoice(choiceValue) {
+  console.log(choiceValue)
+}
 
 function buildQuestion(data) {
   $('.question').show();
