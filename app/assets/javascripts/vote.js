@@ -5,10 +5,10 @@ var ready = function() {
   $('#choice-submit').click(function() {
     event.preventDefault();
     var choiceValue = $( "input:radio[name=choice]:checked" ).val();
-    currentChoice = choiceValue;
-    $.post('/votes',{ choice: choiceValue });
-    $('.question').hide();
-    $(".graphs#" + ($('#question-id-hold').text())).show();
+    answerSubmit(choiceValue);
+    // $.post('/votes',{ choice: choiceValue });
+    // $('.question').hide();
+    // $(".graphs#" + ($('#question-id-hold').text())).show();
   });
 
   var channel, pusher;
@@ -21,12 +21,13 @@ var ready = function() {
 
   function pusherKey(){
     var event_number = $('#pusher-key').text();
-    return event_number
+    return event_number;
   };
 
   pusher = new Pusher(pusherKey(), {
     encrypted: true
   });
+
   channel = pusher.subscribe('test_channel');
   return channel.bind(myEvent(), function(data) {
     buildQuestion(data);
@@ -42,7 +43,11 @@ var ready = function() {
   };
 };
 
-
+function answerSubmit(choiceValue){
+  $.post('/votes',{ choice: choiceValue });
+  $('.question').hide();
+  $(".graphs#" + ($('#question-id-hold').text())).show();
+};
 
 function showProgress(){
   $('#event-progress').show();
