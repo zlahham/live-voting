@@ -11,9 +11,9 @@ gem 'jquery-rails'
 # gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', :group => :doc
-gem "foreman"
-gem "devise"
-gem "pusher"
+gem 'foreman'
+gem 'devise'
+gem 'pusher'
 
 group :development, :test do
   gem 'byebug'
@@ -21,8 +21,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   # gem 'capybara-webkit'
-  gem 'database_cleaner'
   gem 'selenium-webdriver'
+  gem 'database_cleaner'
   gem 'launchy'
   gem 'shoulda'
   gem 'guard-rspec'
@@ -35,7 +35,7 @@ group :development do
 end
 
 group :production, :staging do
-  gem "rails_12factor"
-  gem "rails_stdout_logging"
-  gem "rails_serve_static_assets"
+  gem 'rails_12factor'
+  gem 'rails_stdout_logging'
+  gem 'rails_serve_static_assets'
 end

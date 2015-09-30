@@ -1,6 +1,6 @@
 <% if @question.errors.any? %>
   <section id="errors">
-    <h2><%= pluralize(@question.errors.count, "error")%> prohibited this question from being saved: </h2>
+    <h4><%= pluralize(@question.errors.count, "error")%> prohibited this question from being saved: </h4>
     <ul>
       <% @question.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -9,15 +9,21 @@
   </section>
 <% end %>
 
-<button class="btn btn-info" id="addNewChoice">Add Choice</button>
-<button class="btn btn-info" id="deleteNewChoice">Delete Choice</button>
+<div class='new-question-wrapper'>
+  <h3>Add your well-constructed question and your revealing answers. Click 'Save' when you're done.</h3>
 
-<%= form_for [@event, @question] do |f| %>
-  <%= f.text_field :content, placeholder: "Add your question", class: 'form-control' %>
-  <div id="choices-div">
-      <%= f.fields_for :choices do |choice| %>
-        <%= choice.text_field :content, id:"choice-entry", class: 'form-control', placeholder: 'Choice' %>
-      <% end %>
-  </div>
-  <%= f.submit "Add", class: 'form-control btn btn-info btn-fill' %>
-<% end %>
+  <%= form_for [@event, @question] do |f| %>
+    <div class='form-group'>
+      <%= f.text_field :content, placeholder: "Question", class: 'form-control' %>
+      <div id="choices-div" class='form-group'>
+          <%= f.fields_for :choices do |choice| %>
+            <%= choice.text_field :content, id:"choice-entry", class: 'form-control', placeholder: 'Answer' %>
+          <% end %>
+      </div>
+      <%= f.submit "Save", class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+
+  <button class="btn btn-default" id="addNewChoice">Add Another Answer Box</button><br>
+  <button class="btn btn-default" id="deleteNewChoice">Delete Last Answer</button>
+</div>
