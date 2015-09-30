@@ -148,6 +148,8 @@ $section-bg: white;
     background-color: $section-bg;
     padding-top: 1em;
     padding-bottom: 2em;
+    padding-left: 3%;
+    padding-right: 3%;
 
     #question-title {
       margin-bottom: 1em;
@@ -165,6 +167,10 @@ $section-bg: white;
         #dvOptions {
 
           .list-group-item {
+            label {
+              font-weight: 300;
+            }
+
             input {
               margin-right: 5%;
             }
