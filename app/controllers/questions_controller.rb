@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
-  before_action :question_owner_check, only: [:show, :destroy, :edit, :update]
+  before_action :question_owner?, only: [:show, :destroy, :edit, :update]
+  before_action :check_if_event_owner, only: [:new]
 
   def new
     @event = Event.find(params[:event_id])
@@ -77,9 +78,16 @@ class QuestionsController < ApplicationController
 
   private
 
-  def question_owner_check
+  def question_owner?
     question = Question.find(params[:id])
     if current_user != question.event.user
+      redirect_to root_path, notice: "Sorry, but we were unable to serve your request."
+    end
+  end
+
+  def check_if_event_owner
+    event = Event.find(params[:event_id])
+    if current_user != event.user
       redirect_to root_path, notice: "Sorry, but we were unable to serve your request."
     end
   end

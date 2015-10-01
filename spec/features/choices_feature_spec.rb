@@ -23,8 +23,7 @@ describe 'Choices Features' do
     expect(page).to have_content "#{@question.choices.last.content}"
   end
 
-  it "can only be created by events author" do
-    @choice = create :choice, question: @question
+  it "can only be created by event's author" do
     click_on "Sign out"
     sign_in_as(user_two)
     visit new_question_choice_path(@question)
@@ -32,7 +31,6 @@ describe 'Choices Features' do
   end
 
   it "cannot be created by not logged in user" do
-    @choice = create :choice, question: @question
     click_on "Sign out"
     visit new_question_choice_path(@question)
     expect(current_path).to eq root_path
@@ -47,5 +45,14 @@ describe 'Choices Features' do
     expect(current_path).to eq question_path(question)
     expect(page).not_to have_content "#{choice.content}"
     expect(page).to have_content "Choice successfully deleted"
+  end
+
+  it 'can only be deleted by choice owner' do
+    choice = create :choice, question: @question
+    click_on 'Sign out'
+    sign_in_as(user_two)
+    page.driver.submit :delete, "/choices/#{choice.id}", {}
+    expect(current_path).to eq root_path
+    expect(page).to have_content "Sorry, but we were unable to serve your request."
   end
 end
