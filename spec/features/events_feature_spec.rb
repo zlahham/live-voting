@@ -109,7 +109,7 @@ feature 'Events Features' do
       expect(page).to have_content "Awaiting Question"
     end
 
-    it 'signed in event participant can go to event using lowecase' do
+    it 'signed in event participant can go to event using lowercase' do
       sign_in_as event.user
       within(:css, '#event_id_wrapper') do
         expect(page).to have_content "Click Here"
@@ -128,10 +128,13 @@ feature 'Events Features' do
     it 'user is shown message when event id is incorrectly entered' do
       incorrect_event_id = event.id + 1
       click_on 'Click Here'
-      fill_in :unparsed_event_id, with: incorrect_event_id
+      event_code = event.code
+      new_code = "ABCD" + "#{incorrect_event_id}"
+      event.update_attributes(code: new_code)
+      fill_in :unparsed_event_id, with: "1234"+"#{incorrect_event_id}"
       click_on 'Go'
       expect(current_path).to eq root_path
-      expect(page).to have_content "Sorry, that id does not match any events. Please try again."
+      expect(page).to have_content "Sorry, that code does not match any events. Please try again."
     end
   end
 end

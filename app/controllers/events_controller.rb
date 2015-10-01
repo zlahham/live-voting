@@ -59,13 +59,12 @@ class EventsController < ApplicationController
 
   def parse_event_id
     event_code = params[:unparsed_event_id]
-    4.times{event_code.slice!(0)}
-    if Event.exists?(event_code)
-      event = Event.find(event_code)
+    if Event.exists?(:code => event_code)
+      event = Event.find_by code: event_code.to_s
       redirect_to vote_event_path(event)
     else
       redirect_to root_path
-      flash[:alert] = "Sorry, that id does not match any events. Please try again."
+      flash[:alert] = "Sorry, that code does not match any events. Please try again."
     end
   end
 
