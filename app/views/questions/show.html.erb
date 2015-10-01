@@ -5,6 +5,8 @@
     <h1><%= @question.event.title %></h1>
   </section>
 
+  <div id="event-id" style="display:none;"><%= @question.event.id %></div>
+
   <div class='question-show-page-poll-wrapper'>
     <h2><%= @question.content %></h2>
 
@@ -27,6 +29,7 @@
     <% end %>
 
     <%= link_to 'Add New Choice', new_question_choice_path(@question), class: 'btn btn-default btn-sm' %>
+
     <div>
       <%= link_to "Back", event_path(@question.event.id), class: 'btn btn-default btn-sm' %>
       <%= link_to "Push Question to Audience", { controller: :questions, action: :publish_question, question: @question}, class: 'btn btn-primary btn-sm' %>

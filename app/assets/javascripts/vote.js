@@ -1,44 +1,39 @@
-var ready = function() {
+$(".events.vote").ready(function() {
 
-  $('#choice-submit').click(function() {
-    event.preventDefault();
-    var choiceValue = $( "input:radio[name=choice]:checked" ).val();
-    $.post('/votes',{ choice: choiceValue });
-    $('.question').hide();
-    $('.holding-message').show();
-  });
+  var ready = function() {
 
-  var channel, pusher;
-  Pusher.log = function(message) {
-    if (window.console && window.console.log) {
-      window.console.log(message);
-      window.console.log(window.location.href);
-    }
+    $('#choice-submit').click(function() {
+      event.preventDefault();
+      var choiceValue = $( "input:radio[name=choice]:checked" ).val();
+      $.post('/votes',{ choice: choiceValue });
+      $('.question').hide();
+      $('.holding-message').show();
+    });
+
+    function pusherKey(){
+      var event_number = $('#pusher-key').text();
+      return event_number
+    };
+
+    pusher = new Pusher(pusherKey(), {
+      encrypted: true
+    });
+
+    channel = pusher.subscribe('test_channel');
+    return channel.bind(myEvent(), function(data) {
+      buildQuestion(data);
+    });
+
+    function myEvent(){
+      var event_number = $('#event-id').text();
+      return "event_" + event_number
+    };
   };
 
-  function pusherKey(){
-    var event_number = $('#pusher-key').text();
-    return event_number
-  };
+  $(document).ready(ready);
+  $(document).on('page:load', ready);
 
-  pusher = new Pusher(pusherKey(), {
-    encrypted: true
-  });
-  channel = pusher.subscribe('test_channel');
-  return channel.bind(myEvent(), function(data) {
-    buildQuestion(data);
-  });
-
-  function myEvent(){
-    var event_number = $('#event-id').text();
-    return "event_" + event_number
-  };
-
-};
-
-$(document).ready(ready);
-$(document).on('page:load', ready);
-
+});
 
 function buildQuestion(data) {
   $('.question').show();
