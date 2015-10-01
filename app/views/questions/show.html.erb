@@ -8,8 +8,8 @@
   <div id="event-id" style="display:none;"><%= @question.event.id %></div>
 
   <div class='question-show-page-poll-wrapper'>
-    <h2>
     <%= link_to 'Back', event_path(@question.event.id), class: "glyphicon glyphicon-chevron-left btn btn-default btn-sm" %><br>
+    <h2>
       <%= @question.content %>
     </h2>
 
@@ -33,7 +33,7 @@
 
     <%= link_to 'Add New Choice', new_question_choice_path(@question), class: 'btn btn-default btn-sm add-choice-button' %>
 
-    <div>
+    <div id='question-show-push-button'>
       <%= link_to "Push Question to Audience", { controller: :questions, action: :publish_question, question: @question}, class: 'btn btn-primary btn-sm pull-right' %>
     </div>
   </div>
