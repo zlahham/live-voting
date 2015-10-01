@@ -1,16 +1,17 @@
 class QuestionsController < ApplicationController
+
   def new
-    @event = Event.find(params[:event_id])
+    @event = find_event
     @question = Question.new
     2.times { @question.choices.build }
   end
 
   def show
-    @question = Question.find(params[:id])
+    @question = find_question
   end
 
   def create
-    @event = Event.find(params[:event_id])
+    @event = find_event
     @question = @event.questions.new(question_params)
 
     if @question.save
@@ -22,13 +23,13 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    question = Question.find(params[:id]).destroy
+    question = find_question.destroy
     redirect_to event_path(question.event)
     flash[:notice] = "Question successfully deleted"
   end
 
   def clear_votes
-    question = Question.find(params[:id])
+    question = find_question
     question.choices.map{ |choice| choice.votes.destroy_all }
     redirect_to question_path(question)
     flash[:notice] = "Votes successfully cleared"
@@ -66,14 +67,23 @@ class QuestionsController < ApplicationController
   end
 
   def add_choice
-  @question = Question.find(params[:id])
+  @question = find_question
 
     respond_to do |format|
       format.js
     end
   end
 
+
   private
+
+  def find_question
+    Question.find(params[:id])
+  end
+
+  def find_event
+    Event.find(params[:event_id])
+  end
 
   def question_number(event, question)
     questions_array = event.questions.all.order(:id)

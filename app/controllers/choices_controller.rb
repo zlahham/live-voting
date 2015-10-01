@@ -1,11 +1,11 @@
 class ChoicesController < ApplicationController
   def new
-    @question = Question.find(params[:question_id])
+    @question = find_question
     @choice = Choice.new
   end
 
   def create
-    @question = Question.find(params[:question_id])
+    @question = find_question
     @choice = @question.choices.new(choices_params)
       
     if @choice.save
@@ -17,12 +17,21 @@ class ChoicesController < ApplicationController
   end
 
   def destroy
-    choice = Choice.find(params[:id]).destroy
+    choice = find_choice
+    choice.destroy
     redirect_to question_path(choice.question)
     flash[:notice] = "Choice successfully deleted"
   end
 
   private
+
+  def find_question
+    Question.find(params[:question_id])
+  end
+
+  def find_choice
+    Choice.find(params[:id])
+  end
 
   def choices_params
     params.require(:choice).permit(:content)
