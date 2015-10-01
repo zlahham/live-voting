@@ -10,14 +10,6 @@ $(".events.vote").ready(function() {
       $('.holding-message').show();
     });
 
-    var channel, pusher;
-    Pusher.log = function(message) {
-      if (window.console && window.console.log) {
-        window.console.log(message);
-        window.console.log(window.location.href);
-      }
-    };
-
     function pusherKey(){
       var event_number = $('#pusher-key').text();
       return event_number
