@@ -18,6 +18,7 @@ $(".events.vote").ready(function() {
     pusher = new Pusher(pusherKey(), {
       encrypted: true
     });
+
     channel = pusher.subscribe('test_channel');
     return channel.bind(myEvent(), function(data) {
       buildQuestion(data);
@@ -27,7 +28,6 @@ $(".events.vote").ready(function() {
       var event_number = $('#event-id').text();
       return "event_" + event_number
     };
-
   };
 
   $(document).ready(ready);

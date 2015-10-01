@@ -9,7 +9,13 @@ p, a, li, h3, h4, h5, h6, input, label {
 $section-bg: white;
 
 
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+}
 
+input:focus:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+}
 
 
 

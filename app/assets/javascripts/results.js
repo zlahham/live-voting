@@ -1,47 +1,46 @@
 $(".questions.show").ready(function() {
 
-var ready = function(){
+  var ready = function(){
+    
+    var channel, pusher;
 
-  var channel, pusher;
-  Pusher.log = function(message) {
-    if (window.console && window.console.log) {
-      window.console.log(message);
-      window.console.log(window.location.href);
+    Pusher.log = function(message) {
+      if (window.console && window.console.log) {
+        window.console.log(message);
+        window.console.log(window.location.href);
+      }
+    };
+
+    function pusherKey(){
+      var event_number = $('#pusher-key').text();
+      return event_number;
     }
+
+    function myEvent(){
+      var event_number = $('#event-id').text();
+      return "event_" + event_number
+    };
+
+    pusher = new Pusher(pusherKey(), {
+      encrypted: true
+    });
+
+    channel = pusher.subscribe('vote_count_channel');
+    return channel.bind(myEvent(), function(data) {
+      choiceVotebuilder(data);
+      playNote(data);
+    });
   };
 
-  function pusherKey(){
-    var event_number = $('#pusher-key').text();
-    return event_number;
-  }
-
-  function myEvent(){
-    var event_number = $('#event-id').text();
-    return "event_" + event_number
-  };
-
-  pusher = new Pusher(pusherKey(), {
-    encrypted: true
-  });
-
-  channel = pusher.subscribe('vote_count_channel');
-  return channel.bind(myEvent(), function(data) {
-    choiceVotebuilder(data);
-    playNote(data);
-  });
-};
-
-
-$(document).ready(ready);
-$(document).on('page:load', ready);
-
+  $(document).ready(ready);
+  $(document).on('page:load', ready);
 
 });
 
-  function playNote(data){
-    var note = (data.vote_count * 2) -12;
-    playSine(note);
-  };
+function playNote(data){
+  var note = (data.vote_count * 2) -12;
+  playSine(note);
+};
 
 function choiceVotebuilder(data){
   var choice = "#choice_" + data.choice_id.toString();
