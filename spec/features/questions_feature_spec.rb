@@ -57,7 +57,7 @@ describe 'Questions Features' do
   it 'disallows non owners to make event questions' do
     click_on "Sign out"
     sign_in_as(user_two)
-    visit event_path(event)
+    visit new_event_question_path(event)
     expect(current_path).to eq root_path
     expect(page).to have_content('Sorry, but we were unable to serve your request.')
   end
