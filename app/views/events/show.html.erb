@@ -1,23 +1,41 @@
 <div class='event-show-page-wrapper'>
-	<h1><%= @event.title %></h1>
-	<h1><small>Event ID: <%= @event.code %></small></h1>
-	<h4><%= @event.description %></h4>
-	<h2>
-		<small>Share voting page on Twitter:</small>
-		<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-url="<%=request.original_url + "/vote" %>" data-text="Vote on the @LitmusVoting event '<%= @event.title.titlecase %>':
-		" data-count="none" value="Share voting page on Twitter"></a>
-	</h2>
+
+	<section class='event-header-wrapper'>
+		<h1><%= @event.title %></h1>
+		<h4><%= @event.description %></h4>
+		<h5 class='well'>Event ID: <%= @event.code %></h5>
+	</section>
+	
+	<p>For your audience to vote on your questions, you need to give them the above Event ID (for them to use on the home page of this website), or:</p>
+
+	<h4>Tweet a link to the voting page:</h4>
+
+	<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-url="<%=request.original_url + "/vote" %>" data-text="Vote on the @LitmusVoting event '<%= @event.title.titlecase %>':
+	" data-count="none" value="Share voting page on Twitter"></a>
+
+	<br>
+	<br>
 
 	<%= link_to 'Add Question', new_event_question_path(@event), class: 'btn btn-primary' %>
 
-	<section>
+	<section class='event-questions-wrapper'>
 		<ul class='list-group'>
 		  <% if @event.questions.any? %>
 		    <% @event.questions.each do |question| %>
-		      <li class='list-group-item'>
+		      <li class='list-group-item row'>
+		      	<div class='col-xs-6'>
 		        	<%= link_to question.content, question_path(question) %>
-		        	<%= link_to "Push Question to Audience", { controller: :questions, action: :publish_question, question: question}, class: 'btn btn-primary btn-sm' %>
-		        	<%= link_to "Delete Question", question, method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-sm btn-default' %>
+		        </div>
+		        <div class='col-xs-6'>
+		        	<div class='row'>
+		        		<div class='col-sm-7'>
+				        	<%= link_to "Push Question to Audience", { controller: :questions, action: :publish_question, question: question}, class: 'btn btn-primary btn-sm' %>
+			        	</div>
+			        	<div class='col-sm-5'>
+				        	<%= link_to "Delete Question", question, method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-sm btn-default' %>
+			        	</div>
+		        	</div>
+		        </div>
 		      </li>
 		    <% end %>
 		  <% end %>

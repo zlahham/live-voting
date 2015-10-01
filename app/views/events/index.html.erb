@@ -1,29 +1,9 @@
 <div class='events-index-wrapper'>
-	<div id='event_id_wrapper'>
-		<h2>
-			Here to vote?
-			<a href='#' type="text/html" data-toggle="modal" data-target=".event_id_modal">Click Here</a>
-		</h2>
-		<div class="modal fade event_id_modal" tabindex="-1" role="dialog" aria-labelledby="eventIdModal">
-		  <div class="modal-dialog modal-sm">
-		    <div class="modal-content">
-		    	<div class='container-fluid'>
-			      <%= form_tag({controller: 'events', action: 'parse_event_id'}, method: 'get', class: 'form-inline') do %>
-			      	<div class='form-group'>
-				      	<%= label_tag(:unparsed_event_id, "Enter Event Id:") %>
-				      	<%= text_field_tag(:unparsed_event_id, nil, class: 'form-control') %>
-				      	<%= submit_tag 'Go', class: 'btn btn-primary' %>
-			      	</div>
-			      <% end %>
-		      </div>
-					<p>Thankfully NOT case-sensitive!</p>
-		    </div>
-		  </div>
-		</div>
-	</div>
 
-	<main class='events-wrapper'>
-		<% if user_signed_in? %>
+	<%= render 'partials/here_to_vote' %>
+
+	<% if user_signed_in? %>
+		<section class='events-signed-in-wrapper'>
 			<% if current_user.events.count == 0 %>
 				<h3 id='no-events-notice' class='well'>You don't have any events yet - why not add one below?</h3>
 			<% end %>
@@ -46,14 +26,17 @@
 							<% end  %>
 						</div>
 						<div class='col-xs-6'>
-							<%= link_to 'Edit Event', edit_event_path(event), class: 'btn btn-sm btn-default' %>
-							<%= link_to 'Delete', event, method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-default btn-sm' %>
+							<%= link_to 'Edit Event', edit_event_path(event), class: 'btn btn-sm btn-default pull-right' %>
+							<%= link_to 'Delete', event, method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-default btn-sm pull-right' %>
 						</div>
 					</li>
 			  <% end %>
 			</ul>
+		</section>
 
-		<% else %>
+	<% else %>
+
+		<section class='events-signed-out-wrapper'>
 
 		  <div class="jumbotron">
 		  	<div class='container'>
@@ -71,19 +54,19 @@
 		  	<div class='container'>
 			    <h2>Do you want to get instant feedback from your audience today?</h4>
 			    <ul class="graph">
-		        <p class="graphChoice">Yes, sounds great!</p>
+		        <p class="graph_choice">Yes, sounds great!</p>
 			        <li>
 				        <div class="bar one" style="width: 79.9993px; overflow: hidden;"><span></span>
 				        </div>
 				      </li>
 
-			      <p class="graphChoice">Let me think about it</p>
+			      <p class="graph_choice">Let me think about it</p>
 			        <li>
 			        	<div class="bar two" style="width: 58.0482px; overflow: hidden;"><span></span>
 			        	</div>
 			        </li>
 
-			      <p class="graphChoice">No, this isn't for me</p>
+			      <p class="graph_choice">No, this isn't for me</p>
 			      	<li>
 			      		<div class="bar three" style="width: 76.0156px; overflow: hidden;"><span></span>
 			      	</div>
@@ -91,5 +74,6 @@
 		      </ul>
 		    </div>
 			</div>
-<% end %>
 
+		</section>
+	<% end %>

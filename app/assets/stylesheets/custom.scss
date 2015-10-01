@@ -19,6 +19,8 @@ input:focus:-webkit-autofill {
 
 
 
+
+
 /**********************************************************
   NAVBAR
 **********************************************************/
@@ -55,6 +57,9 @@ input:focus:-webkit-autofill {
 }
 
 
+
+
+
 /**********************************************************
   HOMEPAGE
 **********************************************************/
@@ -89,10 +94,12 @@ input:focus:-webkit-autofill {
   }
 }
 
-
-.graphChoice {
+.graph_choice {
   margin-bottom: 0 !important;
 }
+
+
+
 
 
 /**********************************************************
@@ -100,6 +107,9 @@ input:focus:-webkit-autofill {
 **********************************************************/
 
 #event_id_wrapper {
+  text-align: center;
+  margin-bottom: 2em;
+
   h2 {
     a:first-child {
       white-space: nowrap;
@@ -115,6 +125,7 @@ input:focus:-webkit-autofill {
     font-size: 0.5em;
   }
 }
+
 
 
 
@@ -135,15 +146,41 @@ input:focus:-webkit-autofill {
   EVENTS PAGE
 **********************************************************/
 
-.new_event {
-  margin-bottom: 1em;
+.events-index-wrapper {
+  margin: auto;
 }
 
-.events_list {
-  padding-left: 0;
-  background-color: $section-bg;
-}
+.events-signed-in-wrapper {
+  max-width: 720px;
+  margin: auto;
 
+  .new_event {
+    input:first-child {
+      margin-bottom: 1em;
+    }
+    margin-bottom: 1em;
+
+    .btn {
+      margin-top: 1em;
+    }
+  }
+
+  .events_list {
+    padding: 0;
+    background-color: $section-bg;
+    max-width: 694px;
+    margin: auto;
+
+    li {
+      padding-left: 0;
+      padding-right: 0;
+
+      .btn {
+        margin-right: 3%;
+      }
+    }
+  }
+}
 
 
 
@@ -154,15 +191,54 @@ input:focus:-webkit-autofill {
 **********************************************************/
 
 .event-show-page-wrapper {
-  h1:first-child {
-    margin-bottom: 0;
-  }
-  h1:nth-child(2) {
-    margin-top: 0;
+  text-align: center;
+
+  .event-header-wrapper {
+    text-align: center;
+    background-color: $brand-primary;
+    color: white;
+    padding-top: 0.2em;
+    padding-bottom: 0.7em;
+    margin-bottom: 1em;
+
+    h5:last-child {
+      color: black;
+      display: inline-block;
+      margin-top: 1em;
+      padding-top: 0.3em;
+      padding-bottom: 0.3em;
+      font-weight: 400;
+    }
+
+    h1:first-child {
+      margin-bottom: 0;
+    }
+
+    h1:nth-child(2) {
+      margin-top: 0;
+    }
   }
 
-  section {
-    margin-top: 2em;
+  .event-questions-wrapper {
+    margin-top: 1.5em;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+
+    div:first-child {
+      text-align: left;
+    }
+
+    div:last-child {
+      div:first-child {
+        text-align: right;
+        margin-bottom: 0.5em;
+      }
+
+      div:last-child {
+        text-align: right;
+      }
+    }
   }
 }
 
@@ -221,7 +297,7 @@ input:focus:-webkit-autofill {
 .question-show-page-wrapper {
   section:first-child {
     text-align: center;
-    margin-top: 0.5em;
+    margin-top: 0.1em;
     margin-bottom: 2em;
     background-color: $brand-primary;
     color: $section-bg;
@@ -235,9 +311,10 @@ input:focus:-webkit-autofill {
     padding-bottom: 1.2em;
     padding-left: 3%;
     padding-right: 3%;
+    margin-top: 4em;
     margin-bottom: 1.2em;
 
-    h2:first-child {
+    h2 {
       text-align: center;
       margin-bottom: 1em;
     }
@@ -255,7 +332,7 @@ input:focus:-webkit-autofill {
     }
 
     .progress {
-      height: 2em;
+      height: 1.75em;
       margin-bottom: 0.3em;
     }
 
@@ -268,10 +345,15 @@ input:focus:-webkit-autofill {
     .choice {
       margin-bottom: 0.5em;
     }
-  }
 
-  div:last-child {
-    margin-top: 0.3em;
+    .add-choice-button {
+      margin-top: 1em;
+    }
+
+    #question-show-push-button {
+      position: relative;
+      bottom: 2.2em;
+    }
   }
 }
 
