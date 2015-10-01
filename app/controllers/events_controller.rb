@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
 
   before_action :authenticate_user!, :except => [:index, :show, :vote, :parse_event_id]
-  before_action :event_owner_check, only: [:show]
+  before_action :event_owner_check, only: [:show, :destroy, :edit, :update]
 
   def index
     @event = Event.new
