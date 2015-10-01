@@ -96,7 +96,7 @@ describe 'Questions Features' do
       expect(page).to have_selector(:link_or_button, "Back")
     end
 
-    it 'cannot be accessed expect by event author' do
+    it 'cannot be accessed except by event author' do
       click_on "Sign out"
       sign_in_as(user_two)
       visit question_path(@question)
