@@ -6,9 +6,6 @@ var ready = function() {
     event.preventDefault();
     var choiceValue = $( "input:radio[name=choice]:checked" ).val();
     answerSubmit(choiceValue);
-    // $.post('/votes',{ choice: choiceValue });
-    // $('.question').hide();
-    // $(".graphs#" + ($('#question-id-hold').text())).show();
   });
 
   var channel, pusher;
@@ -61,7 +58,6 @@ function buildQuestion(data) {
   $('#question-number').text(data.question.question_number);
   $('#question-title').text(data.question.content);
   $('#question-id-hold').text(data.question.id);
-
   var $choiceOptions = $('#dvOptions');
   $choiceOptions.empty();
   for ( var i = 0; i < data.choices.length; i++) {
