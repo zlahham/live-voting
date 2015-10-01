@@ -1,3 +1,5 @@
+$(".questions.show").ready(function() {
+
 var ready = function(){
 
   var channel, pusher;
@@ -33,26 +35,29 @@ var ready = function(){
 $(document).ready(ready);
 $(document).on('page:load', ready);
 
+
+});
+
   function playNote(data){
     var note = (data.vote_count * 2) -12;
     playSine(note);
   };
 
-  function choiceVotebuilder(data){
-    var choice = "#choice_" + data.choice_id.toString();
-    var choices = $('[id^="choice_"]');
-    var currentTotalVotes = 0;
-    for (var i = 0; i < choices.length; i++) {
-      currentTotalVotes = currentTotalVotes + parseInt(choices[i].getAttribute("data-votecount"));
-    }
-    currentTotalVotes++;
-    $(choice + ' .vote-count').text("Votes: " + data.vote_count);
-    $(choice).attr('data-votecount', data.vote_count);
+function choiceVotebuilder(data){
+  var choice = "#choice_" + data.choice_id.toString();
+  var choices = $('[id^="choice_"]');
+  var currentTotalVotes = 0;
+  for (var i = 0; i < choices.length; i++) {
+    currentTotalVotes = currentTotalVotes + parseInt(choices[i].getAttribute("data-votecount"));
+  }
+  currentTotalVotes++;
+  $(choice + ' .vote-count').text("Votes: " + data.vote_count);
+  $(choice).attr('data-votecount', data.vote_count);
 
-    for (var i = 0; i < choices.length; i++) {
-      var choiceCount =  parseInt(choices[i].getAttribute("data-votecount"));
-      var choiceToChange = choices[i].getAttribute("id");
-      $("#" + choiceToChange + ' .progress-bar').attr('style', "width: " + ( choiceCount / currentTotalVotes * 100) + "%");
-    }
-    $(choice + ' .progress-bar').attr('style', "width: " + (data.vote_count / currentTotalVotes * 100) + "%");
-  };
+  for (var i = 0; i < choices.length; i++) {
+    var choiceCount =  parseInt(choices[i].getAttribute("data-votecount"));
+    var choiceToChange = choices[i].getAttribute("id");
+    $("#" + choiceToChange + ' .progress-bar').attr('style', "width: " + ( choiceCount / currentTotalVotes * 100) + "%");
+  }
+  $(choice + ' .progress-bar').attr('style', "width: " + (data.vote_count / currentTotalVotes * 100) + "%");
+};
