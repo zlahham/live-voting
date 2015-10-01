@@ -58,7 +58,7 @@ class EventsController < ApplicationController
   end
 
   def parse_event_id
-    event_code = params[:unparsed_event_id]
+    event_code = params[:unparsed_event_id].upcase
     if Event.exists?(:code => event_code)
       event = Event.find_by code: event_code.to_s
       redirect_to vote_event_path(event)
