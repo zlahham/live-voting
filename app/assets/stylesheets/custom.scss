@@ -19,6 +19,8 @@ input:focus:-webkit-autofill {
 
 
 
+
+
 /**********************************************************
   NAVBAR
 **********************************************************/
@@ -55,6 +57,9 @@ input:focus:-webkit-autofill {
 }
 
 
+
+
+
 /**********************************************************
   HOMEPAGE
 **********************************************************/
@@ -89,10 +94,12 @@ input:focus:-webkit-autofill {
   }
 }
 
-
-.graphChoice {
+.graph_choice {
   margin-bottom: 0 !important;
 }
+
+
+
 
 
 /**********************************************************
@@ -119,6 +126,7 @@ input:focus:-webkit-autofill {
 
 
 
+
 /**********************************************************
   JUMBOTRON
 **********************************************************/
@@ -135,15 +143,37 @@ input:focus:-webkit-autofill {
   EVENTS PAGE
 **********************************************************/
 
-.new_event {
-  margin-bottom: 1em;
+.events-index-wrapper {
+  max-width: 720px;
+  margin: auto;
 }
 
-.events_list {
-  padding-left: 0;
-  background-color: $section-bg;
-}
+.events-signed-in-wrapper {
 
+  .new_event {
+    margin-bottom: 1em;
+
+    .btn {
+      margin-top: 1em;
+    }
+  }
+
+  .events_list {
+    padding: 0;
+    background-color: $section-bg;
+    max-width: 694px;
+    margin: auto;
+
+    li {
+      padding-left: 0;
+      padding-right: 0;
+
+      .btn {
+        margin-right: 3%;
+      }
+    }
+  }
+}
 
 
 
