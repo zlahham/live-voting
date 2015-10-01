@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe 'Questions Features' do
   let(:event){ create :event, user: create(:user) }
+  let(:user_two){create :user_two}
 
   before :each do
     sign_in_as(event.user)
@@ -51,6 +52,16 @@ describe 'Questions Features' do
     fill_in "question[choices_attributes][1][content]", with: "choice 2"
     click_on 'Save'
     expect(page).to have_content "1 error prohibited this question from being saved:"
+  end
+
+  it 'disallows non owners to make event questions' do
+    click button "Sign out"
+    sign_in_as(user_two)
+    visit event_path(event)
+    expect_current_path to 
+
+
+
   end
 
   it 'allows extra choices to be deleted', js: :true do
@@ -164,7 +175,7 @@ describe 'Questions Features' do
         page.execute_script("$(document).ready(function() { choiceVotebuilder(#{vote_creator(@choice1.id, "2")}) });")
         expect(page).to have_css("#choice_#{@choice1.id}[data-votecount='2']")
         page.execute_script("$(document).ready(function() { choiceVotebuilder(#{vote_creator(@choice1.id, "3")}) });")
-        expect(page).to have_css("#choice_#{@choice1.id}[data-votecount='3']")  
+        expect(page).to have_css("#choice_#{@choice1.id}[data-votecount='3']")
       end
     end
   end
