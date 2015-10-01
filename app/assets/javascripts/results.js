@@ -13,12 +13,17 @@ var ready = function(){
     return event_number;
   }
 
+  function myEvent(){
+    var event_number = $('#event-id').text();
+    return "event_" + event_number
+  };
+
   pusher = new Pusher(pusherKey(), {
     encrypted: true
   });
 
   channel = pusher.subscribe('vote_count_channel');
-  return channel.bind('new_message', function(data) {
+  return channel.bind(myEvent(), function(data) {
     choiceVotebuilder(data);
     playNote(data);
   });
@@ -50,4 +55,4 @@ $(document).on('page:load', ready);
       $("#" + choiceToChange + ' .progress-bar').attr('style', "width: " + ( choiceCount / currentTotalVotes * 100) + "%");
     }
     $(choice + ' .progress-bar').attr('style', "width: " + (data.vote_count / currentTotalVotes * 100) + "%");
-  }
+  };
