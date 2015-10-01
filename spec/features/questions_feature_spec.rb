@@ -95,6 +95,15 @@ describe 'Questions Features' do
       expect(page).to have_selector(:link_or_button, "Back")
     end
 
+    it 'cannot be accessed expect by event author' do
+      click_on "Sign out"
+      sign_in_as(user_two)
+      visit question_path(@question)
+      expect(current_path).to eq root_path
+      expect(page).to have_content "Sorry, but we were unable to serve your request."
+    end
+
+
     it 'it can be pushed to the audience from the question show view' do
       expect_any_instance_of(Pusher::Client).to receive(:trigger)
       visit question_path(@question)

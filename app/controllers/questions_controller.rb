@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  before_action :question_owner_check, only: [:show, :destroy, :edit, :update]
 
   def new
     @event = Event.find(params[:event_id])
@@ -75,6 +76,13 @@ class QuestionsController < ApplicationController
   end
 
   private
+
+  def question_owner_check
+    question = Question.find(params[:id])
+    if current_user != question.event.user
+      redirect_to root_path, notice: "Sorry, but we were unable to serve your request."
+    end
+  end
 
   def question_number(event, question)
     questions_array = event.questions.all.order(:id)
