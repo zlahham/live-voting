@@ -1,0 +1,22 @@
+<div id='event_id_wrapper'>
+  <h2>
+    Here to vote?
+    <a href='#' type="text/html" data-toggle="modal" data-target=".event_id_modal">Click Here</a>
+  </h2>
+  <div class="modal fade event_id_modal" tabindex="-1" role="dialog" aria-labelledby="eventIdModal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class='container-fluid'>
+          <%= form_tag({controller: 'events', action: 'parse_event_id'}, method: 'get', class: 'form-inline') do %>
+            <div class='form-group'>
+              <%= label_tag(:unparsed_event_id, "Enter Event Id:") %>
+              <%= text_field_tag(:unparsed_event_id, nil, class: 'form-control') %>
+              <%= submit_tag 'Go', class: 'btn btn-primary' %>
+            </div>
+          <% end %>
+        </div>
+        <p>Thankfully NOT case-sensitive!</p>
+      </div>
+    </div>
+  </div>
+</div>
