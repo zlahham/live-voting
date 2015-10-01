@@ -1,81 +1,95 @@
-<div id='event_id_wrapper'>
-	<h2>
-		Here to vote?
-		<a href='#' type="text/html" data-toggle="modal" data-target=".event_id_modal">Click Here</a>
-	</h2>
-	<div class="modal fade event_id_modal" tabindex="-1" role="dialog" aria-labelledby="eventIdModal">
-	  <div class="modal-dialog modal-sm">
-	    <div class="modal-content">
-	    	<div class='container-fluid'>
-		      <%= form_tag({controller: 'events', action: 'parse_event_id'}, method: 'get', class: 'form-inline') do %>
-		      	<div class='form-group'>
-			      	<%= label_tag(:unparsed_event_id, "Enter Event Id:") %>
-			      	<%= text_field_tag(:unparsed_event_id, nil, class: 'form-control') %>
-			      	<%= submit_tag 'Go', class: 'btn btn-primary' %>
-		      	</div>
-		      <% end %>
-	      </div>
-				<p>Thankfully NOT case-sensitive!</p>
-	    </div>
-	  </div>
+<div class='events-index-wrapper'>
+	<div id='event_id_wrapper'>
+		<h2>
+			Here to vote?
+			<a href='#' type="text/html" data-toggle="modal" data-target=".event_id_modal">Click Here</a>
+		</h2>
+		<div class="modal fade event_id_modal" tabindex="-1" role="dialog" aria-labelledby="eventIdModal">
+		  <div class="modal-dialog modal-sm">
+		    <div class="modal-content">
+		    	<div class='container-fluid'>
+			      <%= form_tag({controller: 'events', action: 'parse_event_id'}, method: 'get', class: 'form-inline') do %>
+			      	<div class='form-group'>
+				      	<%= label_tag(:unparsed_event_id, "Enter Event Id:") %>
+				      	<%= text_field_tag(:unparsed_event_id, nil, class: 'form-control') %>
+				      	<%= submit_tag 'Go', class: 'btn btn-primary' %>
+			      	</div>
+			      <% end %>
+		      </div>
+					<p>Thankfully NOT case-sensitive!</p>
+		    </div>
+		  </div>
+		</div>
 	</div>
-</div>
 
-<% if user_signed_in? %>
-	<% if current_user.events.count == 0 %>
-		<h2 id='no-events-notice'>You don't have any events yet - why not add one below?</h2>
-	<% end %>
+	<main class='events-wrapper'>
+		<% if user_signed_in? %>
+			<% if current_user.events.count == 0 %>
+				<h3 id='no-events-notice' class='well'>You don't have any events yet - why not add one below?</h3>
+			<% end %>
 
-	<%= form_for @event, html: { class: 'form-inline new_event' } do |f| %>
-	  <div class='form-group'>
-	    Event title: <%= f.text_field :title, class: "form-control" %>
-	    Description (optional): <%= f.text_field :description, class: "form-control" %>
-	    <%= f.submit "Add Event", class: "btn btn-primary" %>
-	  </div>
-	<% end %>
+			<%= form_for @event, html: { class: 'new_event' } do |f| %>
+			  <div class='form-group'>
+			    Event title: <%= f.text_field :title, class: "form-control" %>
+			    Description (optional): <%= f.text_field :description, class: "form-control" %>
+			    <%= f.submit "Add Event", class: "btn btn-primary" %>
+			  </div>
+			<% end %>
 
-	<ul class='events_list list-group'>
-		<% @events.each do |event| %>
-			<li class='list-group-item'>
-				<%= link_to event_path(event) do %>
-					 <%= event.title %><br>
-					 <%= event.description %>
-				<% end  %>
-				<%= link_to 'Delete', event, method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-default btn-sm' %>
-				<%= link_to 'Edit Event', edit_event_path(event), class: 'btn btn-sm btn-default' %>
-			</li>
-	  <% end %>
-	</ul>
+			<ul class='events_list list-group'>
+				<% @events.each do |event| %>
+					<li class='list-group-item row'>
+						<div class='col-xs-6'>
+							<%= link_to event_path(event) do %>
+								 <%= event.title %><br>
+								 <%= event.description %>
+							<% end  %>
+						</div>
+						<div class='col-xs-6'>
+							<%= link_to 'Edit Event', edit_event_path(event), class: 'btn btn-sm btn-default' %>
+							<%= link_to 'Delete', event, method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-default btn-sm' %>
+						</div>
+					</li>
+			  <% end %>
+			</ul>
 
-<% else %>
+		<% else %>
 
-  <div class="jumbotron">
-  	<div class='container'>
-	    <h1>We have great live polling tools</h1>
-	    <p>More subtitle info goes here</p>
-			<% if current_user %>
-	    	<%= link_to "Create your event today", new_event_path, class: "btn btn-primary btn-lg" %>
-	    <% else %>
-	    	<%= link_to "Create your account today", new_user_registration_path, class: "btn btn-primary btn-lg" %>
-	    <% end %>
-    </div>
-  </div>
+		  <div class="jumbotron">
+		  	<div class='container'>
+			    <h1>We have great live polling tools</h1>
+			    <p>More subtitle info goes here</p>
+					<% if current_user %>
+			    	<%= link_to "Create your event today", new_event_path, class: "btn btn-primary btn-lg" %>
+			    <% else %>
+			    	<%= link_to "Create your account today", new_user_registration_path, class: "btn btn-primary btn-lg" %>
+			    <% end %>
+		    </div>
+		  </div>
 
-  <div class="jumbotron">
-  	<div class='container'>
-	    <h2>Do you want to get instant feedback from your audience today?</h4>
-	    <ul class="graph">
-        <p class="graphChoice">Yes, sounds great!</p>
-        <li>
-        <div class="bar one" style="width: 79.9993px; overflow: hidden;"><span></span></div></li>
+		  <div class="jumbotron">
+		  	<div class='container'>
+			    <h2>Do you want to get instant feedback from your audience today?</h4>
+			    <ul class="graph">
+		        <p class="graphChoice">Yes, sounds great!</p>
+			        <li>
+				        <div class="bar one" style="width: 79.9993px; overflow: hidden;"><span></span>
+				        </div>
+				      </li>
 
-        <p class="graphChoice">Let me think about it</p>
-        <li><div class="bar two" style="width: 58.0482px; overflow: hidden;"><span></span></div></li>
+			      <p class="graphChoice">Let me think about it</p>
+			        <li>
+			        	<div class="bar two" style="width: 58.0482px; overflow: hidden;"><span></span>
+			        	</div>
+			        </li>
 
-        <p class="graphChoice">No, this isn't for me</p>
-        <li><div class="bar three" style="width: 76.0156px; overflow: hidden;"><span></span></div></li>
-
-      </ul>
-    </div>
-	</div>
+			      <p class="graphChoice">No, this isn't for me</p>
+			      	<li>
+			      		<div class="bar three" style="width: 76.0156px; overflow: hidden;"><span></span>
+			      	</div>
+			      </li>
+		      </ul>
+		    </div>
+			</div>
 <% end %>
+
