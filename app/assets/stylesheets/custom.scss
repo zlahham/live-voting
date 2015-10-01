@@ -225,11 +225,18 @@ input:focus:-webkit-autofill {
     padding-bottom: 1.2em;
     padding-left: 3%;
     padding-right: 3%;
+    margin-top: 4em;
     margin-bottom: 1.2em;
 
     h2:first-child {
       text-align: center;
       margin-bottom: 1em;
+
+      .btn {
+        position: absolute;
+        left: 3%;
+        top: 1em;
+      }
     }
 
     .choice {
@@ -258,10 +265,15 @@ input:focus:-webkit-autofill {
     .choice {
       margin-bottom: 0.5em;
     }
+
+    .add-choice-button{
+      margin-top: 1em;
+    }
   }
 
   div:last-child {
-    margin-top: 0.3em;
+    position: relative;
+    bottom: 2.2em;
   }
 }
 
