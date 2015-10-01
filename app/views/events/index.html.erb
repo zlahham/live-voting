@@ -21,49 +21,51 @@
 	</div>
 </div>
 
-<% if user_signed_in? %>
-	<% if current_user.events.count == 0 %>
-		<h2 id='no-events-notice'>You don't have any events yet - why not add one below?</h2>
-	<% end %>
+<main class='events-wrapper'>
+	<% if user_signed_in? %>
+		<% if current_user.events.count == 0 %>
+			<h3 id='no-events-notice' class='well'>You don't have any events yet - why not add one below?</h3>
+		<% end %>
 
-	<%= form_for @event, html: { class: 'form-inline new_event' } do |f| %>
-	  <div class='form-group'>
-	    Event title: <%= f.text_field :title, class: "form-control" %>
-	    Description (optional): <%= f.text_field :description, class: "form-control" %>
-	    <%= f.submit "Add Event", class: "btn btn-primary" %>
+		<%= form_for @event, html: { class: 'form-inline new_event' } do |f| %>
+		  <div class='form-group'>
+		    Event title: <%= f.text_field :title, class: "form-control" %>
+		    Description (optional): <%= f.text_field :description, class: "form-control" %>
+		    <%= f.submit "Add Event", class: "btn btn-primary" %>
+		  </div>
+		<% end %>
+
+		<ul class='events_list list-group'>
+			<% @events.each do |event| %>
+				<li class='list-group-item'>
+					<%= link_to event_path(event) do %>
+						 <%= event.title %><br>
+						 <%= event.description %>
+					<% end  %>
+					<%= link_to 'Delete', event, method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-default btn-sm' %>
+					<%= link_to 'Edit Event', edit_event_path(event), class: 'btn btn-sm btn-default' %>
+				</li>
+		  <% end %>
+		</ul>
+
+	<% else %>
+
+	  <div class="jumbotron">
+	  	<div class='container'>
+		    <h1>We have great live polling tools</h1>
+		    <p>More subtitle info goes here</p>
+				<% if current_user %>
+		    	<%= link_to "Create your event today", new_event_path, class: "btn btn-primary btn-lg" %>
+		    <% else %>
+		    	<%= link_to "Create your account today", new_user_registration_path, class: "btn btn-primary btn-lg" %>
+		    <% end %>
+	    </div>
 	  </div>
+
+	  <div class="jumbotron">
+	  	<div class='container'>
+		    <p>Flow diagram of our customer process.</p>
+	    </div>
+		</div>
 	<% end %>
-
-	<ul class='events_list list-group'>
-		<% @events.each do |event| %>
-			<li class='list-group-item'>
-				<%= link_to event_path(event) do %>
-					 <%= event.title %><br>
-					 <%= event.description %>
-				<% end  %>
-				<%= link_to 'Delete', event, method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-default btn-sm' %>
-				<%= link_to 'Edit Event', edit_event_path(event), class: 'btn btn-sm btn-default' %>
-			</li>
-	  <% end %>
-	</ul>
-
-<% else %>
-
-  <div class="jumbotron">
-  	<div class='container'>
-	    <h1>We have great live polling tools</h1>
-	    <p>More subtitle info goes here</p>
-			<% if current_user %>
-	    	<%= link_to "Create your event today", new_event_path, class: "btn btn-primary btn-lg" %>
-	    <% else %>
-	    	<%= link_to "Create your account today", new_user_registration_path, class: "btn btn-primary btn-lg" %>
-	    <% end %>
-    </div>
-  </div>
-
-  <div class="jumbotron">
-  	<div class='container'>
-	    <p>Flow diagram of our customer process.</p>
-    </div>
-	</div>
-<% end %>
+</main>
