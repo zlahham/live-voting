@@ -58,6 +58,7 @@ describe 'Questions Features' do
     click_on "Sign out"
     sign_in_as(user_two)
     visit event_path(event)
+    expect(current_path).to eq root_path
     expect(page).to have_content('Sorry, but we were unable to serve your request.')
   end
 

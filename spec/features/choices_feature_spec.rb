@@ -31,6 +31,14 @@ describe 'Choices Features' do
     expect(page).to have_content('Sorry, but we were unable to serve your request.')
   end
 
+  it "cannot be created by not logged in user" do
+    @choice = create :choice, question: @question
+    click_on "Sign out"
+    visit new_question_choice_path(@question)
+    expect(current_path).to eq root_path
+    expect(page).to have_content('Sorry, but we were unable to serve your request.')
+  end
+
   it 'can be deleted' do
     question = create :question, event: event
     choice = create :choice, question: question
