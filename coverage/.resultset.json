@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/christopheralcock/Dropbox/code/final/live-voting/app/models/user.rb": [
+      "/Users/lewis/Dropbox/projects/live-voting/app/models/user.rb": [
         1,
         null,
         null,
@@ -11,11 +11,11 @@
         1,
         null
       ],
-      "/Users/christopheralcock/Dropbox/code/final/live-voting/app/helpers/application_helper.rb": [
+      "/Users/lewis/Dropbox/projects/live-voting/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/christopheralcock/Dropbox/code/final/live-voting/app/helpers/question_helper.rb": [
+      "/Users/lewis/Dropbox/projects/live-voting/app/helpers/question_helper.rb": [
         1,
         null,
         1,
@@ -47,19 +47,20 @@
         null,
         null
       ],
-      "/Users/christopheralcock/Dropbox/code/final/live-voting/app/helpers/votes_helper.rb": [
+      "/Users/lewis/Dropbox/projects/live-voting/app/helpers/votes_helper.rb": [
         1,
         null
       ],
-      "/Users/christopheralcock/Dropbox/code/final/live-voting/app/controllers/events_controller.rb": [
+      "/Users/lewis/Dropbox/projects/live-voting/app/controllers/events_controller.rb": [
         1,
         null,
         1,
+        1,
         null,
         1,
-        77,
-        77,
-        39,
+        83,
+        83,
+        42,
         null,
         null,
         null,
@@ -81,6 +82,8 @@
         null,
         1,
         16,
+        16,
+        null,
         null,
         null,
         1,
@@ -133,22 +136,28 @@
         1,
         null,
         null,
+        1,
         null,
         1,
+        33,
+        33,
+        1,
+        null,
+        null,
         null,
         1,
         1,
         null,
         null
       ],
-      "/Users/christopheralcock/Dropbox/code/final/live-voting/app/controllers/application_controller.rb": [
+      "/Users/lewis/Dropbox/projects/live-voting/app/controllers/application_controller.rb": [
         1,
         null,
         null,
         1,
         null
       ],
-      "/Users/christopheralcock/Dropbox/code/final/live-voting/app/controllers/questions_controller.rb": [
+      "/Users/lewis/Dropbox/projects/live-voting/app/controllers/questions_controller.rb": [
         1,
         1,
         5,
@@ -236,7 +245,7 @@
         null,
         null
       ],
-      "/Users/christopheralcock/Dropbox/code/final/live-voting/app/controllers/votes_controller.rb": [
+      "/Users/lewis/Dropbox/projects/live-voting/app/controllers/votes_controller.rb": [
         1,
         1,
         null,
@@ -246,7 +255,6 @@
         1,
         1,
         1,
-        null,
         null,
         1,
         null,
@@ -258,29 +266,20 @@
         1,
         1,
         1,
+        1,
         null,
         null
       ],
-      "/Users/christopheralcock/Dropbox/code/final/live-voting/app/models/choice.rb": [
+      "/Users/lewis/Dropbox/projects/live-voting/app/models/choice.rb": [
         1,
         1,
-        1,
-        null,
-        1,
-        null
-      ],
-      "/Users/christopheralcock/Dropbox/code/final/live-voting/app/models/event.rb": [
-        1,
-        1,
-        1,
-        1,
-        null,
         1,
         null,
         1,
         null
       ],
-      "/Users/christopheralcock/Dropbox/code/final/live-voting/app/models/question.rb": [
+      "/Users/lewis/Dropbox/projects/live-voting/app/models/event.rb": [
+        1,
         1,
         1,
         1,
@@ -290,14 +289,24 @@
         1,
         null
       ],
-      "/Users/christopheralcock/Dropbox/code/final/live-voting/app/models/vote.rb": [
+      "/Users/lewis/Dropbox/projects/live-voting/app/models/question.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        null
+      ],
+      "/Users/lewis/Dropbox/projects/live-voting/app/models/vote.rb": [
         1,
         1,
         1,
         1,
         null
       ],
-      "/Users/christopheralcock/Dropbox/code/final/live-voting/app/models/voter.rb": [
+      "/Users/lewis/Dropbox/projects/live-voting/app/models/voter.rb": [
         1,
         1,
         1,
@@ -306,7 +315,7 @@
         null,
         null
       ],
-      "/Users/christopheralcock/Dropbox/code/final/live-voting/app/controllers/choices_controller.rb": [
+      "/Users/lewis/Dropbox/projects/live-voting/app/controllers/choices_controller.rb": [
         1,
         1,
         1,
@@ -337,8 +346,17 @@
         1,
         null,
         null
+      ],
+      "/Users/lewis/Dropbox/projects/live-voting/app/controllers/errors_controller.rb": [
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null
       ]
     },
-    "timestamp": 1443695720
+    "timestamp": 1443716391
   }
 }

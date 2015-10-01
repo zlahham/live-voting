@@ -55,13 +55,10 @@ describe 'Questions Features' do
   end
 
   it 'disallows non owners to make event questions' do
-    click button "Sign out"
+    click_on "Sign out"
     sign_in_as(user_two)
     visit event_path(event)
-    expect_current_path to 
-
-
-
+    expect(page).to have_content('Sorry, but we were unable to serve your request.')
   end
 
   it 'allows extra choices to be deleted', js: :true do
