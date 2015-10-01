@@ -19,8 +19,6 @@ input:focus:-webkit-autofill {
 
 
 
-
-
 /**********************************************************
   NAVBAR
 **********************************************************/
@@ -58,14 +56,51 @@ input:focus:-webkit-autofill {
 
 
 /**********************************************************
+  HOMEPAGE
+**********************************************************/
+
+.events-index-wrapper {
+  ul.graph {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;   
+    
+    li {
+      color: #fff;
+      margin-bottom: 10px;
+
+      .bar {
+        height: 40px;
+        padding-left: 10px;
+      }
+
+      .one {
+        background: #5cb85c;
+      }
+
+      .two {
+        background: #5bc0de;
+      }
+
+      .three {
+        background: #f0ad4e;
+      }
+    }
+  }
+}
+
+
+.graphChoice {
+  margin-bottom: 0 !important;
+}
+
+
+/**********************************************************
   EVENT ID MODAL
 **********************************************************/
+
 #event_id_wrapper {
-  text-align: center;
-
   h2 {
-    font-size: 1.8em;
-
     a:first-child {
       white-space: nowrap;
     }
@@ -80,6 +115,9 @@ input:focus:-webkit-autofill {
     font-size: 0.5em;
   }
 }
+
+
+
 
 /**********************************************************
   JUMBOTRON
@@ -97,41 +135,13 @@ input:focus:-webkit-autofill {
   EVENTS PAGE
 **********************************************************/
 
-.events-wrapper {
-  text-align: center;
-  margin-right: 1%;
-  margin-left: 1%;
-   
-  .new_event {
-    margin-bottom: 1em;
-  }
+.new_event {
+  margin-bottom: 1em;
+}
 
-  .events_list {
-    margin: auto;
-    max-width: 720px;
-    text-align: left;
-    padding-left: 0;
-    background-color: $section-bg;
-
-    .list-group-item {
-      .col-xs-6:last-child {
-        text-align: right;
-      }
-    }
-  }
-
-  .form-group {
-    max-width: 720px;
-    margin: auto;
-
-    input:first-child {
-      margin-bottom: 0.5em;
-    }
-
-    input:nth-child(2) {
-      margin-bottom: 0.5em;
-    }
-  }
+.events_list {
+  padding-left: 0;
+  background-color: $section-bg;
 }
 
 
