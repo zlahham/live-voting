@@ -19,6 +19,8 @@ input:focus:-webkit-autofill {
 
 
 
+
+
 /**********************************************************
   NAVBAR
 **********************************************************/
@@ -59,7 +61,11 @@ input:focus:-webkit-autofill {
   EVENT ID MODAL
 **********************************************************/
 #event_id_wrapper {
+  text-align: center;
+
   h2 {
+    font-size: 1.8em;
+
     a:first-child {
       white-space: nowrap;
     }
@@ -91,13 +97,41 @@ input:focus:-webkit-autofill {
   EVENTS PAGE
 **********************************************************/
 
-.new_event {
-  margin-bottom: 1em;
-}
+.events-wrapper {
+  text-align: center;
+  margin-right: 1%;
+  margin-left: 1%;
+   
+  .new_event {
+    margin-bottom: 1em;
+  }
 
-.events_list {
-  padding-left: 0;
-  background-color: $section-bg;
+  .events_list {
+    margin: auto;
+    max-width: 720px;
+    text-align: left;
+    padding-left: 0;
+    background-color: $section-bg;
+
+    .list-group-item {
+      .col-xs-6:last-child {
+        text-align: right;
+      }
+    }
+  }
+
+  .form-group {
+    max-width: 720px;
+    margin: auto;
+
+    input:first-child {
+      margin-bottom: 0.5em;
+    }
+
+    input:nth-child(2) {
+      margin-bottom: 0.5em;
+    }
+  }
 }
 
 
