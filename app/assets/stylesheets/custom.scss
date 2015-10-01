@@ -96,17 +96,31 @@ $section-bg: white;
 
 .events-wrapper {
   text-align: center;
+  margin-right: 1%;
+  margin-left: 1%;
    
   .new_event {
     margin-bottom: 1em;
   }
 
   .events_list {
+    margin: auto;
+    max-width: 720px;
+    text-align: left;
     padding-left: 0;
     background-color: $section-bg;
+
+    .list-group-item {
+      .col-xs-6:last-child {
+        text-align: right;
+      }
+    }
   }
 
   .form-group {
+    max-width: 720px;
+    margin: auto;
+
     input:first-child {
       margin-bottom: 0.5em;
     }
