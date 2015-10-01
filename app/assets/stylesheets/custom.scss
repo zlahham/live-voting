@@ -56,8 +56,49 @@ input:focus:-webkit-autofill {
 
 
 /**********************************************************
+  HOMEPAGE
+**********************************************************/
+
+.events-index-wrapper {
+  ul.graph {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;   
+    
+    li {
+      color: #fff;
+      margin-bottom: 10px;
+
+      .bar {
+        height: 40px;
+        padding-left: 10px;
+      }
+
+      .one {
+        background: #5cb85c;
+      }
+
+      .two {
+        background: #5bc0de;
+      }
+
+      .three {
+        background: #f0ad4e;
+      }
+    }
+  }
+}
+
+
+.graphChoice {
+  margin-bottom: 0 !important;
+}
+
+
+/**********************************************************
   EVENT ID MODAL
 **********************************************************/
+
 #event_id_wrapper {
   h2 {
     a:first-child {
@@ -74,6 +115,9 @@ input:focus:-webkit-autofill {
     font-size: 0.5em;
   }
 }
+
+
+
 
 /**********************************************************
   JUMBOTRON
