@@ -30,9 +30,9 @@ feature 'Voting Features' do
       expect(page).to have_content 'Yes'
       expect(page).to have_content 'No'
       expect(page).to have_content 'Maybe'
-      click_button "Submit Answer"
-      page.execute_script("$(document).ready(function() { buildQuestion(#{data_creator("2")}) });")
-      expect(page).to have_content 'Question 2 of 2'
+      page.execute_script("$(document).ready(function() { answerSubmit(#{@choice.id}) });")
+      expect(page).to have_content 'Results:'
+      expect(page).to have_css("#choice_#{@choice.id} .progress .progress-bar")
     end
   end
 end

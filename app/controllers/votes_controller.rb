@@ -6,6 +6,7 @@ class VotesController < ApplicationController
     vote = choice.votes.new
     if vote.save
       json_object = build_json(vote)
+      puts json_object
       push_json(choice, json_object)
     end
 
