@@ -1,11 +1,13 @@
 
 ![Travis Build](https://travis-ci.org/zlahham/live-voting.svg)
+[![Coverage Status](https://coveralls.io/repos/zlahham/live-voting/badge.svg?branch=master&service=github)](https://coveralls.io/github/zlahham/live-voting?branch=master)
 
 [![Cards in Waffle Cards Currently In Progress](https://badge.waffle.io/zlahham/live-voting.png?label=In%20Progress&title=In%20Progress)](https://waffle.io/zlahham/live-voting)
 
 #Live-Voting
 
 Visit the live site [here](http://live-voting.herokuapp.com/)
+
 ![Lovely Dog Relaxing After A Hard Day Of Getting Stuff Done](https://pbs.twimg.com/profile_images/2352976474/821r2dpq9gt8m1nwgy5r_400x400.png)
 
 ###Summary
@@ -19,7 +21,7 @@ Visit the live site [here](http://live-voting.herokuapp.com/)
 	- Conference calls
 - For a more in depth overview of our journey as a team through this project, please see the corresponding [wiki](https://github.com/zlahham/live-voting/wiki).
 
-![Alt text](./charts_page.png)
+![charts_page](public/charts_page.png)
 
 ###Final Version Features
 
@@ -88,12 +90,16 @@ rspec
 ###Team Members:
 
 [Andrew](https://github.com/Yorkshireman)
+
 [Ben](https://github.com/benhawker)
+
 [Chris](https://github.com/christopheralcock)
+
 [Lewis](https://github.com/ljones140)
+
 [Zaid](https://github.com/zlahham)
 
-
+---
 <!--
 You need to include this hidden file at /config/initializers/pusher.rb
 ```

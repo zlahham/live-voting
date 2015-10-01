@@ -13,7 +13,7 @@ describe 'Questions Features' do
     fill_in 'question_content', with: 'test question'
     fill_in "question[choices_attributes][0][content]", with: "choice 1"
     fill_in "question[choices_attributes][1][content]", with: "choice 2"
-    click_on "Add"
+    click_on "Save"
     expect(page).to have_content 'Question successfully created'
     expect(page).to have_content 'test question'
   end
@@ -24,9 +24,9 @@ describe 'Questions Features' do
     fill_in 'question_content', with: 'test question'
     fill_in "question[choices_attributes][0][content]", with: "choice 1"
     fill_in "question[choices_attributes][1][content]", with: "choice 2"
-    click_on "Add Choice"
+    click_on "Add Another Answer Box"
     fill_in "question[choices_attributes][2][content]", with: "choice 3"
-    click_on "Add"
+    click_on "Save"
     expect(page).to have_content 'Question successfully created'
     expect(page).to have_content 'test question'
     expect(page).to have_content 'choice 1'
@@ -39,7 +39,7 @@ describe 'Questions Features' do
     click_on 'Add Question'
     fill_in 'question_content', with: 'test question'
     fill_in "question[choices_attributes][0][content]", with: "Some unique text"
-    click_on "Add Choice"
+    click_on "Add Another Answer Box"
     fill_in "question[choices_attributes][0][content]", with: "Sometext"
     expect(page).not_to have_content("Some unique text")
   end
@@ -49,7 +49,7 @@ describe 'Questions Features' do
     click_on 'Add Question'
     fill_in "question[choices_attributes][0][content]", with: "choice 1"
     fill_in "question[choices_attributes][1][content]", with: "choice 2"
-    click_on 'Add'
+    click_on 'Save'
     expect(page).to have_content "1 error prohibited this question from being saved:"
   end
 
@@ -59,10 +59,10 @@ describe 'Questions Features' do
     fill_in 'question_content', with: 'test question'
     fill_in "question[choices_attributes][0][content]", with: "choice 1"
     fill_in "question[choices_attributes][1][content]", with: "choice 2"
-    click_on "Add Choice"
+    click_on "Add Another Answer Box"
     fill_in "question[choices_attributes][2][content]", with: "choice 3"
-    click_on "Delete Choice"
-    click_on "Add"
+    click_on "Delete Last Answer"
+    click_on "Save"
     expect(page).to have_content 'Question successfully created'
     expect(page).to have_content 'test question'
     expect(page).to have_content 'choice 1'
