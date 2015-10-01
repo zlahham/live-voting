@@ -7,7 +7,8 @@
 
 **Visit the live site [here](http://live-voting.herokuapp.com/)**
 
-![Lovely Dog Relaxing After A Hard Day Of Getting Stuff Done](https://pbs.twimg.com/profile_images/2352976474/821r2dpq9gt8m1nwgy5r_400x400.png)
+![Alt text](public/awaiting_question.gif)
+
 
 ###Summary
 
@@ -18,7 +19,8 @@
 	- Conferences
 	- Annual General Meetings
 	- Conference calls
-- **For a more in depth overview of our journey as a team through this project, please see the corresponding [wiki](https://github.com/zlahham/live-voting/wiki).**
+
+###*For a more in depth overview of our journey as a team through this project, please see the corresponding [wiki](https://github.com/zlahham/live-voting/wiki).*
 ---
 ###Screenshots
 
@@ -72,9 +74,7 @@ rspec
 - End event
 - Speaker can view summary
 - Speaker can export data to CSV.
-
 - Voter can view summary
-
 
 ---
 ###Team Members:
