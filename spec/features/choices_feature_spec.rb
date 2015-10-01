@@ -24,7 +24,7 @@ describe 'Choices Features' do
   end
 
   it "can only be created by events author" do
-    @choice = create :choice, question: @question
+    create :choice, question: @question
     click_on "Sign out"
     sign_in_as(user_two)
     visit new_question_choice_path(@question)
