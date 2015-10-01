@@ -95,7 +95,7 @@ describe 'Questions Features' do
 
     it "the question show page has a link back to its event" do
       visit question_path(@question)
-      expect(page).to have_selector(:link_or_button, "Back to #{event.title}")
+      expect(page).to have_selector(:link_or_button, "Back")
     end
 
     it 'it can be pushed to the audience from the question show view' do
