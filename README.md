@@ -1,12 +1,11 @@
 
 ![Travis Build](https://travis-ci.org/zlahham/live-voting.svg)
 [![Coverage Status](https://coveralls.io/repos/zlahham/live-voting/badge.svg?branch=master&service=github)](https://coveralls.io/github/zlahham/live-voting?branch=master)
-
 [![Cards in Waffle Cards Currently In Progress](https://badge.waffle.io/zlahham/live-voting.png?label=In%20Progress&title=In%20Progress)](https://waffle.io/zlahham/live-voting)
 
 #Live-Voting
 
-Visit the live site [here](http://live-voting.herokuapp.com/)
+**Visit the live site [here](http://live-voting.herokuapp.com/)**
 
 ![Lovely Dog Relaxing After A Hard Day Of Getting Stuff Done](https://pbs.twimg.com/profile_images/2352976474/821r2dpq9gt8m1nwgy5r_400x400.png)
 
@@ -19,51 +18,30 @@ Visit the live site [here](http://live-voting.herokuapp.com/)
 	- Conferences
 	- Annual General Meetings
 	- Conference calls
-- For a more in depth overview of our journey as a team through this project, please see the corresponding [wiki](https://github.com/zlahham/live-voting/wiki).
+- **For a more in depth overview of our journey as a team through this project, please see the corresponding [wiki](https://github.com/zlahham/live-voting/wiki).**
+---
+###Screenshots
 
 ![charts_page](public/charts_page.png)
 
-###Final Version Features
+---
+
+###Current Version Features
 
 >Speaker POV
 - Login/ Sign up
 - Create event
 - Create questions with multiple choices
-- Share link to Twitter
-- Publish questions (1 at a time)
+- Share voting link either through Twitter or share event ID with audience
+- Publish questions to audience (1 at a time)
 - Results shown live
-- End event
-- View summary
 
 >Voter POV
-- Visit URL
-- Intro page
+- Visit voting URL through Twitter's link or by using the event ID
+- Vote on one choice per question
 
 ---
 
-###User Stories
-
-```
-As a speaker
-I would like to receive real time feedback from my audience
-So I can gauge ***
-```
-```
-As a speaker
-I would like to receive real time feedback from my audience
-So I can use the data after the session
-```
-```
-As a speaker
-I would like to ask specific questions at the appropriate time
-So I can get appropriate responses accordingly
-```
-```
-As an audience member
-I would like to share my opinion in the form of a vote
-So that I can make my mark
-```
----
 ###Installation/Testing Instructions:
 
 ####Local installation
@@ -84,6 +62,18 @@ bin/rails s
 cd live-voting
 rspec
 ```
+---
+###Technologies Used:
+- Production: Ruby on Rails, Javascript, jQuery, Pusher, Twitter Bootstrap, SASS, PostgreSQL, Heroku
+- Testing: RSpec, Capybara, Selenium, Factory Girl.
+
+---
+###Possible Future Improvements:
+- End event
+- Speaker can view summary
+- Speaker can export data to CSV.
+
+- Voter can view summary
 
 
 ---
