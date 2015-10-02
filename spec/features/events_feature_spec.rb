@@ -72,7 +72,12 @@ feature 'Events Features' do
     it "'Sign in' link is visible on home page" do
       expect(page).to have_content "Sign in"
     end
-
+    
+    it 'user cannot visit new_event_path' do
+      visit new_event_path
+      expect(current_path).to_not eq new_event_path
+      expect(page).to have_content 'You need to sign in or sign up before continuing'
+    end
   end
 
   context 'when wishing to vote' do
