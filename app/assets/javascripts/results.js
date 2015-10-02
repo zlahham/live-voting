@@ -37,14 +37,6 @@ $(".questions.show").ready(function() {
 
 });
 
-if (navigator.userAgent.search("Safari") !== 0 ) {
-var audioContext = new AudioContext();
-  function playNote(data){
-    var note = (data.vote_count * 2) -12;
-    playSine(note);
-  };
-};
-
 function choiceVotebuilder(data){
   var choice = "#choice_" + data.choice_id.toString();
   var choices = $('[id^="choice_"]');
