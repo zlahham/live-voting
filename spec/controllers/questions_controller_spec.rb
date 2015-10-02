@@ -19,20 +19,6 @@ RSpec.describe QuestionsController do
     end
   end
 
-  describe '#build_json' do
-    it 'returns an acceptable json object for pusher' do
-      question.update_attributes(choices: [choice, choice2])
-      expect(JSON.parse(subject.build_json event, question)).to eq( {"event"=>{"id"=>event.id,
-              "title"=>event.title,
-              "code"=>"ABCD1",
-              "description"=>"The first event of hopefully many, in which we show off our technology"},
-              "question"=>{"id"=>question.id,
-              "content"=>question.content,
-              "question_number"=>1},
-              "choices"=>[{"content"=>choice.content, "id"=>choice.id}, {"content"=>choice2.content, "id"=>choice2.id}]} )
-    end
-  end
-
   describe '#clear_votes' do
     it "destroys a question's votes" do
       choice.votes.create
