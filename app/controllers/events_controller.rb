@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-
-  before_action :authenticate_user!, :except => [:index, :show, :vote, :parse_event_id]
+  before_action :authenticate_user!, except: [:index, :show, :vote, :parse_event_id]
+  before_action :event_owner_check, only: [:show, :destroy, :edit, :update]
 
   def index
     @event = Event.new
@@ -26,17 +26,18 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
+    @event = find_event
   end
 
+
   def destroy
-    Event.find(params[:id]).destroy
+    find_event.destroy
     redirect_to events_path
     flash[:notice] = "Event successfully deleted"
   end
 
   def edit
-    @event = Event.find(params[:id])
+    @event = find_event
   end
 
   def update
@@ -44,8 +45,7 @@ class EventsController < ApplicationController
       @events = @user.events
     end
 
-    @event = Event.find(params[:id])
-    if @event.update_attributes(event_params)
+    if find_event.update_attributes(event_params)
       flash[:notice] = "Event successfully updated"
       render 'index'
     else
@@ -54,7 +54,7 @@ class EventsController < ApplicationController
   end
 
   def vote
-    @event = Event.find(params[:id])
+    @event = find_event
   end
 
   def parse_event_id
@@ -69,7 +69,7 @@ class EventsController < ApplicationController
   end
 
   def generate_code(event_id)
-    characters = %w(A B C D E F G H J K L M O P Q R T W X Y Z 1 2 3 4 5 6 7 8 9)
+    characters = %w(A B C D E F G H J K L M P Q R T W X Y Z 1 2 3 4 5 6 7 8 9)
     code = ''
     4.times do
       code << characters.sample
@@ -80,6 +80,17 @@ class EventsController < ApplicationController
 
 
   private
+
+  def find_event
+    Event.find(params[:id])
+  end
+
+  def event_owner_check
+    event = find_event
+    if current_user != event.user
+      redirect_to root_path, notice: "Sorry, but we were unable to serve your request."
+    end
+  end
 
   def event_params
     params.require(:event).permit(:title, :description)
