@@ -1,7 +1,7 @@
 $(".questions.show").ready(function() {
 
   var ready = function(){
-    
+
     var channel, pusher;
 
     Pusher.log = function(message) {
@@ -37,9 +37,12 @@ $(".questions.show").ready(function() {
 
 });
 
-function playNote(data){
-  var note = (data.vote_count * 2) -12;
-  playSine(note);
+if (navigator.userAgent.search("Safari") !== 0 ) {
+var audioContext = new AudioContext();
+  function playNote(data){
+    var note = (data.vote_count * 2) -12;
+    playSine(note);
+  };
 };
 
 function choiceVotebuilder(data){
