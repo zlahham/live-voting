@@ -1,7 +1,7 @@
 $(".questions.show").ready(function() {
 
   var ready = function(){
-    
+
     var channel, pusher;
 
     Pusher.log = function(message) {
@@ -36,11 +36,6 @@ $(".questions.show").ready(function() {
   $(document).on('page:load', ready);
 
 });
-
-function playNote(data){
-  var note = (data.vote_count * 2) -12;
-  playSine(note);
-};
 
 function choiceVotebuilder(data){
   var choice = "#choice_" + data.choice_id.toString();
