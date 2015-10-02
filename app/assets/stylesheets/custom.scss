@@ -118,8 +118,12 @@ input:focus:-webkit-autofill {
 
   .modal-content {
     font-size: 1.5em;
-    padding: 1em 1em 1.7em 1em;
+    padding: 1em;
     text-align: center;
+
+    .btn {
+      margin-top: 0.5em;
+    }
   }
   p {
     font-size: 0.5em;
