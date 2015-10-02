@@ -1,19 +1,19 @@
 class QuestionsController < ApplicationController
-  before_action :question_owner?, only: [:show, :destroy, :edit, :update]
+  before_action :check_if_question_owner, only: [:show, :destroy, :edit, :update]
   before_action :check_if_event_owner, only: [:new]
 
   def new
-    @event = Event.find(params[:event_id])
+    @event = find_event
     @question = Question.new
     2.times { @question.choices.build }
   end
 
   def show
-    @question = Question.find(params[:id])
+    @question = find_question
   end
 
   def create
-    @event = Event.find(params[:event_id])
+    @event = find_event
     @question = @event.questions.new(question_params)
 
     if @question.save
@@ -25,13 +25,13 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    question = Question.find(params[:id]).destroy
+    question = find_question.destroy
     redirect_to event_path(question.event)
     flash[:notice] = "Question successfully deleted"
   end
 
   def clear_votes
-    question = Question.find(params[:id])
+    question = find_question
     question.choices.map{ |choice| choice.votes.destroy_all }
     redirect_to question_path(question)
     flash[:notice] = "Votes successfully cleared"
@@ -69,17 +69,25 @@ class QuestionsController < ApplicationController
   end
 
   def add_choice
-  @question = Question.find(params[:id])
-
+    @question = find_question
     respond_to do |format|
       format.js
     end
   end
 
+
   private
 
-  def question_owner?
-    question = Question.find(params[:id])
+  def find_question
+    Question.find(params[:id])
+  end
+
+  def find_event
+    Event.find(params[:event_id])
+  end
+
+  def check_if_question_owner
+    question = find_question
     if current_user != question.event.user
       redirect_to root_path, notice: "Sorry, but we were unable to serve your request."
     end
