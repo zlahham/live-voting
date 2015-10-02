@@ -23,7 +23,8 @@ describe 'Choices Features' do
     expect(page).to have_content "#{@question.choices.last.content}"
   end
 
-  it "can only be created by event's author" do
+  it "can only be created by events author" do
+    create :choice, question: @question
     click_on "Sign out"
     sign_in_as(user_two)
     visit new_question_choice_path(@question)
