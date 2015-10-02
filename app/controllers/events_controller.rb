@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, :vote, :parse_event_id]
-  before_action :event_owner_check, only: [:show, :destroy, :edit, :update]
+  before_action :authenticate_user!, :except => [:index, :show, :vote, :parse_event_id]
+  before_action :check_if_event_owner, only: [:show, :destroy, :edit, :update]
 
   def index
     @event = Event.new
@@ -85,7 +85,7 @@ class EventsController < ApplicationController
     Event.find(params[:id])
   end
 
-  def event_owner_check
+  def check_if_event_owner
     event = find_event
     if current_user != event.user
       redirect_to root_path, notice: "Sorry, but we were unable to serve your request."
