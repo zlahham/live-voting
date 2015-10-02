@@ -40,7 +40,7 @@ class QuestionsController < ApplicationController
   def publish_question
     question = Question.find(params["question"])
     event = question.event
-    json_object = build_json(event, question)
+    json_object = BuildJSON.call(event, question)
     begin
       push_json_to_pusher(json_object, event.id)
       redirect_to question_path(question)
@@ -49,18 +49,6 @@ class QuestionsController < ApplicationController
       redirect_to event_path(event)
       flash[:notice] = "Error: Question could not be published"
     end
-  end
-
-  def build_json(event, question)
-    choices_array = []
-    question.choices.each do |choice|
-      choice_hash = { content: choice.content, id: choice.id }
-      choices_array << choice_hash
-    end
-    event_object = event.attributes.reject!{|key,value| %w"updated_at created_at user_id".include? key}
-    question_object = question.attributes.reject!{|key,value| %w"updated_at created_at event_id".include? key}
-    question_object.merge!(question_number: question_number(event, question))
-    json_object = { event: event_object, question: question_object, choices: choices_array }.to_json
   end
 
   def push_json_to_pusher(json_object, event_id)
