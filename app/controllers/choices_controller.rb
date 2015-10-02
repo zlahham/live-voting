@@ -1,4 +1,6 @@
 class ChoicesController < ApplicationController
+  before_action :choice_owner_check, only: [:new, :create]
+
   def new
     @question = find_question
     @choice = Choice.new
@@ -7,7 +9,7 @@ class ChoicesController < ApplicationController
   def create
     @question = find_question
     @choice = @question.choices.new(choices_params)
-      
+
     if @choice.save
       redirect_to question_path(@question)
       flash[:notice] = "Choice successfully created"
@@ -23,6 +25,7 @@ class ChoicesController < ApplicationController
     flash[:notice] = "Choice successfully deleted"
   end
 
+
   private
 
   def find_question
@@ -31,6 +34,13 @@ class ChoicesController < ApplicationController
 
   def find_choice
     Choice.find(params[:id])
+  end
+
+  def choice_owner_check
+    question = find_question
+    if current_user != question.event.user
+      redirect_to root_path, notice: "Sorry, but we were unable to serve your request."
+    end
   end
 
   def choices_params

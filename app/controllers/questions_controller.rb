@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  before_action :question_owner_check, only: [:show, :destroy, :edit, :update]
 
   def new
     @event = find_event
@@ -67,8 +68,7 @@ class QuestionsController < ApplicationController
   end
 
   def add_choice
-  @question = find_question
-
+    @question = find_question
     respond_to do |format|
       format.js
     end
@@ -83,6 +83,13 @@ class QuestionsController < ApplicationController
 
   def find_event
     Event.find(params[:event_id])
+  end
+
+  def question_owner_check
+    question = find_question
+    if current_user != question.event.user
+      redirect_to root_path, notice: "Sorry, but we were unable to serve your request."
+    end
   end
 
   def question_number(event, question)
