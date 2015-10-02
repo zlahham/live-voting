@@ -7,7 +7,7 @@
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <div class='container-fluid'>
-          <%= form_tag({controller: 'events', action: 'parse_event_id'}, method: 'get', class: 'form-inline') do %>
+          <%= form_tag({controller: 'events', action: 'parse_event_id'}, method: 'get') do %>
             <div class='form-group'>
               <%= label_tag(:unparsed_event_id, "Enter Event Id:") %>
               <%= text_field_tag(:unparsed_event_id, nil, class: 'form-control') %>
@@ -15,7 +15,7 @@
             </div>
           <% end %>
         </div>
-        <p>Thankfully NOT case-sensitive!</p>
+        <p>(Thankfully, NOT case-sensitive!)</p>
       </div>
     </div>
   </div>

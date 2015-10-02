@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
-  before_action :question_owner_check, only: [:show, :destroy, :edit, :update]
+  before_action :check_if_question_owner, only: [:show, :destroy, :edit, :update]
+  before_action :check_if_event_owner, only: [:new]
 
   def new
     @event = find_event
@@ -39,7 +40,7 @@ class QuestionsController < ApplicationController
   def publish_question
     question = Question.find(params["question"])
     event = question.event
-    json_object = build_json(event, question)
+    json_object = BuildJSON.call(event, question)
     begin
       push_json_to_pusher(json_object, event.id)
       redirect_to question_path(question)
@@ -48,18 +49,6 @@ class QuestionsController < ApplicationController
       redirect_to event_path(event)
       flash[:notice] = "Error: Question could not be published"
     end
-  end
-
-  def build_json(event, question)
-    choices_array = []
-    question.choices.each do |choice|
-      choice_hash = { content: choice.content, id: choice.id }
-      choices_array << choice_hash
-    end
-    event_object = event.attributes.reject!{|key,value| %w"updated_at created_at user_id".include? key}
-    question_object = question.attributes.reject!{|key,value| %w"updated_at created_at event_id".include? key}
-    question_object.merge!(question_number: question_number(event, question))
-    json_object = { event: event_object, question: question_object, choices: choices_array }.to_json
   end
 
   def push_json_to_pusher(json_object, event_id)
@@ -85,9 +74,16 @@ class QuestionsController < ApplicationController
     Event.find(params[:event_id])
   end
 
-  def question_owner_check
+  def check_if_question_owner
     question = find_question
     if current_user != question.event.user
+      redirect_to root_path, notice: "Sorry, but we were unable to serve your request."
+    end
+  end
+
+  def check_if_event_owner
+    event = Event.find(params[:event_id])
+    if current_user != event.user
       redirect_to root_path, notice: "Sorry, but we were unable to serve your request."
     end
   end
