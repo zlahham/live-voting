@@ -1,5 +1,5 @@
 class ChoicesController < ApplicationController
-  before_action :choice_owner_check, only: [:new, :create]
+  before_action :check_if_choice_owner, only: [:new, :create]
 
   def new
     @question = find_question
@@ -36,7 +36,7 @@ class ChoicesController < ApplicationController
     Choice.find(params[:id])
   end
 
-  def choice_owner_check
+  def check_if_choice_owner
     question = find_question
     if current_user != question.event.user
       redirect_to root_path, notice: "Sorry, but we were unable to serve your request."
